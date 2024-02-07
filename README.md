@@ -49,3 +49,6 @@
 * 地図機能は Google Maps API(JavaScript API, Places API)
 * Docker を用いて開発する。
 * Fly.io にデプロイする。
+
+### 画面遷移図
+https://www.figma.com/file/SKkngaqbpS4tBMti9b3FYe/sameshi_%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?type=design&node-id=0%3A1&mode=design&t=yBRCuLULGMvGgdgi-1
