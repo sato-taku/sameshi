@@ -8,7 +8,19 @@ module.exports = {
   plugins: [require('daisyui')],
   daisyui: {
     themes: [
-      "bumblebee"
+      {
+        mytheme: {
+          "primary": "#F5F5DC",        
+          "secondary": "#F5F5DC",
+          "accent": "#FFD700",
+          "neutral": "#FFD700",
+          "base-100": "#ffffff",
+          "info": "#C3B091",
+          "success": "#FFD700",
+          "warning": "#FFD700",
+          "error": "#FF6347",
+        },
+      },
     ],
   },
 }
