@@ -26,6 +26,9 @@ RUN yarn install
 COPY . /app
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
+
+RUN bundle exec rails assets:precompile
+
 ENTRYPOINT ["entrypoint.sh"]
 EXPOSE 3000
 
