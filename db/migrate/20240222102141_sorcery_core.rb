@@ -1,8 +1,8 @@
-class CreateUsers < ActiveRecord::Migration[7.1]
+class SorceryCore < ActiveRecord::Migration[7.1]
   def change
     create_table :users do |t|
       t.string :nickname
-      t.string :email
+      t.string :email,            null: false, index: { unique: true }
       t.references :prefecture, foreign_key: true
       t.string :age_group
       t.string :avatar
@@ -10,7 +10,7 @@ class CreateUsers < ActiveRecord::Migration[7.1]
       t.string :salt
       t.integer :role, default: 0
 
-      t.timestamps
+      t.timestamps                null: false
     end
   end
 end
