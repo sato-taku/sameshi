@@ -1,0 +1,28 @@
+<div class="mt-24 w-5/6 mx-auto max-w-screen-xl">
+  <div class="">
+    <h1 class="">ユーザー登録</h1>
+    <div class= "">
+      <%= form_with model: @user, local: true do |f| %>
+        <%= f.label :nickname %>
+        <%= f.text_field :nickname, class: "" %>
+        <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, { include_blank: "選択してください" }  %>
+        <%= f.select :age_group, options_for_select(User::age_groups, selected: @user.age_group), { include_blank: "選択してください" } %>
+        <%= f.label :email %>
+        <%= f.email_field :email, class: "" %>
+        <%= f.label :password %>
+        <%= f.password_field :password, class: "" %>
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, class: "" %>
+        <span class="text-center">
+          <%= f.file_field :current_icon, accept: "image/jpeg,image/gif,image/png", class: "" %>
+        </span>
+        <div class="text-center">
+          <%= f.submit '新規登録', class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+    <div class="text-center">
+      <%= link_to 'ログイン', login_path %> | <%= link_to "パスワードを忘れた方はコチラ", "#" %> 
+    </div>
+  </div>
+</div>
