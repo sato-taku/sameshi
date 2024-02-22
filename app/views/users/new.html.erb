@@ -1,6 +1,6 @@
 <div class="mt-24 w-5/6 mx-auto max-w-screen-xl">
   <div class="">
-    <h1 class="">ユーザー登録</h1>
+    <h1 class=""><%= t('.title') %></h1>
     <div class= "">
       <%= form_with model: @user, local: true do |f| %>
         <%= f.label :nickname %>
@@ -17,12 +17,12 @@
           <%= f.file_field :current_icon, accept: "image/jpeg,image/gif,image/png", class: "" %>
         </span>
         <div class="text-center">
-          <%= f.submit '新規登録', class: "btn btn-primary" %>
+          <%= f.submit t('helpers.submit.create'), class: "btn btn-primary" %>
         </div>
       <% end %>
     </div>
     <div class="text-center">
-      <%= link_to 'ログイン', login_path %> | <%= link_to "パスワードを忘れた方はコチラ", "#" %> 
+      <%= link_to t('.to_login_page'), login_path %> | <%= link_to t('.password_forget'), "#" %> 
     </div>
   </div>
 </div>

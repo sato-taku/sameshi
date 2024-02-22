@@ -1,0 +1,12 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+    attributes:
+      user:
+        nickname: ニックネーム
+        email: メールアドレス
+        prefecture_id: 都道府県
+        age_group: 年代
+        password: パスワード
+        password_confirmation: パスワード（確認用）
