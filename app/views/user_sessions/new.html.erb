@@ -1,0 +1,17 @@
+<div class="mt-24 w-5/6 mx-auto max-w-screen-xl">
+  <div class="">
+     <h1 class="">ログイン</h1>
+    <div class= "">
+      <%= form_with url: login_path, local: true do |f| %>
+          <%= f.label :email %>
+          <%= f.text_field :email, class: "" %>
+          <%= f.label :password %>
+          <%= f.password_field :password, class: "" %>
+          <%= f.submit 'ログイン', class: "btn btn-primary" %>
+      <% end %>
+    </div>
+    <div class='text-center'>
+      <%= link_to '新規登録', new_user_path %> | <%= link_to 'パスワードをお忘れの方はこちら', "#" %>
+    </div>
+  </div>
+</div>
