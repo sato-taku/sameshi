@@ -111,13 +111,21 @@ GEM
     drb (2.2.0)
       ruby2_keywords
     erubi (1.12.0)
+    faker (3.2.3)
+      i18n (>= 1.8.11, < 2)
     faraday (2.9.0)
       faraday-net_http (>= 2.0, < 3.2)
     faraday-net_http (3.1.0)
       net-http
+    geocoder (1.8.2)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    google_places (2.0.0)
+      httparty (>= 0.13.1)
     hashie (5.0.0)
+    httparty (0.21.0)
+      mini_mime (>= 1.0.0)
+      multi_xml (>= 0.5.2)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     io-console (0.7.2)
@@ -288,6 +296,9 @@ DEPENDENCIES
   debug
   dockerfile-rails (>= 1.6)
   dotenv-rails
+  faker
+  geocoder
+  google_places
   jbuilder
   jsbundling-rails
   pg (~> 1.1)

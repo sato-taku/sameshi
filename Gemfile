@@ -73,3 +73,6 @@ gem "dockerfile-rails", ">= 1.6", :group => :development
 gem "sorcery"
 gem "rails-i18n"
 gem "dotenv-rails"
+gem "google_places"
+gem "geocoder"
+gem "faker"
