@@ -7,7 +7,7 @@ namespace :yamanashi do
     # 各地点から検索を行い、結果をDBに保存
     points.each do |point|
       # サウナ施設を検索するクエリ
-      query = "サウナ OR 銭湯 OR 温泉 山梨県#{point}"
+      query = "サウナ 山梨県#{point}"
 
       saunas = client.spots_by_query(query, language: 'ja')
       saunas.each do |sauna|
