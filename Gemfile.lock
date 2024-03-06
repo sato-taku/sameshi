@@ -137,11 +137,8 @@ GEM
       activesupport (>= 5.0.0)
     jsbundling-rails (1.3.0)
       railties (>= 6.0.0)
-<<<<<<< HEAD
     jwt (2.8.0)
       base64
-=======
->>>>>>> 399a77c (Dockerを使った環境構築)
     loofah (2.22.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)

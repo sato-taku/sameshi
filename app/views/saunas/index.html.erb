@@ -1,0 +1,87 @@
+<div id="map" style="height: 600px;"></div>
+
+<!-- モーダルを表示する要素 -->
+<dialog id="sauna_modal" class="modal">
+  <div class="modal-box">
+    <form method="dialog">
+      <button class="btn">×</button>
+    </form>
+    <div class="sauna_show mt-4"></div>
+  </div>
+</dialog>
+
+<script>
+  // 地図を初期化
+  function initMap() {
+    // 地図要素を取得する（マーカーを表示させるために必要）
+    const mapElement = document.getElementById('map');
+    // 地図のオプション（デフォルト位置：東京）
+    const defaultMapOptions = {
+      center: { lat: 35.6803997, lng: 139.7690174 },
+      zoom: 12
+    };
+    // 指定した要素・オプションで地図を表示
+    const displayMap = (mapOptions) => {
+      const map = new google.maps.Map(mapElement, mapOptions);
+
+      // マーカーを追加（Postの情報からマーカーを追加する）
+      <% @saunas.each do |sauna| %>
+        (() => {
+          // 繰り返しの時はconstではなくletで定義
+          let marker = new google.maps.Marker({
+            position: {lat: <%= sauna.latitude %>, lng: <%= sauna.longitude %>}, 
+            map: map,
+            title: '<%= j sauna.name %>'
+          });
+
+          // マーカーをクリックすると投稿詳細に遷移
+          marker.addListener('click', function() {
+            const modalContent = `
+              <div>
+                <p class="text-xl font-bold mb-2"><%= j sauna.name %></p>
+              </div>
+              <% if sauna.photo_reference.present? %>
+                <div>
+                  <%= image_tag "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=#{sauna.photo_reference}&key=#{ENV["GOOGLE_MAPS_API_KEY"]}"%>
+                </div>
+              <% end %>
+              <div>
+                <%= link_to "詳細", sauna_path(sauna), data: { turbo: false }, class: "btn" %>
+              </div>
+            `;
+
+            document.querySelector('.sauna_show').innerHTML = modalContent;
+            sauna_modal.showModal();
+          });
+        })();
+      <% end %>
+    };
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        // 現在の緯度経度を取得
+        const currentLocation = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+        // 地図のオプションを現在地に設定して地図を表示
+        displayMap({ ...defaultMapOptions, center: currentLocation });
+      }, function() {
+        // 現在地が取得できない場合もデフォルトの地図を表示
+        displayMap(defaultMapOptions);
+      });
+      } else {
+        // Geolocation APIが利用不可能な場合もデフォルトの地図を表示
+        displayMap(defaultMapOptions);
+      }
+    }
+
+  // 画面のどこを押してもモーダルを閉じる
+  document.addEventListener('click', function(event) {
+    const modal = document.getElementById('sauna_modal');
+    if (event.target === modal) {
+      modal.close();
+    }
+  });
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_MAPS_API_KEY"] %>&callback=initMap"></script>

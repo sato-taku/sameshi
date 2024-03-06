@@ -23,3 +23,15 @@ prefectures = [
 prefectures.each do |name|
   Prefecture.find_or_create_by!(name: name)
 end
+
+10.times do |n|
+  latitude = Faker::Address.latitude.to_f
+  longitude = Faker::Address.longitude.to_f
+  Sauna.create!(
+    name: "Example Name #{n + 1}",
+    address: "Example Address #{n + 1}",
+    latitude: latitude,
+    longitude: longitude,
+    place_id: n + 1
+  )
+end
