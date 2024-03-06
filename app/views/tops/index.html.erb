@@ -2,39 +2,11 @@
   <div class="hero-content text-center w-5/6 mx-auto max-w-screen-xl">
     <div>
       <h1 class="text-4xl font-bold">サウナを愛す者<br>サ飯も愛すべし</h1>
-      <%# <%= render 'shared/map' %> %>
-      <!-- 住所表示エリア -->
-      <div id="map" style="height: 600px;"></div>
-
-      <script>
-        function initMap() {
-          // 地図要素を取得する（マーカーを表示させるために必要）
-          const mapElement = document.getElementById('map');
-      
-          const mapOptions = {
-            center: { lat: 35.6803997, lng: 139.7690174 },
-            zoom: 10
-          };
-      
-          const map = new google.maps.Map(mapElement, mapOptions);
-      
-          // マーカーを追加（Postの情報からマーカーを追加する）
-          <% @posts.each do |post| %>
-            new google.maps.Marker({
-              position: {lat: <%= post.latitude %>, lng: <%= post.longitude %>}, 
-              map: map,
-              title: '<%= j post.title %>'
-            });
-          <% end %>
-        }
-      </script>
-      <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_MAPS_API_KEY"] %>&callback=initMap"></script>
-      
       <div>
-        <%= link_to "サ飯を探す", "#", class: "btn btn-primary w-80 mt-10" %>
+        <%= link_to "サ飯を探す", posts_path, class: "btn btn-primary w-80 mt-10" %>
       </div>
       <div>
-        <%= link_to "現在地から探す", "#", class: "btn btn-primary w-80 mt-10" %>
+        <%= link_to "現在地から探す", saunas_path, class: "btn btn-primary w-80 mt-10" %>
       </div>
     </div>
   </div>

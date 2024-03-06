@@ -9,8 +9,12 @@ namespace :chiba do
       # サウナ施設を検索するクエリ
       query = "サウナ 千葉県#{point}"
 
-      saunas = client.spots_by_query(query, language: 'ja')
-      saunas.each do |sauna|
+      saunas = client.spots_by_query(query, exclude: 'pet_store', language: 'ja')
+      filtered_saunas = saunas.reject do |sauna|
+        # フィルタリングの条件
+        sauna.name.include?('会社') || sauna.name.include?('休憩') || sauna.name.include?('エステ') || sauna.name.include?('（有）') || sauna.name.include?('福祉') || sauna.name.include?('商会') || sauna.name.include?('（株）') || sauna.name.include?('食堂')
+      end
+      filtered_saunas.each do |sauna|
         new_sauna = Sauna.find_or_initialize_by(place_id: sauna.place_id)
         new_sauna.assign_attributes(
           name: sauna.name,
