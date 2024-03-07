@@ -3,21 +3,35 @@
     <h1 class=""><%= t('.title') %></h1>
     <div class= "">
       <%= form_with model: @user, local: true do |f| %>
-        <%= f.label :nickname %>
-        <%= f.text_field :nickname, placeholder: "ニックネーム（20文字以内）", class: "input input-bordered input-primary w-full max-w-xs" %>
-        <%= f.label :prefecture_id %>
-        <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, { include_blank: "選択してください" }, class: "input input-bordered input-primary w-full max-w-xs"  %>
-        <%= f.label :age_group %>
-        <%= f.select :age_group, options_for_select(User::age_groups, selected: @user.age_group), { include_blank: "選択してください" }, class: "input input-bordered input-primary w-full max-w-xs" %>
-        <%= f.label :email %>
-        <%= f.email_field :email, placeholder: "メールアドレス", class: "input input-bordered input-primary w-full max-w-xs" %>
-        <%= f.label :password %>
-        <%= f.password_field :password, placeholder: "••••（4桁以上）", class: "input input-bordered input-primary w-full max-w-xs" %>
-        <%= f.label :password_confirmation %>
-        <%= f.password_field :password_confirmation, placeholder: "••••",class: "input input-bordered input-primary w-full max-w-xs" %>
+        <div>
+          <%= f.label :nickname %>
+          <%= f.text_field :nickname, placeholder: "ニックネーム（20文字以内）", class: "input input-bordered input-primary w-full max-w-xs" %>
+        </div>
+        <div>
+          <%= f.label :prefecture_id %>
+          <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, { include_blank: "選択してください" }, class: "input input-bordered input-primary w-full max-w-xs"  %>
+        </div>
+        <div>
+          <%= f.label :age_group %>
+          <%= f.select :age_group, options_for_select(User::age_groups, selected: @user.age_group), { include_blank: "選択してください" }, class: "input input-bordered input-primary w-full max-w-xs" %>
+        </div>
+        <div>
+          <%= f.label :email %>
+          <%= f.email_field :email, placeholder: "メールアドレス", class: "input input-bordered input-primary w-full max-w-xs" %>
+        </div>
+        <div>
+          <%= f.label :password %>
+          <%= f.password_field :password, placeholder: "••••（4桁以上）", class: "input input-bordered input-primary w-full max-w-xs" %>
+        </div>
+        <div>
+          <%= f.label :password_confirmation %>
+          <%= f.password_field :password_confirmation, placeholder: "••••",class: "input input-bordered input-primary w-full max-w-xs" %>
+        </div>
+        <div>
         <span class="text-center">
           <%= f.file_field :current_icon, accept: "image/jpeg,image/gif,image/png", class: "input input-bordered input-primary w-full max-w-xs" %>
         </span>
+        </div>
         <div class="text-center">
           <%= f.submit t('helpers.submit.create'), class: "btn btn-primary" %>
         </div>

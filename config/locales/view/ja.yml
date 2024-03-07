@@ -12,6 +12,11 @@ ja:
       email: メールアドレス
       password: パスワード
       password_confirmation: パスワード（確認用）
+  defaults:
+    flash_message:
+      created: "%{item}を作成しました"
+      not_created: "%{item}を作成できませんでした"
+      require_login: ログインしてください
   user_sessions:
     new:
       title: ログイン
@@ -31,3 +36,6 @@ ja:
     create:
       success: ユーザー登録が完了しました
       failure: ユーザー登録に失敗しました
+  posts:
+    new:
+      title: 新規投稿

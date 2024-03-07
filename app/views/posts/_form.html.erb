@@ -1,0 +1,40 @@
+<%= form_with model: post, local: true do |f| %>
+  <div>
+    <!-- オートコンプリート入力フィールド -->
+    <label for="autocomplete">サウナ</label>
+    <input id="autocomplete" type="text" placeholder="サウナ施設を検索">
+    <!-- 選択された施設のplace_idを保存するための隠しフィールド -->
+    <%= f.hidden_field :sauna_place_id, id: "sauna_place_id" %>
+  </div>
+  <div>
+    <%= f.label :prefecture_id %>
+    <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, { include_blank: "選択してください" } %>
+  </div>
+  <div>
+    <%= f.label :meal_genre %>
+    <%= f.select :meal_genre, options_for_select(Post::meal_genres, selected: @post.meal_genre), { include_blank: "選択してください" } %>
+  </div>
+  <div>
+    <%= f.label :content %>
+    <%= f.text_area :content, rows: 10 %>
+  </div>
+  <div>
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<script>
+function initAutocomplete() {
+  // オートコンプリートの初期化
+  var autocomplete = new google.maps.places.Autocomplete(
+    document.getElementById('autocomplete'),
+    {types: ['establishment'], componentRestrictions: {'country': 'JP'}}
+  );
+  // プレイスが変更された時に隠しフィールドにplace_idをセット
+  autocomplete.addListener('place_changed', function() {
+    var place = autocomplete.getPlace();
+    document.getElementById('sauna_place_id').value = place/place_id;
+  });
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<% ENV["GOOGLE_MAPS_API_KEY"] %>&libraries=places&callback=initMap"></script>

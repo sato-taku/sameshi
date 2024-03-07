@@ -6,7 +6,7 @@ class User < ApplicationRecord
   end
 
   belongs_to :prefecture
-  has_many :posts
+  has_many :posts, dependent: :destroy
 
   validates :password, length: { minimum:4 }, if: -> { new_record? || changes[:crypted_password] }
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
