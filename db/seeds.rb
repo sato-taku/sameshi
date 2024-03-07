@@ -24,14 +24,29 @@ prefectures.each do |name|
   Prefecture.find_or_create_by!(name: name)
 end
 
-10.times do |n|
-  latitude = Faker::Address.latitude.to_f
-  longitude = Faker::Address.longitude.to_f
-  Sauna.create!(
-    name: "Example Name #{n + 1}",
-    address: "Example Address #{n + 1}",
-    latitude: latitude,
-    longitude: longitude,
-    place_id: n + 1
+niigata_prefecture = Prefecture.find_by(name: '新潟県')
+
+10.times do
+  User.create!(
+    nickname: Faker::Name.name,
+    email: Faker::Internet.email,
+    prefecture_id: niigata_prefecture.id,
+    age_group: User.age_groups.sample,
+    password: "password",
+    password_confirmation: "password"
+  )
+end
+
+10.times do
+  sauna = Sauna.all.sample
+  user = User.all.sample
+
+  Post.create!(
+    user_id: user.id,
+    sauna_id: sauna.id,
+    prefecture_id: niigata_prefecture.id,
+    meal_genre: Faker::Food.dish,
+    content: Faker::Lorem.sentence,
+    post_image: nil
   )
 end

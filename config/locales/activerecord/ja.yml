@@ -10,3 +10,5 @@ ja:
         age_group: 年代
         password: パスワード
         password_confirmation: パスワード（確認用）
+      post:
+        content: 内容
