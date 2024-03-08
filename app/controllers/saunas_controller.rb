@@ -7,4 +7,11 @@ class SaunasController < ApplicationController
   def show
     @sauna = Sauna.find(params[:id])
   end
+
+  def search
+    @saunas = Sauna.search_by_name(params[:query]) if params[:query].present?
+    respond_to do |format|
+      format.json { render json: @saunas }
+    end
+  end
 end

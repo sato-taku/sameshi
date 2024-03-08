@@ -1,5 +1,5 @@
 class Sauna < ApplicationRecord
-  geocoded_by :address
-  after_validation :geocode
+  scope :search_by_name, ->(query) { where('name LIKE ?', "%#{query}%") }
+  
   has_many :posts
 end

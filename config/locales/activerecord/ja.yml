@@ -2,6 +2,7 @@ ja:
   activerecord:
     models:
       user: ユーザー
+      post: 「サ飯」
     attributes:
       user:
         nickname: ニックネーム
@@ -11,4 +12,6 @@ ja:
         password: パスワード
         password_confirmation: パスワード（確認用）
       post:
+        prefecture_id: 都道府県
+        meal_genre: ジャンル
         content: 内容
