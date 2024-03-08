@@ -1,9 +1,10 @@
 <%= form_with model: post, local: true do |f| %>
   <div>
     <!-- オートコンプリート入力フィールド -->
-    <label for="autocomplete">サウナ</label>
-    <input id="autocomplete" type="text" placeholder="サウナ施設を検索">
-    <!-- 選択された施設のplace_idを保存するための隠しフィールド -->
+    <label for="sauna_search">サウナ施設を検索</label>
+    <input id="sauna_search" type="text" placeholder="サウナ施設を検索" autocomplete="off">
+    <div id="sauna_search_results"></div> <!-- 検索結果を表示するコンテナ -->
+    <!--選択された施設のplace_idを保存するための隠しフィールド -->
     <%= f.hidden_field :sauna_place_id, id: "sauna_place_id" %>
   </div>
   <div>
@@ -24,17 +25,38 @@
 <% end %>
 
 <script>
-function initAutocomplete() {
-  // オートコンプリートの初期化
-  var autocomplete = new google.maps.places.Autocomplete(
-    document.getElementById('autocomplete'),
-    {types: ['establishment'], componentRestrictions: {'country': 'JP'}}
-  );
-  // プレイスが変更された時に隠しフィールドにplace_idをセット
-  autocomplete.addListener('place_changed', function() {
-    var place = autocomplete.getPlace();
-    document.getElementById('sauna_place_id').value = place/place_id;
+document.addEventListener('DOMContentLoaded', function() {
+  var searchInput = document.getElementById('sauna_search');
+
+  searchInput.addEventListener('input', function() {
+    var query = searchInput.value;
+
+    if (query.length < 2) { // 最小文字数を設定
+      return;
+    }
+
+    fetch(`/saunas/search?query=${encodeURIComponent(query)}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      var resultsContainer = document.getElementById('sauna_search_results');
+      resultsContainer.innerHTML = ''; // 既存の結果をクリア
+      data.forEach(sauna => {
+        var element = document.createElement('div');
+        element.innerText = sauna.name; // ここで表示する内容をカスタマイズ
+        element.onclick = function() {
+          document.getElementById('sauna_place_id').value = sauna.place_id;
+          searchInput.value = sauna.name;
+          resultsContainer.innerHTML = '';
+        };
+        resultsContainer.appendChild(element);
+      });
+  })
+    .catch(error => console.error('Error:', error));
   });
-}
+});
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=<% ENV["GOOGLE_MAPS_API_KEY"] %>&libraries=places&callback=initMap"></script>

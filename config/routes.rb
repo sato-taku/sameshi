@@ -7,5 +7,9 @@ Rails.application.routes.draw do
   
   resources :users, only: %i[new create]
   resources :posts, only: %i[index new create]
-  resources :saunas, only: %i[index show]
+  resources :saunas, only: %i[index show] do
+    collection do
+      get :search
+    end
+  end
 end
