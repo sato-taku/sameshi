@@ -5,7 +5,7 @@
     <input id="sauna_search" type="text" placeholder="サウナ施設を検索" autocomplete="off">
     <div id="sauna_search_results"></div> <!-- 検索結果を表示するコンテナ -->
     <!--選択された施設のplace_idを保存するための隠しフィールド -->
-    <%= f.hidden_field :sauna_place_id, id: "sauna_place_id" %>
+    <%= f.hidden_field :sauna_id, id: "sauna_id" %>
   </div>
   <div>
     <%= f.label :prefecture_id %>
@@ -35,12 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
       return;
     }
 
-    fetch(`/saunas/search?query=${encodeURIComponent(query)}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      }
-    })
+    fetch(`/saunas/search?query=${encodeURIComponent(query)}`)
     .then(response => response.json())
     .then(data => {
       var resultsContainer = document.getElementById('sauna_search_results');
@@ -49,7 +44,8 @@ document.addEventListener('DOMContentLoaded', function() {
         var element = document.createElement('div');
         element.innerText = sauna.name; // ここで表示する内容をカスタマイズ
         element.onclick = function() {
-          document.getElementById('sauna_place_id').value = sauna.place_id;
+          // 選択されたサウナのidを隠しフィールドにセット
+          document.getElementById('sauna_id').value = sauna.id;
           searchInput.value = sauna.name;
           resultsContainer.innerHTML = '';
         };

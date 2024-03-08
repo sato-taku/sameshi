@@ -15,7 +15,7 @@ class PostsController < ApplicationController
       redirect_to posts_path, success: t('defaults.flash_message.created', item: Post.model_name.human)
     else
       flash['danger'] = t('defaults.flash_message.not_created', item: Post.model_name.human)
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -26,6 +26,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:content)
+    params.require(:post).permit(:sauna_id, :prefecture_id, :meal_genre, :content, :post_image)
   end
 end
