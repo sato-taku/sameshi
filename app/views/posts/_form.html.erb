@@ -1,11 +1,12 @@
 <%= form_with model: post, local: true do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
   <div>
     <!-- オートコンプリート入力フィールド -->
     <label for="sauna_search">サウナ施設を検索</label>
     <input id="sauna_search" type="text" placeholder="サウナ施設を検索" autocomplete="off">
     <div id="sauna_search_results"></div> <!-- 検索結果を表示するコンテナ -->
     <!--選択された施設のplace_idを保存するための隠しフィールド -->
-    <%= f.hidden_field :sauna_place_id, id: "sauna_place_id" %>
+    <%= f.hidden_field :sauna_id, id: "sauna_id" %>
   </div>
   <div>
     <%= f.label :prefecture_id %>
@@ -26,36 +27,32 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  var searchInput = document.getElementById('sauna_search');
+  const searchInput = document.getElementById('sauna_search');
 
   searchInput.addEventListener('input', function() {
-    var query = searchInput.value;
+    const query = searchInput.value;
 
     if (query.length < 2) { // 最小文字数を設定
       return;
     }
 
-    fetch(`/saunas/search?query=${encodeURIComponent(query)}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      }
-    })
+    fetch(`/saunas/search?query=${encodeURIComponent(query)}`)
     .then(response => response.json())
     .then(data => {
-      var resultsContainer = document.getElementById('sauna_search_results');
+      const resultsContainer = document.getElementById('sauna_search_results');
       resultsContainer.innerHTML = ''; // 既存の結果をクリア
       data.forEach(sauna => {
-        var element = document.createElement('div');
+        const element = document.createElement('div');
         element.innerText = sauna.name; // ここで表示する内容をカスタマイズ
         element.onclick = function() {
-          document.getElementById('sauna_place_id').value = sauna.place_id;
+          // 選択されたサウナのidをpostと紐づける
+          document.getElementById('sauna_id').value = sauna.id;
           searchInput.value = sauna.name;
           resultsContainer.innerHTML = '';
         };
         resultsContainer.appendChild(element);
       });
-  })
+    })
     .catch(error => console.error('Error:', error));
   });
 });

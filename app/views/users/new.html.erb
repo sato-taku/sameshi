@@ -3,6 +3,7 @@
     <h1 class=""><%= t('.title') %></h1>
     <div class= "">
       <%= form_with model: @user, local: true do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
         <div>
           <%= f.label :nickname %>
           <%= f.text_field :nickname, placeholder: "ニックネーム（20文字以内）", class: "input input-bordered input-primary w-full max-w-xs" %>
