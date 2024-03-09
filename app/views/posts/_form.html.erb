@@ -1,4 +1,5 @@
 <%= form_with model: post, local: true do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
   <div>
     <!-- オートコンプリート入力フィールド -->
     <label for="sauna_search">サウナ施設を検索</label>
@@ -26,10 +27,10 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  var searchInput = document.getElementById('sauna_search');
+  const searchInput = document.getElementById('sauna_search');
 
   searchInput.addEventListener('input', function() {
-    var query = searchInput.value;
+    const query = searchInput.value;
 
     if (query.length < 2) { // 最小文字数を設定
       return;
@@ -38,20 +39,20 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch(`/saunas/search?query=${encodeURIComponent(query)}`)
     .then(response => response.json())
     .then(data => {
-      var resultsContainer = document.getElementById('sauna_search_results');
+      const resultsContainer = document.getElementById('sauna_search_results');
       resultsContainer.innerHTML = ''; // 既存の結果をクリア
       data.forEach(sauna => {
-        var element = document.createElement('div');
+        const element = document.createElement('div');
         element.innerText = sauna.name; // ここで表示する内容をカスタマイズ
         element.onclick = function() {
-          // 選択されたサウナのidを隠しフィールドにセット
+          // 選択されたサウナのidをpostと紐づける
           document.getElementById('sauna_id').value = sauna.id;
           searchInput.value = sauna.name;
           resultsContainer.innerHTML = '';
         };
         resultsContainer.appendChild(element);
       });
-  })
+    })
     .catch(error => console.error('Error:', error));
   });
 });
