@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-
+  mount_uploader :post_image, PostImageUploader
   def self.meal_genres
     ['追い汗', '定食', '麺', 'カレー'].freeze
   end

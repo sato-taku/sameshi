@@ -21,6 +21,15 @@
     <%= f.text_area :content, rows: 10 %>
   </div>
   <div>
+  <%= f.label :post_image %>
+  <%= f.file_field :post_image, accept: 'image/*', onchange: 'previewImage(preview)' %>
+  <%= f.hidden_field :post_image_cache %>
+  </div>
+  <div>
+  # プレビュー画像を表示
+  <%= image_tag post.post_image.url, id: 'preview', size: '300x200' %>
+  </div>
+  <div>
     <%= f.submit class: "btn btn-primary" %>
   </div>
 <% end %>
