@@ -1,4 +1,4 @@
-<%= form_with model: post, local: true do |f| %>
+<%= form_with model: post, id: 'new_post', local: true do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div>
     <!-- オートコンプリート入力フィールド -->
@@ -20,15 +20,15 @@
     <%= f.label :content %>
     <%= f.text_area :content, rows: 10 %>
   </div>
-  <div>
-  <%= f.label :post_image %>
-  <%= f.file_field :post_image, accept: 'image/*', onchange: 'previewFileWithId(preview)' %>
-  <%= f.hidden_field :post_image_cache %>
+  <div class="image-field">
+    <div id="previews"></div>
+    <div class="click-upload">
+      <%= f.label :post_image %>
+      <%= f.file_field :post_image %>
+      <%= f.hidden_field :post_image_cache %>
+    </div>
   </div>
-  <div>
-  # プレビュー画像を表示
-  <%= image_tag post.post_image.url, id: 'preview', size: '300x200' %>
-  </div>
+  <div class="preview"></div>
   <div>
     <%= f.submit class: "btn btn-primary" %>
   </div>
@@ -65,19 +65,4 @@ document.addEventListener('DOMContentLoaded', function() {
     .catch(error => console.error('Error:', error));
   });
 });
-
-function previewImage() {
-  const target = event.target;
-  const file = target.files[0];
-  const reader = new FileReader();
-  reader.onloadend = function() {
-    const preview = document.querySelector("#preview")
-    if(preview) {
-      preview.src = reader.result;
-    }
-  }
-  if(file) {
-    reader.readAsDataURL(file);
-  }
-}
 </script>
