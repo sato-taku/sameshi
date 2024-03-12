@@ -1,5 +1,5 @@
 <div class="col-sm-12 col-lg-4 mb-3">
   <%= post.user.nickname %>
   <%= l post.created_at, format: :long %>
-  <p class="card-text"><%= post.content %></p>
+  <%= link_to post.content, post_path(post) %>
 </div>

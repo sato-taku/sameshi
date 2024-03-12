@@ -13,9 +13,11 @@ ja:
       password: パスワード
       password_confirmation: パスワード（確認用）
   defaults:
+    post: 投稿
     flash_message:
       created: "%{item}を作成しました"
       not_created: "%{item}を作成できませんでした"
+      failure: ユーザー登録に失敗しました
       require_login: ログインしてください
   user_sessions:
     new:
@@ -39,3 +41,5 @@ ja:
   posts:
     new:
       title: 新規投稿
+    show:
+      title: サ飯詳細

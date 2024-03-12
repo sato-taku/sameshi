@@ -1,0 +1,19 @@
+<div>
+  <h1><%= t('.title') %></h1>
+  <div>
+    <%= image_tag @post.post_image_url, size: '300x200' %>
+  </div>
+  <div>
+    <%= render 'crud_menus', post: @post %>
+    <ul>
+      <li>by <%= @post.user.nickname %></li>
+      <li><%= l @post.created_at, format: :long %></li>
+    </ul>
+  </div>
+  <div>
+    <p><%= simple_format(@post.content) %></p>
+  </div>
+
+  <%= render 'comments/form', { post: @post, comment: @comment } %>
+  <%= render 'comments/comments', { comments: @comments } %>
+</div>
