@@ -5,6 +5,7 @@ class Post < ApplicationRecord
   end
 
   belongs_to :user
+  has_many :comments, dependent: :destroy
   belongs_to :sauna
   belongs_to :prefecture
 
