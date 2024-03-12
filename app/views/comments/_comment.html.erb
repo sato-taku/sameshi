@@ -1,0 +1,16 @@
+<div>
+  <h3><%= comment.user.nickname %></h3>
+  <p><%= simple_format(comment.body) %></p>
+  <div>
+    <% if current_user.own?(comment) %>
+      <ul>
+        <li>
+          <%= link_to 'edit', '#' %>
+        </li>
+        <li>
+          <%= link_to 'delete', '#' %>
+        </li>
+      </ul>
+    <% end %>
+  </div>
+</div>

@@ -21,11 +21,13 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @comment = Comment.new
+    @comments = @post.comments.includes(:user).order(created_at: :desc)
   end
 
   private
 
   def post_params
-    params.require(:post).permit(:sauna_id, :prefecture_id, :meal_genre, :content, :post_image)
+    params.require(:post).permit(:sauna_id, :prefecture_id, :meal_genre, :content, :post_image, :post_image_cache)
   end
 end

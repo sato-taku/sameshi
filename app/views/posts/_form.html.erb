@@ -1,4 +1,4 @@
-<%= form_with model: post, local: true do |f| %>
+<%= form_with model: post, id: 'new_post', local: true do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div>
     <!-- オートコンプリート入力フィールド -->
@@ -20,6 +20,15 @@
     <%= f.label :content %>
     <%= f.text_area :content, rows: 10 %>
   </div>
+  <div class="image-field">
+    <div id="previews"></div>
+    <div class="click-upload">
+      <%= f.label :post_image %>
+      <%= f.file_field :post_image %>
+      <%= f.hidden_field :post_image_cache %>
+    </div>
+  </div>
+  <div class="preview"></div>
   <div>
     <%= f.submit class: "btn btn-primary" %>
   </div>

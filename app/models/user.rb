@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
   belongs_to :prefecture
   has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   validates :password, length: { minimum:4 }, if: -> { new_record? || changes[:crypted_password] }
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
@@ -16,4 +17,8 @@ class User < ApplicationRecord
   validates :nickname, length: { maximum: 20 }, presence: true
   validates :prefecture_id, presence: true
   validates :age_group, inclusion: { in: User.age_groups }
+
+  def own?(object)
+    self.id == object.user_id
+  end
 end

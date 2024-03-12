@@ -3,6 +3,7 @@ ja:
     models:
       user: ユーザー
       post: 「サ飯」
+      comment: コメント
     attributes:
       user:
         nickname: ニックネーム
@@ -15,3 +16,6 @@ ja:
         prefecture_id: 都道府県
         meal_genre: ジャンル
         content: 内容
+        post_image: 画像
+      comment:
+        body: コメント
