@@ -17,11 +17,16 @@ ja:
     register: 登録
     lpgout: ログアウト
     post: 投稿
-    flash_message:
+    comment: コメント
+    message:
       created: "%{item}を作成しました"
       not_created: "%{item}を作成できませんでした"
       failure: ユーザー登録に失敗しました
       require_login: ログインしてください
+      updated: "%{item}を更新しました"
+      not_updated: "%{item}を更新できませんでした"
+      deleted: "%{item}を削除しました"
+      delete_confirm: "%{item}を削除しますか？"
   user_sessions:
     new:
       title: ログイン
@@ -48,3 +53,5 @@ ja:
       title: 新規投稿
     show:
       title: サ飯詳細
+    edit:
+      title: サ飯編集

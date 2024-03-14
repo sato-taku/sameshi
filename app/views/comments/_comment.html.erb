@@ -1,16 +1,12 @@
-<div>
-  <h3><%= comment.user.nickname %></h3>
-  <p><%= simple_format(comment.body) %></p>
-  <div>
-    <% if current_user.own?(comment) %>
-      <ul>
-        <li>
-          <%= link_to 'edit', '#' %>
-        </li>
-        <li>
-          <%= link_to 'delete', '#' %>
-        </li>
-      </ul>
-    <% end %>
-  </div>
-</div>
+<tr id="comment-<%= comment.id %>">
+  <td>
+    <h3 class="small"><%= comment.user.nickname %></h3>
+    <%= simple_format(comment.body) %>
+  </td>
+
+  <% if current_user.own?(comment) %>
+    <td class="action">
+      <%= link_to "削除", comment_path(comment), class: "delete-comment-link", data: { turbo_method: :delete, turbo_confirm: t('defaults.message.delete_confirm', item: Comment.model_name.human) }  %>
+    </td>
+  <% end %>
+</tr>
