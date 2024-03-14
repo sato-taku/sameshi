@@ -1,10 +1,12 @@
+<% content_for(:title, t('.title')) %>
 <div>
   <h1><%= t('.title') %></h1>
+  <% if @post.post_image? %>
+    <div>
+      <%= image_tag @post.post_image_url, size: '300x200' %>
+    </div>
+  <% end %>
   <div>
-    <%= image_tag @post.post_image_url, size: '300x200' %>
-  </div>
-  <div>
-    <%= render 'crud_menus', post: @post %>
     <ul>
       <li>by <%= @post.user.nickname %></li>
       <li><%= l @post.created_at, format: :long %></li>
@@ -12,6 +14,10 @@
   </div>
   <div>
     <p><%= simple_format(@post.content) %></p>
+    <div>
+      <%= link_to "編集", edit_post_path(@post) %>
+      <%= link_to "削除", post_path(@post), data: { turbo_method: :delete, turbo_confirm: '削除しますか？' } %>
+    </div>
   </div>
 
   <%= render 'comments/form', { post: @post, comment: @comment } %>
