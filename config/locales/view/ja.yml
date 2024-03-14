@@ -13,6 +13,9 @@ ja:
       password: パスワード
       password_confirmation: パスワード（確認用）
   defaults:
+    login: ログイン
+    register: 登録
+    lpgout: ログアウト
     post: 投稿
     flash_message:
       created: "%{item}を作成しました"
@@ -39,6 +42,8 @@ ja:
       success: ユーザー登録が完了しました
       failure: ユーザー登録に失敗しました
   posts:
+    index:
+      title: サ飯一覧
     new:
       title: 新規投稿
     show:
