@@ -8,6 +8,7 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   belongs_to :sauna
   belongs_to :prefecture
+  has_many :likes, dependent: :destroy
 
   validates :meal_genre, presence: true
   validates :content, presence: true, length: { maximum: 1000 }
