@@ -1,7 +1,19 @@
 <div class="col-sm-12 col-lg-4 mb-3">
-  <%= post.user.nickname %>
-  <%= l post.created_at, format: :long %>
-  <%= link_to post.content, post_path(post) %>
   <div>
+    <%= post.user.nickname %>
+  </div>
+  <div>
+    <%= l post.created_at, format: :long %>
+  </div>
+  <div>
+    <%= link_to post.content, post_path(post) %>
+  </div>
+  <div>
+    <% if current_user.own?(post) %>
+      <%= link_to "編集", edit_post_path(post) %>
+      <%= link_to "削除", post_path(post), data: { turbo_method: :delete, turbo_confirm: t('defaults.message.delete_confirm', item: Post.model_name.human) } %>
+    <% else %>
+      <%= render 'like_buttons', { post: post } %>
+    <% end %>
   </div>
 </div>

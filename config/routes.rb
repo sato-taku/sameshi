@@ -8,7 +8,11 @@ Rails.application.routes.draw do
   resources :users, only: %i[new create]
   resources :posts do
     resources :comments, only: %i[create destroy], shallow: true
+    collection do
+      get :likes
+    end
   end
+  resources :likes, only: %i[create destroy]
   resources :saunas, only: %i[index show] do
     collection do
       get :search

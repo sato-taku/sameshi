@@ -55,3 +55,11 @@ ja:
       title: サ飯詳細
     edit:
       title: サ飯編集
+    likes:
+      title: 食いたいいね一覧
+      no_result: 食いたいいねはありません
+  likes:
+    create:
+      success: 食いたいいねしました
+    destroy:
+      success: 解除しました
