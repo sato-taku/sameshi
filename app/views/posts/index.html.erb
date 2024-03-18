@@ -1,17 +1,7 @@
 <% content_for(:title, t('.title')) %>
 <div class="w-5/6 mx-auto my-20 max-w-screen-xl">
 	<div class="row">
-		<div class="col-lg-10 offset-lg-1">
-			<!-- 検索フォーム --!>
-			<form>
-				<div class="input-group mb-3">
-					<input class="form-control" placeholder="検索ワード" type="search"/>
-				</div>
-				<div class="input-group-append">
-					<input type="submit" value="検索" class="btn btn-primary"/>
-				</div>
-			</form>
-		</div>
+		<%= render 'shared/search_form', q: @q %>
 	</div>
 
 	<!-- 掲示板一覧 --!>

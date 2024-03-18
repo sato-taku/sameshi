@@ -63,3 +63,6 @@ ja:
       success: 食いたいいねしました
     destroy:
       success: 解除しました
+  saunas:
+    index:
+      title: 現在地から探す

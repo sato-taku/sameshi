@@ -4,6 +4,14 @@ class Post < ApplicationRecord
     ['追い汗', '定食', '麺', 'カレー'].freeze
   end
 
+  def self.ransackable_attributes(auth_object = nil)
+    ['content', 'meal_genre', 'prefecture_id', 'sauna_id']
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    ['sauna', 'prefecture']
+  end
+
   belongs_to :user
   has_many :comments, dependent: :destroy
   belongs_to :sauna
