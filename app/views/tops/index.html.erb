@@ -7,7 +7,7 @@
         <%= link_to "サ飯を探す", posts_path, class: "btn btn-primary w-80 mt-10" %>
       </div>
       <div>
-        <%= link_to "現在地から探す", saunas_path, class: "btn btn-primary w-80 mt-10" %>
+        <%= link_to "現在地から探す", saunas_path, data: { turbo: false }, class: "btn btn-primary w-80 mt-10" %>
       </div>
     </div>
   </div>
