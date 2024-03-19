@@ -1,17 +1,23 @@
 <div class="mt-24 w-5/6 mx-auto max-w-screen-xl">
   <div class="">
-     <h1 class=""><%= t('.title') %></h1>
-    <div class= "">
-      <%= form_with url: login_path, local: true do |f| %>
-          <%= f.label :email %>
-          <%= f.text_field :email, class: "input input-bordered input-primary w-full max-w-xs" %>
-          <%= f.label :password %>
-          <%= f.password_field :password, class: "input input-bordered input-primary w-full max-w-xs" %>
-          <%= f.submit t('helpers.submit.login'), class: "btn btn-primary" %>
-      <% end %>
-    </div>
-    <div class='text-center'>
-      <%= link_to t('.to_register_page'), new_user_path %> | <%= link_to t('.password_forget'), "#" %>
-    </div>
+    <h1 class=""><%= t('.title') %></h1>
+  </div>
+  <div>
+    <%= form_with url: login_path, local: true do |f| %>
+      <div>
+        <%= f.label :email %>
+        <%= f.text_field :email, class: "input input-bordered input-primary w-full max-w-xs" %>
+      </div>
+      <div>
+        <%= f.label :password %>
+        <%= f.password_field :password, class: "input input-bordered input-primary w-full max-w-xs" %>
+      </div>
+      <div>
+        <%= f.submit t('helpers.submit.login'), class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+  <div class='text-center'>
+    <%= link_to t('.to_register_page'), new_user_path %> | <%= link_to t('.password_forget'), "#" %>
   </div>
 </div>

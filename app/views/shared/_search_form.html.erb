@@ -1,0 +1,11 @@
+<%= search_form_for q, url: posts_path do |f| %>
+  <div class="input-group mb-3">
+    <%= f.search_field :content_cont, placeholder: "フリーワード" %>
+    <%= f.collection_select :prefecture_id_eq, Prefecture.all, :id, :name, { include_blank: "都道府県" } %>
+    <%= f.search_field :sauna_name_cont, placeholder: "サウナ施設" %>
+    <%= f.search_field :meal_genre_cont, placeholder: "サ飯ジャンル" %>
+    <div>
+      <%= f.submit %>
+    </div>
+  </div>
+<% end %>

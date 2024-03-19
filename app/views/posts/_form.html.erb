@@ -1,30 +1,32 @@
+
 <%= form_with model: post, id: 'new_post', local: true do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
-  <div>
+<div class="flex flex-col space-y-4 w-5/6 mx-auto max-w-screen-xl">
+  <div class="mt-4">
     <!-- オートコンプリート入力フィールド -->
-    <label for="sauna_search">サウナ施設を検索</label>
-    <input id="sauna_search" type="text" placeholder="サウナ施設を検索" autocomplete="off">
-    <div id="sauna_search_results"></div> <!-- 検索結果を表示するコンテナ -->
+    <label for="sauna_search">サウナ施設</label>
+    <input id="sauna_search" type="text" placeholder="サウナ施設を検索", class="input input-bordered w-full max-w-xs", autocomplete="off">
+    <div id="sauna_search_results", class=""></div> <!-- 検索結果を表示するコンテナ -->
     <!--選択された施設のplace_idを保存するための隠しフィールド -->
     <%= f.hidden_field :sauna_id, id: "sauna_id" %>
   </div>
-  <div>
+  <div class="">
     <%= f.label :prefecture_id %>
-    <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, { include_blank: "選択してください" } %>
+    <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, { include_blank: "選択してください" },  class: "select select-bordered w-full max-w-xs" %>
   </div>
-  <div>
+  <div class="">
     <%= f.label :meal_genre %>
-    <%= f.select :meal_genre, options_for_select(Post::meal_genres, selected: @post.meal_genre), { include_blank: "選択してください" } %>
+    <%= f.select :meal_genre, options_for_select(Post::meal_genres, selected: @post.meal_genre), { include_blank: "選択してください" },  class: "select select-bordered w-full max-w-xs" %>
   </div>
-  <div>
+  <div class="">
     <%= f.label :content %>
-    <%= f.text_area :content, rows: 10 %>
+    <%= f.text_area :content, class: "textarea textarea-bordered w-full max-w-xs", rows: 5 %>
   </div>
   <div class="image-field">
     <div id="previews"></div>
     <div class="click-upload">
       <%= f.label :post_image %>
-      <%= f.file_field :post_image %>
+      <%= f.file_field :post_image, class: "file-input file-input-bordered w-full max-w-xs" %>
       <%= f.hidden_field :post_image_cache %>
     </div>
   </div>
@@ -32,7 +34,9 @@
   <div>
     <%= f.submit class: "btn btn-primary" %>
   </div>
+</div>
 <% end %>
+
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
