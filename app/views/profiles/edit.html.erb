@@ -24,6 +24,11 @@
         <%= f.label :avatar %>
         <%= f.file_field :avatar, accept: 'image/*' %>
         <%= f.hidden_field :avatar_cache %>
+        <% if @user.avatar.present? %>
+          <div>
+            <%= image_tag @user.avatar.url %>
+          </div>
+        <% end %>
       </div>
       <div>
         <%= f.submit "更新", class: "btn btn-primary" %>
