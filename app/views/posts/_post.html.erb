@@ -3,6 +3,11 @@
       <%= post.user.nickname %>
     </div>
     <div>
+      <% if post.post_image.present? %>
+        <%= image_tag post.post_image_url, size: "200x200" %>
+      <% end %>
+    </div>
+    <div>
       <%= link_to post.content, post_path(post) %>
     </div>
     <div>

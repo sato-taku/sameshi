@@ -45,7 +45,7 @@ end
     user_id: user.id,
     sauna_id: sauna.id,
     prefecture_id: niigata_prefecture.id,
-    meal_genre: Faker::Food.dish,
+    meal_genre: Post.meal_genres.sample,
     content: Faker::Lorem.sentence,
     post_image: nil
   )

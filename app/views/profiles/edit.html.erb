@@ -1,0 +1,33 @@
+<%= content_for(:title, t('.title')) %>
+<div>
+  <div>
+    <h1><%= t('.title') %></h1>
+    <%= form_with model: @user, url: profile_path, local: true do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+      <div>
+        <%= f.label :nickname %>
+        <%= f.text_field :nickname %>
+      </div>
+      <div>
+        <%= f.label :prefecture_id %>
+        <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name  %>
+      </div>
+      <div>
+        <%= f.label :age_group %>
+        <%= f.select :age_group, User.age_groups %>
+      </div>
+      <div>
+        <%= f.label :email %>
+        <%= f.email_field :email %>
+      </div>
+      <div>
+        <%= f.label :avatar %>
+        <%= f.file_field :avatar, accept: 'image/*' %>
+        <%= f.hidden_field :avatar_cache %>
+      </div>
+      <div>
+        <%= f.submit "更新", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>

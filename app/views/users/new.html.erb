@@ -1,4 +1,4 @@
-<div class="mt-24 w-5/6 mx-auto max-w-screen-xl">
+<div class="my-24 w-5/6 mx-auto max-w-screen-xl">
   <div class="">
     <h1 class=""><%= t('.title') %></h1>
     <div class= "">
@@ -14,7 +14,7 @@
         </div>
         <div>
           <%= f.label :age_group %>
-          <%= f.select :age_group, options_for_select(User::age_groups, selected: @user.age_group), { include_blank: "選択してください" }, class: "input input-bordered input-primary w-full max-w-xs" %>
+          <%= f.select :age_group, User.age_groups, { include_blank: "選択してください" }, class: "input input-bordered input-primary w-full max-w-xs" %>
         </div>
         <div>
           <%= f.label :email %>
@@ -29,9 +29,10 @@
           <%= f.password_field :password_confirmation, placeholder: "••••",class: "input input-bordered input-primary w-full max-w-xs" %>
         </div>
         <div>
-        <span class="text-center">
-          <%= f.file_field :current_icon, accept: "image/jpeg,image/gif,image/png", class: "input input-bordered input-primary w-full max-w-xs" %>
-        </span>
+        <div>
+          <%= f.label :avatar %>
+          <%= f.file_field :avatar, accept: "image/jpeg,image/gif,image/png", class: "input input-bordered input-primary w-full max-w-xs" %>
+        </div>
         </div>
         <div class="text-center">
           <%= f.submit t('helpers.submit.create'), class: "btn btn-primary" %>
