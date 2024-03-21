@@ -2,8 +2,8 @@
   <div class="input-group mb-3">
     <%= f.search_field :content_cont, placeholder: "フリーワード" %>
     <%= f.collection_select :prefecture_id_eq, Prefecture.all, :id, :name, { include_blank: "都道府県" } %>
+    <%= f.select :meal_genre_eq, Post.meal_genres, { include_blank: "サ飯ジャンル" } %>
     <%= f.search_field :sauna_name_cont, placeholder: "サウナ施設" %>
-    <%= f.search_field :meal_genre_cont, placeholder: "サ飯ジャンル" %>
     <div>
       <%= f.submit %>
     </div>

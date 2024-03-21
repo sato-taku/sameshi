@@ -5,6 +5,7 @@ ja:
       submit: 保存
       update: 更新
       login: ログイン
+      edit: 編集
     label:
       nickname: ニックネーム
       prefecture_id: 都道府県
@@ -46,6 +47,11 @@ ja:
     create:
       success: ユーザー登録が完了しました
       failure: ユーザー登録に失敗しました
+  profiles:
+    show:
+      title: マイページ
+    edit:
+      title: マイページ編集
   posts:
     index:
       title: サ飯一覧

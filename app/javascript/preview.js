@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function(){
   previewImage.setAttribute('class', 'preview-image');
   // setAttributeメソッドを用いて生成したimg要素のsrc属性へ変数blobを設定する
   previewImage.setAttribute('src', blob);
-　// 生成したHTMLの要素をブラウザに表示させる
+  // 生成したHTMLの要素をブラウザに表示させる
   previewWrapper.appendChild(previewImage);
   previewList.appendChild(previewWrapper);
   });

@@ -16,7 +16,7 @@
   </div>
   <div class="">
     <%= f.label :meal_genre %>
-    <%= f.select :meal_genre, options_for_select(Post::meal_genres, selected: @post.meal_genre), { include_blank: "選択してください" },  class: "select select-bordered w-full max-w-xs" %>
+    <%= f.select :meal_genre, Post.meal_genres, { include_blank: "選択してください" },  class: "select select-bordered w-full max-w-xs" %>
   </div>
   <div class="">
     <%= f.label :content %>

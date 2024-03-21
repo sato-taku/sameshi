@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
-
+  mount_uploader :avatar, AvatarUploader
+  
   def self.age_groups
     ['10代', '20代', '30代', '40代', '50代', '60代以上'].freeze
   end
