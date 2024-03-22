@@ -19,6 +19,7 @@ ja:
     lpgout: ログアウト
     post: 投稿
     comment: コメント
+    password_reset: パスワードリセット
     message:
       created: "%{item}を作成しました"
       not_created: "%{item}を作成できませんでした"
@@ -28,6 +29,16 @@ ja:
       not_updated: "%{item}を更新できませんでした"
       deleted: "%{item}を削除しました"
       delete_confirm: "%{item}を削除しますか？"
+  password_resets:
+    new:
+      title: パスワードリセット申請
+      submit: 送信
+    edit:
+      title: パスワードリセット
+    create:
+      success: パスワードリセット手順を送信しました
+    update:
+      success: パスワードを変更しました    
   user_sessions:
     new:
       title: ログイン
