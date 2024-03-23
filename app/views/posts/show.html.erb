@@ -15,6 +15,12 @@
   <div>
     <p><%= simple_format(@post.content) %></p>
     <div>
+      <%= link_to "https://twitter.com/share?url=#{post_url(@post)}&text=【整った〜〜】%0a%0a#{@post.sauna.name}に サ飯 を投稿しました🧖‍♂️", class: "twitter-share-button", data: { hashtags: "サ飯", show_count: false } do %>
+        Share
+      <% end %>
+      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+    <div>
       <%= link_to "編集", edit_post_path(@post) %>
       <%= link_to "削除", post_path(@post), data: { turbo_method: :delete, turbo_confirm: '削除しますか？' } %>
     </div>
