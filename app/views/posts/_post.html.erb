@@ -14,10 +14,10 @@
     <%= l post.created_at, format: :long %>
     </div>
     <div>
-      <% if current_user.own?(post) %>
+      <% if current_user && current_user.own?(post) %>
         <%= link_to "編集", edit_post_path(post) %>
         <%= link_to "削除", post_path(post), data: { turbo_method: :delete, turbo_confirm: t('defaults.message.delete_confirm', item: Post.model_name.human) } %>
-      <% else %>
+      <% elsif current_user %>
         <%= render 'like_buttons', { post: post } %>
       <% end %>
     </div>
