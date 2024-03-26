@@ -1,46 +1,72 @@
 <div class="my-24 w-5/6 mx-auto max-w-screen-xl">
-  <div class="">
-    <h1 class=""><%= t('.title') %></h1>
-    <div class= "">
-      <%= form_with model: @user, local: true do |f| %>
-        <%= render 'shared/error_messages', object: f.object %>
+  <h1 class="text-center font-bold text-lg"><%= t('.title') %></h1>
+  <%= form_with model: @user, local: true do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <div class="">
+      <div class="my-4">
         <div>
           <%= f.label :nickname %>
-          <%= f.text_field :nickname, placeholder: "ニックネーム（20文字以内）", class: "input input-bordered input-primary w-full max-w-xs" %>
         </div>
         <div>
-          <%= f.label :prefecture_id %>
-          <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, { include_blank: "選択してください" }, class: "input input-bordered input-primary w-full max-w-xs"  %>
+          <%= f.text_field :nickname, placeholder: "ニックネーム (20文字以内)", class: "input input-bordered input-primary w-full max-w-xs" %>
+        </div>
+      </div>
+      <div class="flex justify-between my-4 max-w-xs">
+        <div>
+          <div>
+            <%= f.label :prefecture_id %>
+          </div>
+          <div>
+            <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, { include_blank: "未選択" }, class: "select select-bordered select-primary max-w-1/2"  %>
+          </div>
         </div>
         <div>
-          <%= f.label :age_group %>
-          <%= f.select :age_group, User.age_groups, { include_blank: "選択してください" }, class: "input input-bordered input-primary w-full max-w-xs" %>
+          <div>
+            <%= f.label :age_group %>
+          </div>
+          <div>
+            <%= f.select :age_group, User.age_groups, { include_blank: "未選択" }, class: "select select-bordered select-primary max-w-1/2" %>
+          </div>
         </div>
+      </div>
+      <div class="my-4">
         <div>
           <%= f.label :email %>
+        </div>
+        <div>
           <%= f.email_field :email, placeholder: "メールアドレス", class: "input input-bordered input-primary w-full max-w-xs" %>
         </div>
+      </div>
+      <div class="my-4">
         <div>
           <%= f.label :password %>
-          <%= f.password_field :password, placeholder: "••••（4桁以上）", class: "input input-bordered input-primary w-full max-w-xs" %>
         </div>
+        <div>
+          <%= f.password_field :password, placeholder: "•••• (4桁以上)", class: "input input-bordered input-primary w-full max-w-xs" %>
+        </div>
+      </div>
+      <div class="my-4">
         <div>
           <%= f.label :password_confirmation %>
-          <%= f.password_field :password_confirmation, placeholder: "••••",class: "input input-bordered input-primary w-full max-w-xs" %>
         </div>
         <div>
+          <%= f.password_field :password_confirmation, placeholder: "•••• (4桁以上)",class: "input input-bordered input-primary w-full max-w-xs" %>
+        </div>
+      </div>
+      <div class="my-4">
         <div>
           <%= f.label :avatar %>
-          <%= f.file_field :avatar, accept: "image/jpeg,image/gif,image/png", class: "input input-bordered input-primary w-full max-w-xs" %>
         </div>
+        <div>
+          <%= f.file_field :avatar, accept: "image/jpeg,image/gif,image/png", class: "file-input file-input-bordered file-input-primary w-full max-w-xs" %>
         </div>
-        <div class="text-center">
-          <%= f.submit t('helpers.submit.create'), class: "btn btn-primary" %>
-        </div>
-      <% end %>
+      </div>
+      <div class="text-center my-4">
+        <%= f.submit t('helpers.submit.create'), class: "btn btn-primary" %>
+      </div>
     </div>
-    <div class="text-center">
-      <%= link_to t('.to_login_page'), login_path %> | <%= link_to t('.password_forget'), new_password_reset_path %> 
-    </div>
+  <% end %>
+  <div class="text-center">
+    <%= link_to t('.to_login_page'), login_path %> | <%= link_to t('.password_forget'), new_password_reset_path %> 
   </div>
 </div>
