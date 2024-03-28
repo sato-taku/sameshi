@@ -1,36 +1,57 @@
-<%= content_for(:title, t('.title')) %>
-<div>
-  <div>
-    <h1><%= t('.title') %></h1>
+<% content_for(:title, t('.title')) %>
+<div class="my-24">
+    <h1 class="font-bold text-lg text-center mb-10"><%= t('.title') %></h1>
     <%= form_with model: @user, url: profile_path, local: true do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
-      <div>
-        <%= f.label :nickname %>
-        <%= f.text_field :nickname %>
+      <div class="mb-4 max-w-xs mx-auto">
+        <div>
+          <%= f.label :nickname, class: "w-full"  %>
+        </div>
+        <div>
+          <%= f.text_field :nickname, class: "input input-bordered input-primary w-full"  %>
+        </div>
       </div>
-      <div>
-        <%= f.label :prefecture_id %>
-        <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name  %>
-      </div>
-      <div>
-        <%= f.label :age_group %>
-        <%= f.select :age_group, User.age_groups %>
-      </div>
-      <div>
-        <%= f.label :email %>
-        <%= f.email_field :email %>
-      </div>
-      <div>
-        <%= f.label :avatar %>
-        <%= f.file_field :avatar, accept: 'image/*' %>
-        <%= f.hidden_field :avatar_cache %>
-        <% if @user.avatar.present? %>
+      <div class="flex justify-between mb-4 max-w-xs mx-auto">
+        <div>
           <div>
-            <%= image_tag @user.avatar.url %>
+            <%= f.label :prefecture_id, class: "w-full" %>
           </div>
-        <% end %>
+          <div>
+            <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, { include_blank: "未選択" }, class: "select select-bordered select-primary max-w-1/2" %>
+          </div>
+        </div>
+        <div>
+          <div>
+            <%= f.label :age_group, class: "w-full" %>
+          </div>
+          <div>
+            <%= f.select :age_group, User.age_groups, { include_blank: "未選択" }, class: "select select-bordered select-primary max-w-1/2" %>
+          </div>
+        </div>
       </div>
-      <div>
+      <div class="mb-4 max-w-xs mx-auto">
+        <div>
+          <%= f.label :email, class: "w-full" %>
+        </div>
+        <div>
+          <%= f.email_field :email, placeholder: "メールアドレス", class: "input input-bordered input-primary w-full" %>
+        </div>
+      </div>
+      <div class="mb-8 max-w-xs mx-auto">
+        <div>
+          <%= f.label :avatar, class: "w-full"  %>
+        </div>
+        <div>
+          <%= f.file_field :avatar, accept: "image/jpeg,image/gif,image/png", class: "file-input file-input-bordered file-input-primary w-full"  %>
+          <%= f.hidden_field :avatar_cache %>
+        </div>
+          <% if @user.avatar.present? %>
+            <div class="mt-8">
+              <%= image_tag @user.avatar.url %>
+            </div>
+          <% end %>
+      </div>
+      <div class="mb-8 text-center">
         <%= f.submit "更新", class: "btn btn-primary" %>
       </div>
     <% end %>

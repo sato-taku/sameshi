@@ -1,36 +1,54 @@
 <%= form_with model: post, id: 'new_post', local: true do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
-<div class="flex flex-col space-y-4 w-5/6 mx-auto max-w-screen-xl">
-  <div class="mt-4">
+  <div class="mb-4 max-w-xs mx-auto">
     <!-- オートコンプリート入力フィールド -->
     <label for="sauna_search">サウナ施設</label>
-    <input id="sauna_search" type="text" placeholder="サウナ施設を検索", class="input input-bordered w-full max-w-xs", autocomplete="off">
+    <input id="sauna_search" type="text" placeholder="サウナ施設を検索", class="input input-bordered input-primary w-full max-w-xs", autocomplete="off">
     <div id="sauna_search_results", class=""></div> <!-- 検索結果を表示するコンテナ -->
     <!--選択された施設のplace_idを保存するための隠しフィールド -->
     <%= f.hidden_field :sauna_id, id: "sauna_id" %>
   </div>
-  <div class="">
-    <%= f.label :prefecture_id %>
-    <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, { include_blank: "選択してください" },  class: "select select-bordered w-full max-w-xs" %>
-  </div>
-  <div class="">
-    <%= f.label :meal_genre %>
-    <%= f.select :meal_genre, Post.meal_genres, { include_blank: "選択してください" },  class: "select select-bordered w-full max-w-xs" %>
-  </div>
-  <div class="">
-    <%= f.label :content %>
-    <%= f.text_area :content, class: "textarea textarea-bordered w-full max-w-xs", rows: 5 %>
-  </div>
-  <div class="image-field">
-    <div id="previews"></div>
-    <div class="click-upload">
-      <%= f.label :post_image %>
-      <%= f.file_field :post_image, class: "file-input file-input-bordered w-full max-w-xs" %>
-      <%= f.hidden_field :post_image_cache %>
+  <div class="flex justify-between mb-4 max-w-xs mx-auto">
+    <div>
+      <div>
+        <%= f.label :prefecture_id, class: "w-full" %>
+      </div>
+      <div>
+        <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, { include_blank: "未選択" },  class: "select select-bordered select-primary max-w-1/2" %>
+      </div>
+    </div>
+    <div>
+      <div>
+        <%= f.label :meal_genre, class: "w-full" %>
+      </div>
+      <div>
+        <%= f.select :meal_genre, Post.meal_genres, { include_blank: "未選択" },  class: "select select-bordered select-primary max-w-1/2" %>
+      </div>
     </div>
   </div>
-  <div class="preview"></div>
-  <div>
+  <div class="mb-4 max-w-xs mx-auto">
+    <div>
+      <%= f.label :content, class: "w-full" %>
+    </div>
+    <div>
+      <%= f.text_area :content, class: "textarea textarea-bordered textarea-primary w-full", rows: 5 %>
+    </div>
+  </div>
+  <div class="mb-8 max-w-xs mx-auto">
+    <div>
+      <div>
+        <%= f.label :post_image, class: "w-full" %>
+      </div>
+      <div>
+        <%= f.file_field :post_image, class: "file-input file-input-bordered file-input-primary w-full" %>
+        <%= f.hidden_field :post_image_cache %>
+      </div>
+      <div>
+        <div id="previews" class="mt-8"></div>
+      </div>
+    </div>
+  </div>
+  <div class="mb-8 text-center">
     <%= f.submit class: "btn btn-primary" %>
   </div>
 </div>

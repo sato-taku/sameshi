@@ -1,7 +1,5 @@
 <% content_for(:title, t('.title')) %>
-<div class="my-24 w-5/6 mx-auto max-w-screen-xl">
-  <div class="mx-16">
-    <h1><%= t('.title') %></h1>
-    <%= render 'form', { post: @post } %>
-  </div>
+<div class="my-24">
+  <h1 class="font-bold text-lg text-center mb-10"><%= t('.title') %></h1>
+  <%= render 'form', { post: @post } %>
 </div>
