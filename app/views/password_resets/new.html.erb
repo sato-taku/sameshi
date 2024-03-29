@@ -1,15 +1,20 @@
 <% content_for(:title, t('.title')) %>
-<div class="container">
-  <div class="row">
-    <div class="col-md-10 col-lg-8 mx-auto">
-      <h1><%= t('.title') %></h1>
-      <%= form_with url: password_resets_path do |f| %>
-        <div class="mb-3">
-          <%= f.label :email, class: "form-label" %>
-          <%= f.email_field :email, class: 'form-control' %>
-        </div>
-        <%= f.submit t('.submit'), class: "btn btn-primary" %>
-      <% end %>
+<div class="my-24">
+  <h1 class="font-bold text-lg text-center mb-10"><%= t('.title') %></h1>
+  <%= form_with url: password_resets_path do |f| %>
+    <div class="mb-8 max-w-xs mx-auto">
+      <div>
+        <%= f.label :email, class: "w-full" %>
+      </div>
+      <div>
+        <%= f.email_field :email, class: "input input-bordered input-primary w-full" %>
+      </div>
     </div>
+    <div class="mb-8 text-center">
+      <%= f.submit t('.submit'), class: "btn btn-primary" %>
+    </div>
+  <% end %>
+  <div class="text-xs text-center">
+    <%= link_to t('.to_login_page'), login_path %> | <%= link_to t('.to_register_page'), new_user_path %>
   </div>
 </div>
