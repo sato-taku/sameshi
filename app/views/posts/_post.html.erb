@@ -1,52 +1,29 @@
-<div class="col-sm-12 col-lg-4 mb-3">
-    <div>
-      <%= post.user.nickname %>
-    </div>
-    <div>
-      <%= image_tag post.post_image_url, size: "300x200" %>
-    </div>
-    <div>
-      <%= link_to post.content, post_path(post) %>
-    </div>
-    <div>
-    <%= l post.created_at, format: :long %>
-    </div>
-    <div>
-      <% if current_user %>
-        <%= render 'like_buttons', { post: post } %>
-      <% end %>
-    </div>
-</div>
-
 <%= link_to post_path(post) do %>
-  <div class="card w-96 mx-auto bg-base-100 shadow-xl">
-    <div class="flex justify-between">
-      <div class="flex justify-start">
-        <div class="avatar m-4">
-          <div class="w-12 rounded-full">
-            <%= image_tag post.user.avatar_url %>
-          </div>
-        </div>
-        <div class="my-auto">
-          <%= post.user.nickname %>
+  <div class="card w-full shadow-xl mb-8">
+    <div class="flex justify-start">
+      <div class="avatar m-4">
+        <div class="w-12 rounded-full">
+          <%= image_tag post.user.avatar_url %>
         </div>
       </div>
+      <div class="my-auto">
+        <%= post.user.nickname %>
+      </div>
+    </div>
+    <figure class="px-4">
+      <%= image_tag post.post_image_url, size: '300x200', class: "rounded-xl" %>
+    </figure>
+    <div class="flex justify-between">
       <div class="my-auto">
         <div class="m-4">
           <%= l post.created_at, format: :long %>
         </div>
       </div>
-    </div>
-    <figure class="px-4 pt-4">
-      <%= image_tag post.post_image_url, size: '300x200', class: "rounded-xl" %>
-    </figure>
-    <div>
-
-    </div>
-    <div class="flex justify-end m-4">
-      <% if current_user %>
-        <%= render 'like_buttons', { post: post } %>
-      <% end %>
+      <div class="m-4">
+        <% if current_user %>
+          <%= render 'like_buttons', { post: post } %>
+        <% end %>
+      </div>
     </div>
   </div>
 <% end %>
