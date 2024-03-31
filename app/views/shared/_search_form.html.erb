@@ -1,11 +1,23 @@
 <%= search_form_for q, url: posts_path do |f| %>
-  <div class="input-group mb-3">
-    <%= f.search_field :content_cont, placeholder: "フリーワード" %>
-    <%= f.collection_select :prefecture_id_eq, Prefecture.all, :id, :name, { include_blank: "都道府県" } %>
-    <%= f.select :meal_genre_eq, Post.meal_genres, { include_blank: "サ飯ジャンル" } %>
-    <%= f.search_field :sauna_name_cont, placeholder: "サウナ施設" %>
+  <div class="flex justify-between mb-4 max-w-xs mx-auto">
     <div>
-      <%= f.submit %>
+      <%= f.collection_select :prefecture_id_eq, Prefecture.all, :id, :name, { include_blank: "未選択" }, class: "select select-bordered select-primary w-full" %>
+    </div>
+    <div>
+      <%= f.select :meal_genre_eq, Post.meal_genres, { include_blank: "未選択" }, class: "select select-bordered select-primary w-full" %>
     </div>
   </div>
+  <div class="flex justify-between mb-4 max-w-xs mx-auto">
+    <div>
+      <%= f.search_field :sauna_name_cont, placeholder: "サウナ施設", class: "input input-bordered input-primary w-full" %>
+    </div>
+    <div>
+      <%= f.search_field :content_cont, placeholder: "フリーワード", class: "input input-bordered input-primary w-full" %>
+    </div>
+  </div>
+    <div>
+      <%= button_tag type: "submit", class: "btn btn-ghost" do %>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="m15.75 15.75-2.489-2.489m0 0a3.375 3.375 0 1 0-4.773-4.773 3.375 3.375 0 0 0 4.774 4.774ZM21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
+      <% end %>
+    </div>
 <% end %>

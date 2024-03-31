@@ -1,14 +1,11 @@
-
-<div class="hero min-h-screen bg-base-100">
-  <div class="hero-content text-center w-5/6 mx-auto max-w-screen-xl">
+<div class="my-24 w-5/6 mx-auto max-w-screen-xl">
+  <div class="mx-auto">
+    <h1 class="text-4xl font-bold">TOP<br>TOP</h1>
     <div>
-      <h1 class="text-4xl font-bold">サウナを愛す者<br>サ飯も愛すべし</h1>
-      <div>
-        <%= link_to "サ飯を探す", posts_path, class: "btn btn-primary w-80 mt-10" %>
-      </div>
-      <div>
-        <%= link_to "現在地から探す", saunas_path, data: { turbo: false }, class: "btn btn-primary w-80 mt-10" %>
-      </div>
+      <%= link_to "サ飯を探す", posts_path, class: "btn btn-neutral w-full mt-10" %>
+    </div>
+    <div>
+      <%= link_to "現在地から探す", saunas_path, data: { turbo: false }, class: "btn btn-neutral w-full mt-10" %>
     </div>
   </div>
 </div>

@@ -1,12 +1,12 @@
-<header class="navbar bg-primary fixed top-0 z-50">
+<header class="navbar bg-neutral fixed top-0 z-50 w-full">
   <div class="navbar-start"></div> <!-- 空のdivで左側のスペースを確保 -->
     <div class="navbar-center">
-      <%= link_to "sameshi.", "/", class: "btn btn-ghost text-xl" %>
+      <%= link_to image_tag("sameshi_logo_white.png", width: '130' ), "/" %>
     </div>
     <div class="navbar-end">
       <!-- Open the modal using ID.showModal() method -->
       <button class="btn btn-ghost" onclick="my_modal_2.showModal()">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-6 h-6 "><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>
       </button>
       <dialog id="my_modal_2" class="modal">
         <div class="modal-box">

@@ -1,24 +1,29 @@
-<div class="col-sm-12 col-lg-4 mb-3">
-    <div>
-      <%= post.user.nickname %>
+<%= link_to post_path(post) do %>
+  <div class="card w-full shadow-xl mb-8">
+    <div class="flex justify-start">
+      <div class="avatar m-4">
+        <div class="w-12 rounded-full">
+          <%= image_tag post.user.avatar_url %>
+        </div>
+      </div>
+      <div class="my-auto">
+        <%= post.user.nickname %>
+      </div>
     </div>
-    <div>
-      <% if post.post_image.present? %>
-        <%= image_tag post.post_image_url, size: "200x200" %>
-      <% end %>
+    <figure class="px-4">
+      <%= image_tag post.post_image_url, size: '300x200', class: "rounded-xl" %>
+    </figure>
+    <div class="flex justify-between">
+      <div class="my-auto">
+        <div class="m-4">
+          <%= l post.created_at, format: :long %>
+        </div>
+      </div>
+      <div class="m-4">
+        <% if current_user %>
+          <%= render 'like_buttons', { post: post } %>
+        <% end %>
+      </div>
     </div>
-    <div>
-      <%= link_to post.content, post_path(post) %>
-    </div>
-    <div>
-    <%= l post.created_at, format: :long %>
-    </div>
-    <div>
-      <% if current_user && current_user.own?(post) %>
-        <%= link_to "編集", edit_post_path(post) %>
-        <%= link_to "削除", post_path(post), data: { turbo_method: :delete, turbo_confirm: t('defaults.message.delete_confirm', item: Post.model_name.human) } %>
-      <% elsif current_user %>
-        <%= render 'like_buttons', { post: post } %>
-      <% end %>
-    </div>
-</div>
+  </div>
+<% end %>
