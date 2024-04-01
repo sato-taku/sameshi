@@ -20,8 +20,8 @@
         </div>
       </div>
       <div class="m-4">
-        <% if current_user %>
-          <%= render 'like_buttons', { post: post } %>
+        <% if logged_in? %>
+          <%= render 'posts/like_buttons', { post: post } %>
         <% end %>
       </div>
     </div>
