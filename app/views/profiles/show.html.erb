@@ -34,7 +34,7 @@
       <%= link_to "ログアウト", logout_path, data: { turbo_method: :delete }, class: "btn btn-primary" %>
     </div>
     <div>
-      <p><%= @user.nickname %>さんの投稿：<%= @my_posts.count %>件</p>
+      <p class="font-bold"><%= @user.nickname %>さんのサ飯：<%= @my_posts.count %>件</p>
     </div>
     <div>
     <% if @my_posts.present? %>

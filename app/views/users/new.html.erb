@@ -8,7 +8,7 @@
         <%= f.label :nickname, class: "w-full" %>
       </div>
       <div>
-        <%= f.text_field :nickname, placeholder: "ニックネーム (20文字以内)", class: "input input-bordered input-primary w-full" %>
+        <%= f.text_field :nickname, placeholder: "ニックネーム (20文字以内)", class: "input input-bordered input-neutral w-full" %>
       </div>
     </div>
     <div class="flex justify-between mb-4 max-w-xs mx-auto">
@@ -17,7 +17,7 @@
           <%= f.label :prefecture_id, class: "w-full" %>
         </div>
         <div>
-          <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, { include_blank: "未選択" }, class: "select select-bordered select-primary max-w-1/2" %>
+          <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, { include_blank: "未選択" }, class: "select select-bordered select-neutral max-w-1/2" %>
         </div>
       </div>
       <div>
@@ -25,7 +25,7 @@
           <%= f.label :age_group, class: "w-full" %>
         </div>
         <div>
-          <%= f.select :age_group, User.age_groups, { include_blank: "未選択" }, class: "select select-bordered select-primary max-w-1/2" %>
+          <%= f.select :age_group, User.age_groups, { include_blank: "未選択" }, class: "select select-bordered select-neutral max-w-1/2" %>
         </div>
       </div>
     </div>
@@ -34,7 +34,7 @@
         <%= f.label :email, class: "w-full" %>
       </div>
       <div>
-        <%= f.email_field :email, placeholder: "メールアドレス", class: "input input-bordered input-primary w-full" %>
+        <%= f.email_field :email, placeholder: "メールアドレス", class: "input input-bordered input-neutral w-full" %>
       </div>
     </div>
     <div class="mb-4 max-w-xs mx-auto">
@@ -42,7 +42,7 @@
         <%= f.label :password, class: "w-full" %>
       </div>
       <div>
-        <%= f.password_field :password, placeholder: "•••• (4桁以上)", class: "input input-bordered input-primary w-full" %>
+        <%= f.password_field :password, placeholder: "•••• (4桁以上)", class: "input input-bordered input-neutral w-full" %>
       </div>
     </div>
     <div class="mb-4 max-w-xs mx-auto">
@@ -50,7 +50,7 @@
         <%= f.label :password_confirmation, class: "w-full" %>
       </div>
       <div>
-        <%= f.password_field :password_confirmation, placeholder: "•••• (4桁以上)",class: "input input-bordered input-primary w-full" %>
+        <%= f.password_field :password_confirmation, placeholder: "•••• (4桁以上)",class: "input input-bordered input-neutral w-full" %>
       </div>
     </div>
     <div class="mb-8 max-w-xs mx-auto">
@@ -58,11 +58,11 @@
         <%= f.label :avatar, class: "w-full" %>
       </div>
       <div>
-        <%= f.file_field :avatar, accept: "image/jpeg,image/gif,image/png", class: "file-input file-input-bordered file-input-primary w-full" %>
+        <%= f.file_field :avatar, accept: "image/jpeg,image/gif,image/png", class: "file-input file-input-bordered file-input-neutral w-full" %>
       </div>
     </div>
     <div class="mb-8 text-center">
-      <%= f.submit t('helpers.submit.create'), class: "btn btn-primary" %>
+      <%= f.submit t('helpers.submit.create'), class: "btn btn-neutral" %>
     </div>
   <% end %>
   <div class="text-xs text-center">
