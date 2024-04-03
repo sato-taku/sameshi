@@ -1,18 +1,18 @@
 <%= search_form_for q, url: posts_path do |f| %>
   <div class="flex justify-between">
-    <div class="w-full md:flex justify-between">
-      <div class="w-full mr-4">
+    <div class="w-full mr-4 md:flex justify-between">
+      <div class="w-full mr-4 mb-4">
         <%= f.collection_select :prefecture_id_eq, Prefecture.all, :id, :name, { include_blank: "未選択" }, class: "select select-bordered select-neutral w-full" %>
       </div>
-      <div class="w-full mr-4">
+      <div class="w-full">
         <%= f.select :meal_genre_eq, Post.meal_genres, { include_blank: "未選択" }, class: "select select-bordered select-neutral w-full" %>
       </div>
     </div>
-    <div class="w-full md:flex justify-between">
-      <div class="w-full mr-4">
+    <div class="w-full mr-4 md:flex justify-between">
+      <div class="w-full mr-4 mb-4">
         <%= f.search_field :sauna_name_cont, placeholder: "サウナ施設", class: "input input-bordered input-neutral w-full" %>
       </div>
-      <div class="w-full mr-4">
+      <div class="w-full">
         <%= f.search_field :content_cont, placeholder: "フリーワード", class: "input input-bordered input-neutral w-full" %>
       </div>
     </div>
