@@ -1,47 +1,53 @@
 <%= content_for(:title, t('.title')) %>
 <div class="w-5/6 mx-auto my-24 max-w-screen-xl">
-    <h1 class="font-bold text-lg text-center mb-10"><%= current_user.nickname %>さんの<%= t('.title') %></h1>
-    <div class="mb-4 flex justify-evenly">
-      <div class="avatar">
-        <div class="w-24 rounded-full">
-          <%= image_tag @user.avatar_url %>
-        </div>
-      </div>
-      <div class="my-auto">
-        <div class="font-bold text-3xl mb-2">
-          <%= @user.nickname %>
-        </div>
-        <div class="flex justify-center">
-          <div class="mr-4">
-            <%= @user.prefecture.name %>
-          </div>
-          <div>
-            <%= @user.age_group %>
-          </div>
-        </div>
+  <h1 class="font-bold text-lg text-center mb-10"><%= current_user.nickname %>さんの<%= t('.title') %></h1>
+  <div class="mb-4 mx-auto flex justify-evenly max-w-sm">
+    <div class="avatar">
+      <div class="w-24 rounded-full">
+        <%= image_tag @user.avatar_url %>
       </div>
     </div>
-    <div>
-      <%= link_to likes_posts_path do %>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="red" class="w-6 h-6"><path d="m11.645 20.91-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z" /></svg>List
-      <% end %>
+    <div class="my-auto">
+      <div class="font-bold text-3xl mb-2">
+        <%= @user.nickname %>
+      </div>
+      <div class="flex justify-center">
+        <div class="mr-4">
+          <%= @user.prefecture.name %>
+        </div>
+        <div>
+          <%= @user.age_group %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="my-8 max-w-sm mx-auto">
+    <div class="flex justify-between mb-8">
+      <div>
+        <%= link_to "いいね一覧", likes_posts_path, class: "btn btn-outline" %>
+      </div>
+
+      <div>
+        <%= link_to "編集", edit_profile_path, class: "btn btn-outline" %>
+      </div>
+
+      <div>
+        <%= link_to "ログアウト", logout_path, data: { turbo_method: :delete }, class: "btn btn-primary" %>
+      </div>
     </div>
     <div>
-      <%= link_to "編集", edit_profile_path, class: "btn btn-primary" %>
-    </div>
-    <div>
-      <%= link_to "ログアウト", logout_path, data: { turbo_method: :delete }, class: "btn btn-primary" %>
-    </div>
-    <div>
-      <p class="font-bold"><%= @user.nickname %>さんのサ飯：<%= @my_posts.count %>件</p>
-    </div>
-    <div>
+    <p class="font-bold"><%= @user.nickname %>さんのサ飯：<%= @my_posts.count %>件</p>
+  </div>
+  </div>
+
+  <div class="flex justify-center md:flex flex-wrap">
     <% if @my_posts.present? %>
       <%= render @my_posts %>
     <% else %>
       <p>投稿がありません</p>
     <% end %>
-    </div>
-  <%= paginate @my_posts %>
+  </div>
+  <div>
+    <%= paginate @my_posts %>
   </div>
 </div>
