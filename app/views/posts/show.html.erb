@@ -1,6 +1,6 @@
 <% content_for(:title, t('.title')) %>
 <div class="w-5/6 mx-auto my-24 max-w-screen-xl">
-  <div class="card w-full shadow-xl mb-8">
+  <div class="card w-full shadow-xl mx-auto mb-8 max-w-sm">
     <div class="flex justify-between">
       <div class="flex justify-start">
         <div class="avatar m-4">
@@ -68,5 +68,4 @@
       <%= render 'comments/comments', { comments: @comments } %>
     </div>
   </div>
-
 </div>

@@ -19,5 +19,6 @@ class Post < ApplicationRecord
   has_many :likes, dependent: :destroy
 
   validates :meal_genre, presence: true
+  validates :sauna_id, presence: true
   validates :content, presence: true, length: { maximum: 1000 }
 end

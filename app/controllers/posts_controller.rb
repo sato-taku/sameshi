@@ -16,6 +16,7 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to posts_path, success: t('defaults.message.created', item: Post.model_name.human)
     else
+      Rails.logger.debug(@post.errors.full_messages.join("\n"))
       flash.now[:danger] = t('defaults.message.not_created', item: Post.model_name.human)
       render :new, status: :unprocessable_entity
     end

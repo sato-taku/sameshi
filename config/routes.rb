@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   resources :likes, only: %i[create destroy]
   resources :saunas, only: %i[index show] do
     collection do
-      get :search
+      get 'autocomplete'
     end
   end
 end
