@@ -38,11 +38,15 @@
       </div>
     </div>
   </div>
+
+  <!-- サウナ施設、DBからのオートコンプリート -->
   <div data-controller="autocomplete" data-autocomplete-url-value="/saunas/autocomplete" role="combobox" class="mb-8 max-w-xs mx-auto">
     <%= f.label :sauna, class: "w-full" %>
-    <%= f.text_field :sauna_name, data: { autocomplete_target: "input" }, class: "input input-bordered input-neutral w-full max-w-xs" %>
-    <ul class="list-group bg-white absolute w-full md:text-sm max-w-max" data-autocomplete-target="results"></ul>
+    <input type="text" data-autocomplete-target="input" class="input input-bordered input-neutral w-full"/>
+    <%= f.hidden_field :sauna_id, data: { autocomplete_target: "hidden" } %>
+    <ul class="list-group" data-autocomplete-target="results"></ul>
   </div>
+
   <div class="mb-8 text-center">
     <%= f.submit class: "btn btn-neutral" %>
   </div>
