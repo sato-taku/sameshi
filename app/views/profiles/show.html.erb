@@ -1,53 +1,71 @@
 <%= content_for(:title, t('.title')) %>
 <div class="w-5/6 mx-auto my-24 max-w-screen-xl">
-  <h1 class="font-bold text-lg text-center mb-10"><%= current_user.nickname %>さんの<%= t('.title') %></h1>
-  <div class="mb-4 mx-auto flex justify-evenly max-w-sm">
-    <div class="avatar">
-      <div class="w-24 rounded-full">
-        <%= image_tag @user.avatar_url %>
+  <div class="card w-full shadow-xl mx-auto mb-8 max-w-sm md:max-w-4xl">
+    <div class="flex justify-end">
+      <div class="mx-4">
+        <%= link_to edit_profile_path do %>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M10.343 3.94c.09-.542.56-.94 1.11-.94h1.093c.55 0 1.02.398 1.11.94l.149.894c.07.424.384.764.78.93.398.164.855.142 1.205-.108l.737-.527a1.125 1.125 0 0 1 1.45.12l.773.774c.39.389.44 1.002.12 1.45l-.527.737c-.25.35-.272.806-.107 1.204.165.397.505.71.93.78l.893.15c.543.09.94.559.94 1.109v1.094c0 .55-.397 1.02-.94 1.11l-.894.149c-.424.07-.764.383-.929.78-.165.398-.143.854.107 1.204l.527.738c.32.447.269 1.06-.12 1.45l-.774.773a1.125 1.125 0 0 1-1.449.12l-.738-.527c-.35-.25-.806-.272-1.203-.107-.398.165-.71.505-.781.929l-.149.894c-.09.542-.56.94-1.11.94h-1.094c-.55 0-1.019-.398-1.11-.94l-.148-.894c-.071-.424-.384-.764-.781-.93-.398-.164-.854-.142-1.204.108l-.738.527c-.447.32-1.06.269-1.45-.12l-.773-.774a1.125 1.125 0 0 1-.12-1.45l.527-.737c.25-.35.272-.806.108-1.204-.165-.397-.506-.71-.93-.78l-.894-.15c-.542-.09-.94-.56-.94-1.109v-1.094c0-.55.398-1.02.94-1.11l.894-.149c.424-.07.765-.383.93-.78.165-.398.143-.854-.108-1.204l-.526-.738a1.125 1.125 0 0 1 .12-1.45l.773-.773a1.125 1.125 0 0 1 1.45-.12l.737.527c.35.25.807.272 1.204.107.397-.165.71-.505.78-.929l.15-.894Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /></svg>
+        <% end %>
       </div>
     </div>
-    <div class="my-auto">
-      <div class="font-bold text-3xl mb-2">
-        <%= @user.nickname %>
+    <div class="flex justify-evenly">
+      <div class="avatar">
+        <div class="w-24 rounded-full">
+          <%= image_tag @user.avatar_url %>
+        </div>
       </div>
-      <div class="flex justify-center">
-        <div class="mr-4">
-          <%= @user.prefecture.name %>
+      <div class="my-auto">
+        <div class="font-bold text-lg mb-2">
+          <%= @user.nickname %>
+        </div>
+        <div class="flex justify-center">
+          <div class="mr-4">
+            <%= @user.prefecture.name %>
+          </div>
+          <div>
+            <%= @user.age_group %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-end m-4">
+      <%= link_to "ログアウト", logout_path, data: { turbo_method: :delete }, class: "btn btn-neutral" %>
+    </div>
+  </div>
+
+  <div role="tablist" class="tabs tabs-lifted mx-auto max-w-sm md:max-w-4xl">
+    <input type="radio" name="my_tabs_2" role="tab" class="tab whitespace-nowrap" aria-label="投稿：<%= @total_my_posts %>" checked />
+    <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-4">
+      <!-- 投稿タブ内のみページネーション -->
+      <%= turbo_frame_tag 'my_posts' do %>
+        <div class="my-6 flex justify-center md:flex flex-wrap">
+          <% if @my_posts.present? %>
+            <%= render @my_posts %>
+          <% else %>
+            <p>投稿がありません</p>
+          <% end %>
         </div>
         <div>
-          <%= @user.age_group %>
+          <%= paginate @my_posts, :param_name=> 'posts_page' %>
         </div>
-      </div>
+      <% end %>
     </div>
-  </div>
-  <div class="my-8 max-w-sm mx-auto">
-    <div class="flex justify-between mb-8">
-      <div>
-        <%= link_to "いいね一覧", likes_posts_path, class: "btn btn-outline" %>
-      </div>
 
-      <div>
-        <%= link_to "編集", edit_profile_path, class: "btn btn-outline" %>
-      </div>
-
-      <div>
-        <%= link_to "ログアウト", logout_path, data: { turbo_method: :delete }, class: "btn btn-primary" %>
-      </div>
+    <input type="radio" name="my_tabs_2" role="tab" class="tab whitespace-nowrap" aria-label="いいね：<%= @total_my_likes %>" />
+    <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-4">
+      <!-- いいねタブ内のみページネーション -->
+      <%= turbo_frame_tag 'my_likes' do %>
+        <div class="my-6 flex justify-center md:flex flex-wrap">
+          <% if @my_likes.present? %>
+            <%= render @my_likes %>
+          <% else %>
+            <p>投稿がありません</p>
+          <% end %>
+        </div>
+        <div>
+          <%= paginate @my_likes, :param_name=> 'likes_page' %>
+        </div>
+      <% end %>
     </div>
-    <div>
-    <p class="font-bold"><%= @user.nickname %>さんのサ飯：<%= @my_posts.count %>件</p>
-  </div>
-  </div>
-
-  <div class="flex justify-center md:flex flex-wrap">
-    <% if @my_posts.present? %>
-      <%= render @my_posts %>
-    <% else %>
-      <p>投稿がありません</p>
-    <% end %>
-  </div>
-  <div>
-    <%= paginate @my_posts %>
   </div>
 </div>
