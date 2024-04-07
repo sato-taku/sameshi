@@ -5,7 +5,8 @@ class SaunasController < ApplicationController
   end
 
   def show
-    @sauna = Sauna.find(params[:id])
+    @sauna = Sauna.includes(:posts).find(params[:id])
+    @posts = @sauna.posts.includes(:user).order(created_at: :desc).page(params[:page])
   end
 
   def autocomplete

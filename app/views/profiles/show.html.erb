@@ -10,15 +10,15 @@
     </div>
     <div class="flex justify-evenly">
       <div class="avatar">
-        <div class="w-24 rounded-full">
+        <div class="w-24 rounded-full md:w-36">
           <%= image_tag @user.avatar_url %>
         </div>
       </div>
       <div class="my-auto">
-        <div class="font-bold text-lg mb-2">
+        <div class="font-bold text-lg mb-2 md:text-2xl mb-4">
           <%= @user.nickname %>
         </div>
-        <div class="flex justify-center">
+        <div class="flex justify-start">
           <div class="mr-4">
             <%= @user.prefecture.name %>
           </div>

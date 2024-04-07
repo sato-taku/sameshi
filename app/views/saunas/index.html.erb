@@ -6,10 +6,10 @@
 <!-- モーダルを表示する要素 -->
 <dialog id="sauna_modal" class="modal">
   <div class="modal-box">
-    <form method="dialog">
-      <button class="btn"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg></button>
+    <form method="dialog" class="flex justify-end">
+      <button class="m-4"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg></button>
     </form>
-    <div class="sauna_show mt-4"></div>
+    <div class="sauna_show"></div>
   </div>
 </dialog>
 
@@ -40,18 +40,21 @@
           // マーカーをクリックすると投稿詳細に遷移
           marker.addListener('click', function() {
             const modalContent = `
-              <div>
-                <p class="text-lg font-bold mb-2"><%= j sauna.name %></p>
-              </div>
-              
-              <div class="mx-auto">
+              <div class="">
+                <div>
+                  <p class="text-xl font-bold mb-2"><%= j sauna.name %></p>
+                </div>
+                
                 <% if sauna.photo_reference.present? %>
-                  <%= image_tag "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=#{sauna.photo_reference}&key=#{ENV["GOOGLE_MAPS_API_KEY"]}"%>
+                  <div>
+                    <%= image_tag "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=#{sauna.photo_reference}&key=#{ENV["GOOGLE_MAPS_API_KEY"]}", class: "mx-auto" %>
+                  </div>
                 <% end %>
-              </div>
-              
-              <div>
-                <%= link_to "詳細", sauna_path(sauna), data: { turbo: false }, class: "btn btn-primary" %>
+
+                
+                <div class="mt-4 text-center">
+                  <%= link_to "詳細", sauna_path(sauna), data: { turbo: false }, class: "btn btn-neutral" %>
+                </div>
               </div>
             `;
 
