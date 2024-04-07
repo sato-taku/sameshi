@@ -1,7 +1,10 @@
 class ProfilesController < ApplicationController
   before_action :set_user, only: %i[show edit update]
   def show
-    @my_posts = @user.posts.includes(:user).order(created_at: :desc).page(params[:page])
+    @total_my_posts = @user.posts.count
+    @total_my_likes = @user.like_posts.count
+    @my_posts = @user.posts.includes(:user).order(id: :desc).page(params[:posts_page])
+    @my_likes = @user.like_posts.includes(:user).order(id: :desc).page(params[:likes_page])
   end
   
   def edit; end
