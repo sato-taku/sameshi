@@ -38,7 +38,7 @@
     <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-4">
       <!-- 投稿タブ内のみページネーション -->
       <%= turbo_frame_tag 'my_posts' do %>
-        <div class="my-6 flex justify-center md:flex flex-wrap">
+        <div class="my-6 grid grid-cols-1 items-center justify-items-center md:grid-cols-3 gap-3">
           <% if @my_posts.present? %>
             <%= render @my_posts %>
           <% else %>
@@ -55,7 +55,7 @@
     <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-4">
       <!-- いいねタブ内のみページネーション -->
       <%= turbo_frame_tag 'my_likes' do %>
-        <div class="my-6 flex justify-center md:flex flex-wrap">
+        <div class="my-6 grid grid-cols-1 items-center justify-items-center md:grid-cols-3 gap-3">
           <% if @my_likes.present? %>
             <%= render @my_likes %>
           <% else %>

@@ -1,29 +1,29 @@
-<%= link_to post_path(post) do %>
-  <div class="card w-full shadow-xl mb-8 max-w-sm md:m-2">
-    <div class="flex justify-start">
-      <div class="avatar m-4">
-        <div class="w-12 rounded-full">
-          <%= image_tag post.user.avatar_url %>
-        </div>
-      </div>
-      <div class="my-auto">
-        <%= post.user.nickname %>
+<div class="card w-full my-auto shadow-xl max-w-xs">
+  <div class="flex justify-start">
+    <div class="avatar m-4">
+      <div class="w-12 rounded-full">
+        <%= image_tag post.user.avatar_url %>
       </div>
     </div>
-    <figure class="px-4">
-      <%= image_tag post.post_image_url, size: '300x200', class: "rounded-xl" %>
-    </figure>
-    <div class="flex justify-between">
-      <div class="my-auto">
-        <div class="m-4">
-          <%= l post.created_at, format: :long %>
-        </div>
-      </div>
-      <div class="m-4">
-        <% if logged_in? %>
-          <%= render 'posts/like_buttons', { post: post } %>
-        <% end %>
-      </div>
+    <div class="my-auto">
+      <%= post.user.nickname %>
     </div>
   </div>
-<% end %>
+  <%= link_to post_path(post), data: { turbo: false } do %>
+    <figure class="px-4 hover:">
+      <%= image_tag post.post_image_url, size: '300x200', class: "rounded-xl" %>
+    </figure>
+  <% end %>
+  <div class="flex justify-between">
+    <div class="my-auto">
+      <div class="m-4">
+        <%= l post.created_at, format: :long %>
+      </div>
+    </div>
+    <% if logged_in? %>
+      <div class="m-4">
+        <%= render 'posts/like_buttons', { post: post } %>
+      </div>
+    <% end %>
+  </div>
+</div>
