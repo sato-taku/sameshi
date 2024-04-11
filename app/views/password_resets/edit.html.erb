@@ -1,24 +1,30 @@
 <% content_for(:title, t('.title')) %>
-<div class="container">
-  <div class="row">
-    <div class="col-md-10 col-lg-8 mx-auto">
-      <h1><%= t('.title') %></h1>
-      <%= form_with model: @user, url: password_reset_path(@token), method: :patch do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
-        <div class="mb-3">
-          <%= f.label :email, class: "form-label" %>
-          <%= @user.email %>
-        </div>
-        <div class="mb-3">
-          <%= f.label :password, class: "form-label" %>
-          <%= f.password_field :password, class: "form-control" %>
-        </div>
-        <div class="mb-3">
-          <%= f.label :password_confirmation, class: "form-label" %>
-          <%= f.password_field :password_confirmation, class: "form-control" %>
-        </div>
-        <%= f.submit class: "btn btn-primary" %>
-      <% end %>
+<div class="my-28">
+  <h1 class="font-bold text-lg text-center mb-10"><%= t('.title') %></h1>
+  <%= form_with model: @user, url: password_reset_path(@token), method: :patch do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <div class="mb-8 max-w-xs mx-auto">
+      <div>
+        <%= f.label :email, class: "w-full" %>
+      </div>
+      <div class="mb-4">
+        <h1 class="font-bold text-lg w-full"><%= @user.email %></h1>
+      </div>
+      <div>
+        <%= f.label :password, class: "w-full" %>
+      </div>
+      <div class="mb-4">
+        <%= f.password_field :password, class: "input input-bordered input-neutral w-full" %>
+      </div>
+      <div>
+        <%= f.label :password_confirmation, class: "w-full" %>
+      </div>
+      <div class="mb-8">
+        <%= f.password_field :password_confirmation, class: "input input-bordered input-neutral w-full" %>
+      </div>
+      <div class="mb-8 text-center">
+        <%= f.submit class: "btn btn-neutral" %>
+      </div>
     </div>
-  </div>
+  <% end %>
 </div>
