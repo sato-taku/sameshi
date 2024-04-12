@@ -4,16 +4,18 @@ document.addEventListener('turbo:load', function() {
   // id: "preview"の要素を選択
   const previewElement = document.querySelector("#preview");
 
-  inputElement.addEventListener("change", function() {
-    const file = this.files[0];
-    if (file) {
-      const reader = new FileReader();
-
-      reader.onload = function(e) {
-        previewElement.src = e.target.result;
-      };
-
-      reader.readAsDataURL(file);
-    }
-  });
+  if (inputElement && previewElement) {
+    inputElement.addEventListener("change", function() {
+      const file = this.files[0];
+      if (file) {
+        const reader = new FileReader();
+  
+        reader.onload = function(e) {
+          previewElement.src = e.target.result;
+        };
+  
+        reader.readAsDataURL(file);
+      }
+    });
+  }
 });
