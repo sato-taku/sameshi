@@ -68,16 +68,11 @@ namespace :Tokyo do
         sauna = Sauna.find_or_initialize_by(place_id: sauna_data[:place_id])
         sauna.update!(sauna_data)
 
-        if sauna.persisted?
-          puts "#{row['サウナ']}は既に存在します"
-          puts "----------"
-        elsif sauna.save
-          puts "#{row['サウナ']}を保存しました"
-          puts "----------"
-        else
-          puts "#{row['サウナ']}の保存に失敗しました"
-          puts "----------"
-        end
+        puts "#{row['サウナ']}を保存しました"
+        puts "----------"
+      else
+        puts "#{row['サウナ']}の保存に失敗しました"
+        puts "----------"
       end
     end
   end
