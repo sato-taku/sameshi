@@ -2,10 +2,10 @@
   <div class="flex justify-between">
     <div class="w-full mr-4 md:flex justify-between">
       <div class="w-full mr-4 mb-4">
-        <%= f.collection_select :prefecture_id_eq, Prefecture.all, :id, :name, { include_blank: "未選択" }, class: "select select-bordered select-neutral w-full" %>
+        <%= f.collection_select :prefecture_id_eq, Prefecture.all, :id, :name, { include_blank: "都道府県" }, class: "select select-bordered select-neutral w-full" %>
       </div>
       <div class="w-full">
-        <%= f.select :meal_genre_eq, Post.meal_genres, { include_blank: "未選択" }, class: "select select-bordered select-neutral w-full" %>
+        <%= f.select :meal_genre_eq, Post.meal_genres, { include_blank: "ジャンル" }, class: "select select-bordered select-neutral w-full" %>
       </div>
     </div>
     <div class="w-full mr-4 md:flex justify-between">

@@ -1,14 +1,11 @@
 <% content_for(:title, t('.title')) %>
-<div class="my-24 w-5/6 mx-auto max-w-screen-xl">
+<div class="my-28 w-5/6 mx-auto max-w-screen-xl">
   <div id="map" style="height: 550px;"></div>
 </div>
 
 <!-- モーダルを表示する要素 -->
 <dialog id="sauna_modal" class="modal">
   <div class="modal-box">
-    <form method="dialog" class="flex justify-end">
-      <button class="m-4"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg></button>
-    </form>
     <div class="sauna_show"></div>
   </div>
 </dialog>
@@ -37,25 +34,34 @@
             title: '<%= j sauna.name %>'
           });
 
-          // マーカーをクリックすると投稿詳細に遷移
+          // マーカーをクリックするとサウナ詳細に遷移
           marker.addListener('click', function() {
             const modalContent = `
-              <div class="">
-                <div>
-                  <p class="text-xl font-bold mb-2"><%= j sauna.name %></p>
+              <div class="mx-auto flex justify-start">
+                <div class="mr-4">
+                  <%= image_tag 'sauna.svg', width: 120 %>
                 </div>
-                
-                <% if sauna.photo_reference.present? %>
-                  <div>
-                    <%= image_tag "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=#{sauna.photo_reference}&key=#{ENV["GOOGLE_MAPS_API_KEY"]}", class: "mx-auto" %>
+                <div class="m-auto w-full ">
+                  <div class="border-dotted border-b-2 border-info">
+                    <p class="text-lg font-bold pb-2"><%= j sauna.name %></p>
                   </div>
-                <% end %>
-
-                
-                <div class="mt-4 text-center">
-                  <%= link_to "詳細", sauna_path(sauna), data: { turbo: false }, class: "btn btn-neutral" %>
+                  <div class="mt-2">
+                    <% if sauna.posts.present? %>
+                      <div>
+                        <p>サ飯投稿数：<%= sauna.posts.count %></p>
+                      </div>
+                    <% else %>
+                      <div>
+                        <p>まだサ飯がないよ！</p>
+                        <p>お気に入りのサ飯を教えてね！</p>
+                      </div>
+                    <% end %>
+                  </div>
                 </div>
               </div>
+                  <div class="mt-4 text-center">
+                    <%= link_to "詳細", sauna_path(sauna), data: { turbo: false }, class: "btn btn-neutral" %>
+                  </div>
             `;
 
             document.querySelector('.sauna_show').innerHTML = modalContent;

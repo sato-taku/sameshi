@@ -14,7 +14,7 @@ class Post < ApplicationRecord
 
   belongs_to :user, dependent: :destroy
   has_many :comments, dependent: :destroy
-  belongs_to :sauna
+  belongs_to :sauna, dependent: :destroy
   belongs_to :prefecture
   has_many :likes, dependent: :destroy
 

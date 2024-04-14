@@ -5,11 +5,11 @@
       <%= f.label :post_image, class: "w-full" %>
     </div>
     <div>
-      <%= f.file_field :post_image, class: "file-input file-input-bordered file-input-neutral w-full" %>
+      <%= f.file_field :post_image, class: "file-input file-input-bordered file-input-neutral w-full", id: "input" %>
       <%= f.hidden_field :post_image_cache %>
     </div>
-    <div>
-      <div id="previews" class="mt-4"></div>
+    <div class="mt-4">
+      <%= image_tag post.post_image.url, id: "preview", class: "mx-auto" %>
     </div>
   </div>
   <div class="mb-4 max-w-xs mx-auto">
@@ -44,7 +44,7 @@
     <%= f.label :sauna, class: "w-full" %>
     <input type="text" data-autocomplete-target="input" class="input input-bordered input-neutral w-full"/>
     <%= f.hidden_field :sauna_id, data: { autocomplete_target: "hidden" } %>
-    <ul class="list-group" data-autocomplete-target="results"></ul>
+    <ul class="list-group mt-4 text-xs" data-autocomplete-target="results"></ul>
   </div>
 
   <div class="mb-8 text-center">
