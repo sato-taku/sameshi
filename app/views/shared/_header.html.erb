@@ -11,9 +11,9 @@
       <dialog id="my_modal_2" class="modal">
         <div class="modal-box">
           <ul class="menu rounded-box">
-            <li><%= link_to "利用規約", "#" %></li>
-            <li><%= link_to "プライバシーポリシー", "#" %></li>
-            <li><%= link_to "お問合せ", "https://x.com/sttk_91" %></li>
+            <li><%= link_to "利用規約", terms_of_use_path, data: { turbo: false }, class: "hover:text-info" %></li>
+            <li><%= link_to "プライバシーポリシー", privacy_policy_path, data: { turbo: false }, class: "hover:text-info"  %></li>
+            <li><%= link_to "お問合せ", "https://x.com/sttk_91", class: "hover-text-info", target: :_blank, rel: "noopener noreferrer" %></li>
           </ul>
         </div>
         <form method="dialog" class="modal-backdrop">

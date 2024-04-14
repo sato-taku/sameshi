@@ -21,6 +21,7 @@ class User < ApplicationRecord
   validates :nickname, length: { maximum: 20 }, presence: true
   validates :prefecture_id, presence: true
   validates :age_group, inclusion: { in: User.age_groups }
+  validates_acceptance_of :agreement, allow_nil: false, on: :create
 
   def own?(object)
     id == object&.user_id

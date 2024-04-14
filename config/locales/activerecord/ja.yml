@@ -9,10 +9,12 @@ ja:
         nickname: ニックネーム
         email: メールアドレス
         prefecture_id: 都道府県
+        prefecture: 都道府県
         age_group: 年代
         avatar: アバター
         password: パスワード
         password_confirmation: パスワード（確認用）
+        agreement: 確認事項
       post:
         prefecture_id: 都道府県
         meal_genre: ジャンル
