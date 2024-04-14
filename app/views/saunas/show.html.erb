@@ -1,7 +1,40 @@
 <% content_for(:title, @sauna.name) %>
 <div class="w-5/6 mx-auto my-28 max-w-4xl">
-  <h1 class="font-bold text-3xl mb-10"><%= @sauna.name %></h1>
-
+  <div class="card w-full shadow-xl mx-auto mb-8 max-w-sm md:max-w-4xl">
+    <div class="md:flex justify-evenly">
+      <% if @sauna.photo_reference.present? %>
+        <div class="m-4">
+          <%= image_tag "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=#{@sauna.photo_reference}&key=#{ENV["GOOGLE_MAPS_API_KEY"]}", class: "mx-auto" %>
+        </div>
+      <% end %>
+      <div class="m-4">
+        <h1 class="font-bold text-xl mb-4"><%= @sauna.name %></h1>
+        <div class="flex justify-end">
+        <div class="flex justify-start">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="red" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" /></svg>
+        </div>
+        <div class="text-sm mb-2">
+          <%= @sauna.address %>
+        </div>
+      </div>
+        </div>
+        <div class="flex justify-end">
+          <div class="text-sm">
+            <p>TEL: <%= link_to @sauna.tel_number, "tel:#{@sauna.tel_number}", class: "link hover:text-info" %></p>
+          </div>
+        </div>
+        <div class="flex justify-end">
+          <div class="text-sm">
+            <%= link_to "公式HP", "#{@sauna.website}", class: "hover:text-info" %>
+          </div>
+        </div>
+        <div class="text-center text-sm">
+          <p><%= simple_format(@sauna.opening_hours) %></p>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="my-6 mx-auto grid grid-cols-1 md:grid-cols-3 gap-3 max-w-4xl">
     <% if @posts.present? %>
       <%= render @posts %>
