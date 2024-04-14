@@ -5,16 +5,10 @@ API_KEY = ENV["GOOGLE_MAPS_APi_KEY"]
 namespace :Saitama do
   desc 'サウナ情報の取得と保存'
   task :get_saunas => :environment do
-    # 電話番号からplace_idを取得するメソッド
-    def get_place_id(detail)
+    # サウナ名からplace_idを取得するメソッド
+    def get_place_id(sauna)
       client = GooglePlaces::Client.new(ENV["GOOGLE_MAPS_API_KEY"])
-      # 電話番号が存在する場合、電話番号で検索
-      if detail['電話番号'].present?
-        spot = client.spots_by_query(detail['電話番号']).first
-      # 電話番号が存在しない場合、サウナ名で検索
-      else
-        spot = client.spots_by_query(detail['サウナ']).first
-      end
+      spot = client.spots_by_query(sauna['サウナ']).first
       spot.place_id if spot
     end
 
