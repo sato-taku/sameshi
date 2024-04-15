@@ -83,6 +83,6 @@ test:
 #
 production:
   <<: *default
-  database: app_production
-  username: app
+  database: sameshi-db
+  username: postgres
   password: <%= ENV["APP_DATABASE_PASSWORD"] %>

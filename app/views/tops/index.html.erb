@@ -1,14 +1,8 @@
 <div class="my-28 w-5/6 mx-auto max-w-screen-xl">
-  <div class="md:flex justify-evenly">
-    <div>
-      <div>
-        <%= link_to "現在地から探す", saunas_path, data: { turbo: false }, class: "btn btn-neutral m-4" %>
-      </div>
-    </div>
-    <div>
-      <div>
-        <%= link_to "投稿一覧から探す", posts_path, class: "btn btn-neutral m-4" %>
-      </div>
-    </div>
+  <div class="w-full">
+    <%= link_to "現在地から探す", saunas_path, data: { turbo: false }, class: "btn btn-neutral w-full max-w-4xl" %>
+  </div>
+  <div class="w-full">
+    <%= link_to "投稿一覧から探す", posts_path, class: "btn btn-neutral w-full max-w-4xl" %>
   </div>
 </div>
