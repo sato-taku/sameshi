@@ -18,10 +18,9 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  host: <%= ENV.fetch('DB_HOST') %>
-  port: <%= ENV.fetch('DB_PORT') %>
-  username: <%= ENV.fetch('DB_USER_NAME') %>
-  password: <%= ENV.fetch('DB_PASSWORD') %>
+  host: db
+  username: postgres
+  password: password
 
 
 development:
@@ -85,5 +84,5 @@ test:
 production:
   <<: *default
   database: sameshi-db
-  username: <%= ENV.fetch('DB_USERNAME') %>
-  password: <%= ENV.fetch('DB_PASSWORD') %>
+  username: postgres
+  password: <%= ENV["APP_DATABASE_PASSWORD"] %>
