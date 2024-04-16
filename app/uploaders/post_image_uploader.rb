@@ -18,7 +18,7 @@ class PostImageUploader < CarrierWave::Uploader::Base
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   def default_url
-    'post_placeholder'
+    'sample_image'
   end
 
   # Process files as they are uploaded:
