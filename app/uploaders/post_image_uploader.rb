@@ -41,16 +41,16 @@ class PostImageUploader < CarrierWave::Uploader::Base
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
-  process :convert_to_webp   #拡張子をWebPに変換する
+  # process :convert_to_webp   #拡張子をWebPに変換する
 
-  def convert_to_webp
-    manipulate! do |image|
-      image.format 'webp'
-      image
-    end
-  end
+  #def convert_to_webp
+  #  manipulate! do |image|
+  #    image.format 'webp'
+  #    image
+  #  end
+  #end
 
-  def filename
-    super.chomp(File.extname(super)) + '.webp' if original_filename.present?
-  end
+  #def filename
+  #  super.chomp(File.extname(super)) + '.webp' if original_filename.present?
+  #end
 end
