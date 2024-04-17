@@ -78,6 +78,7 @@ gem "google_places"
 gem "geocoder"
 gem "carrierwave", "~> 2.0"
 gem "fog-aws"
+gem "aws-sdk-s3", require: false
 gem "faker"
 gem "kaminari"
 gem "ransack"
