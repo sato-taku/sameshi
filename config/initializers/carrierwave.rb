@@ -8,4 +8,5 @@ CarrierWave.configure do |config|
   }
   config.fog_directory  = 'sameshi-image'
   config.cache_storage = :fog
+  config.fog_public = false
 end
