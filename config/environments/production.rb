@@ -80,8 +80,8 @@ Rails.application.configure do
     address:              'smtp.gmail.com',
     port:                 587,
     domain:               'sameshi.fly.dev',
-    user_name:            ENV['GMAIL_USERNAME'],
-    password:             ENV['GMAIL_PASSWORD'],
+    user_name:            ENV["GMAIL_USERNAME"],
+    password:             ENV["GMAIL_PASSWORD"],
     authentication:       'plain',
     enable_starttls_auto: true 
   }
