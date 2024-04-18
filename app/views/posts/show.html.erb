@@ -51,7 +51,7 @@
           </div>
           <div class="flex justify-end">
             <div class="my-auto mr-3">
-              <%= link_to "https://twitter.com/share?url=#{post_url(@post)}&text=【整った〜〜】%0a%0a#{@post.sauna.name}に サ飯 を投稿しました🧖‍♂️", class: "twitter-share-button", data: { hashtags: "サ飯", show_count: false } do %>
+              <%= link_to "https://twitter.com/share?url=#{post_url(@post)}&text=【サ飯の時間】%0a%0a「#{@post.sauna.name}」でととのったあとは%0aこの「サ飯」がおすすめ！%0a%0a", class: "twitter-share-button", data: { hashtags: "サ飯の時間", show_count: false } do %>
                 Share
               <% end %>
               <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
