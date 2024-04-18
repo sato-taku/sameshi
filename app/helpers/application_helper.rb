@@ -1,7 +1,7 @@
 module ApplicationHelper
   def default_meta_tags
     {
-      site: 'SAMESHI!!',
+      site: 'サ飯の時間',
       title: '',
       reverse: true,
       charset: 'utf-8',

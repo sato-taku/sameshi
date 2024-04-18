@@ -1,7 +1,7 @@
 <header class="navbar shadow-xl bg-neutral fixed top-0 z-50 w-full">
   <div class="navbar-start"></div>
     <div class="navbar-center">
-      <%= link_to image_tag("sameshi_header.svg", width: '200' ), "/", class: "my-2" %>
+      <%= link_to image_tag("sameshi_header.svg", width: '200' ), "/" %>
     </div>
     <div class="navbar-end">
       <!-- Open the modal using ID.showModal() method -->
@@ -14,6 +14,7 @@
             <li><%= link_to "利用規約", terms_of_use_path, data: { turbo: false }, class: "hover:text-info" %></li>
             <li><%= link_to "プライバシーポリシー", privacy_policy_path, data: { turbo: false }, class: "hover:text-info"  %></li>
             <li><%= link_to "お問合せ", "https://x.com/sttk_91", class: "hover-text-info", target: :_blank, rel: "noopener noreferrer" %></li>
+            <li><h3 class="text-center">©️ 2024 - サ飯の時間</h3></li>
           </ul>
         </div>
         <form method="dialog" class="modal-backdrop">

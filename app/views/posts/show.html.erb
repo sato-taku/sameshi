@@ -40,6 +40,14 @@
             <%= @post.prefecture.name %>｜<%= @post.sauna.name %>
           </div>
         </div>
+        <div class="flex justify-start mx-3">
+          <div class="mt-2">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 0 0 3 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 0 0 5.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 0 0 9.568 3Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6Z" /></svg>        
+          </div>
+          <div class="mt-2 text-xs">
+            <%= @post.meal_genre %>
+          </div>
+        </div>
         <div class="m-4 py-2 border-dotted border-y-2 border-info">
           <p><%= simple_format(@post.content) %></p>
         </div>
@@ -51,7 +59,7 @@
           </div>
           <div class="flex justify-end">
             <div class="my-auto mr-3">
-              <%= link_to "https://twitter.com/share?url=#{post_url(@post)}&text=【整った〜〜】%0a%0a#{@post.sauna.name}に サ飯 を投稿しました🧖‍♂️", class: "twitter-share-button", data: { hashtags: "サ飯", show_count: false } do %>
+              <%= link_to "https://twitter.com/share?url=#{post_url(@post)}&text=【サ飯の時間】%0a%0a「#{@post.sauna.name}」でととのったあとは%0aこの「サ飯」がおすすめ！%0a%0a", class: "twitter-share-button", data: { hashtags: "サ飯の時間", show_count: false } do %>
                 Share
               <% end %>
               <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -71,8 +79,11 @@
             <%= render 'comments/comments', { comments: @comments } %>
           <% else %>
             <%= render 'comments/comments', { comments: @comments } %>
-            <div>
-              
+            <div class="text-center font-bold border-dotted border-y-2 border-info py-10">
+              <p>
+                あなたのお気に入りの「サ飯」も教えてね！
+              </p>
+              <%= link_to '使ってみる！', new_user_path, class:"btn btn-neutral mt-4" %>
             </div>
           <% end %>
         </div>
