@@ -28,7 +28,7 @@ module ApplicationHelper
   end
 
   def page_title(page_title = '')
-    base_title = 'SAMESHI!!'
+    base_title = 'サ飯の時間'
 
     page_title.empty? ? base_title : page_title + ' | ' + base_title
   end
