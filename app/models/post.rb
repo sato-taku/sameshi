@@ -12,9 +12,9 @@ class Post < ApplicationRecord
     ['sauna', 'prefecture']
   end
 
-  belongs_to :user, dependent: :destroy
+  belongs_to :user
   has_many :comments, dependent: :destroy
-  belongs_to :sauna, dependent: :destroy
+  belongs_to :sauna
   belongs_to :prefecture
   has_many :likes, dependent: :destroy
 

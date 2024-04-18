@@ -18,7 +18,7 @@ class PostImageUploader < CarrierWave::Uploader::Base
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   def default_url
-    'sample_image'
+    'sample_image.svg'
   end
 
   # Process files as they are uploaded:
@@ -30,7 +30,7 @@ class PostImageUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   # version :thumb do
-  process resize_to_fit: [300, 200]
+  #   process resize_to_fit: [300, 200]
   # end
 
   # Add an allowlist of extensions which are allowed to be uploaded.
@@ -41,6 +41,8 @@ class PostImageUploader < CarrierWave::Uploader::Base
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
+    #   "something.jpg" if original_filename
+  # end
   process :convert_to_webp   #拡張子をWebPに変換する
 
   def convert_to_webp

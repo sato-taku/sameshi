@@ -1,6 +1,6 @@
 <% content_for(:title, t('.title')) %>
 <div class="my-28 w-5/6 mx-auto max-w-screen-xl">
-  <div id="map" style="height: 470px;"></div>
+  <div id="map" style="height: 510px;"></div>
 </div>
 
 <!-- モーダルを表示する要素 -->
@@ -39,13 +39,13 @@
             const modalContent = `
               <div class="mx-auto flex justify-start">
                 <div class="mr-4">
-                  <%= image_tag 'sauna.svg', width: 120 %>
+                  <%= image_tag 'sameshi_logo.svg', width: 120 %>
                 </div>
-                <div class="m-auto w-full">
+                <div class="m-auto w-full text-center">
                   <div class="border-dotted border-b-2 border-info">
                     <p class="text-lg font-bold pb-2"><%= j sauna.name %></p>
                   </div>
-                  <div class="mt-2">
+                  <div class="mt-2 text-center">
                     <% if sauna.posts.present? %>
                       <div>
                         <p>サ飯投稿数：<%= sauna.posts.count %></p>

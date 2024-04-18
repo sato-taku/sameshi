@@ -15,20 +15,20 @@ module ApplicationHelper
         description: :description,
         type: 'website',
         url: request.original_url,
-        image:image_url('ogp.png'),
+        image:image_url('sameshi_ogp.svg'),
         local: 'ja-JP'
       },
       # Twitter用の設定を個別で設定
       twitter: {
         card: 'summary_large_image',
         site: '@sttk_91',
-        image: image_url('ogp.png')
+        image: image_url('sameshi_ogp.svg')
       }
     }
   end
 
   def page_title(page_title = '')
-    base_title = 'SAMESHI!!'
+    base_title = 'サ飯の時間'
 
     page_title.empty? ? base_title : page_title + ' | ' + base_title
   end

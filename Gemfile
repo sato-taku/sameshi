@@ -50,6 +50,7 @@ gem "bootsnap", require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
+  gem "pry-byebug"
 end
 
 group :development do
@@ -76,6 +77,8 @@ gem "dotenv-rails"
 gem "google_places"
 gem "geocoder"
 gem "carrierwave", "~> 2.0"
+gem "fog-aws"
+gem "aws-sdk-s3", require: false
 gem "faker"
 gem "kaminari"
 gem "ransack"
