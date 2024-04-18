@@ -3,7 +3,7 @@
   <div class="card w-full shadow-xl mx-auto mb-8 max-w-sm md:max-w-4xl">
     <div class="md:flex justify-evenly m-4">
       <% if @sauna.photo_reference.present? %>
-        <div class="my-auto px-4">
+        <div class="my-auto md:px-4">
           <%= image_tag "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=#{@sauna.photo_reference}&key=#{ENV["GOOGLE_MAPS_API_KEY"]}", class: "rounded-xl" %>
         </div>
       <% end %>
