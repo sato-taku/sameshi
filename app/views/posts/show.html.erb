@@ -71,8 +71,11 @@
             <%= render 'comments/comments', { comments: @comments } %>
           <% else %>
             <%= render 'comments/comments', { comments: @comments } %>
-            <div>
-              
+            <div class="text-center font-bold border-dotted border-y-2 border-info py-10">
+              <p>
+                あなたのお気に入りの「サ飯」も教えてね！
+              </p>
+              <%= link_to '使ってみる！', new_user_path, class:"btn btn-neutral mt-4" %>
             </div>
           <% end %>
         </div>
