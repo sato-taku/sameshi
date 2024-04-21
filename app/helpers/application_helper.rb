@@ -9,6 +9,7 @@ module ApplicationHelper
       keywords: 'サウナ,サウナ飯,サ飯',
       canonical: request.original_url,
       separator: '|',
+      icon: image_url('sameshi_icon.png'),
       og: {
         site_name: :site,
         title: :title,
