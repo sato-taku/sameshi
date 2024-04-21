@@ -9,20 +9,21 @@ module ApplicationHelper
       keywords: 'サウナ,サウナ飯,サ飯',
       canonical: request.original_url,
       separator: '|',
+      icon: image_url('sameshi_icon.png'),
       og: {
         site_name: :site,
         title: :title,
         description: :description,
         type: 'website',
         url: request.original_url,
-        image:image_url('sameshi_ogp.svg'),
+        image: image_url('sameshi_icon.png'),
         local: 'ja-JP'
       },
       # Twitter用の設定を個別で設定
       twitter: {
         card: 'summary_large_image',
         site: '@sttk_91',
-        image: image_url('sameshi_ogp.svg')
+        image: image_url('sameshi_ogp.png')
       }
     }
   end
