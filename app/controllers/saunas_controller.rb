@@ -10,8 +10,7 @@ class SaunasController < ApplicationController
   end
 
   def autocomplete
-    query = params[:q].downcase
-    @saunas = Sauna.where('name ILIKE ?', "%#{query}%")
+    @saunas = Sauna.where('name ILIKE ?', "%#{params[:q]}%")
     render partial: 'saunas/sauna', locals: { saunas: @saunas }
   end
 end
