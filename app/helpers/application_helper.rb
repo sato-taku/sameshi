@@ -9,14 +9,17 @@ module ApplicationHelper
       keywords: 'サウナ,サウナ飯,サ飯',
       canonical: request.original_url,
       separator: '|',
-      icon: image_url('sameshi_icon.png'),
+      icon: [
+        { href: image_url('sameshi_icon.png') },
+        { href: image_url('sameshi_home.png'), rel: 'apple-touch-icon', sizes:'180x180', type: 'image/png' },
+      ],
       og: {
         site_name: :site,
         title: :title,
         description: :description,
         type: 'website',
         url: request.original_url,
-        image: image_url('sameshi_icon.png'),
+        image: image_url('sameshi_ogp.png'),
         local: 'ja-JP'
       },
       # Twitter用の設定を個別で設定
