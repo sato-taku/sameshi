@@ -2,7 +2,7 @@
 <div class="w-5/6 mx-auto my-28 max-w-screen-xl">
   <div class="card w-full shadow-xl mx-auto mb-8 max-w-sm md:max-w-4xl">
     <div class="md:flex justify-evenly">
-      <div class="md:mb-8">
+      <div class="md:mb-8 md:max-w-sm">
         <div class="flex justify-between">
           <div class="flex justify-start">
             <div class="avatar m-4">
@@ -72,7 +72,7 @@
           </div>
         </div>
       </div>
-      <div class="md:mt-16 mb-8">
+      <div class="md:max-w-sm md:mt-16 mb-8">
         <div>
           <% if logged_in? %>
             <%= render 'comments/form', { post: @post, comment: @comment } %>
