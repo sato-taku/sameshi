@@ -2,7 +2,7 @@
 <div class="w-5/6 mx-auto my-28 max-w-screen-xl">
   <div class="card w-full shadow-xl mx-auto mb-8 max-w-sm md:max-w-4xl">
     <div class="md:flex justify-evenly">
-      <div class="md:mb-8">
+      <div class="md:mb-8 md:max-w-sm">
         <div class="flex justify-between">
           <div class="flex justify-start">
             <div class="avatar m-4">
@@ -37,7 +37,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="red" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" /></svg>
           </div>
           <div class="mt-2 text-xs">
-            <%= @post.prefecture.name %>｜<%= @post.sauna.name %>
+            <%= @post.prefecture.name %>｜<%= link_to @post.sauna.name, sauna_path(@post.sauna), class: "link hover:link-info" %>
           </div>
         </div>
         <div class="flex justify-start mx-3">
@@ -72,14 +72,14 @@
           </div>
         </div>
       </div>
-      <div class="md:mt-16 mb-8">
+      <div class="md:max-w-sm md:mt-16 mb-8">
         <div>
           <% if logged_in? %>
             <%= render 'comments/form', { post: @post, comment: @comment } %>
             <%= render 'comments/comments', { comments: @comments } %>
           <% else %>
             <%= render 'comments/comments', { comments: @comments } %>
-            <div class="text-center font-bold border-dotted border-y-2 border-info py-10">
+            <div class="text-center font-bold border-dotted border-y-2 border-info py-10 m-4">
               <p>
                 あなたのお気に入りの「サ飯」も教えてね！
               </p>

@@ -41,7 +41,9 @@
 
   <!-- サウナ施設、DBからのオートコンプリート -->
   <div data-controller="autocomplete" data-autocomplete-url-value="/saunas/autocomplete" role="combobox" class="mb-8 max-w-xs mx-auto">
-    <%= f.label :sauna, class: "w-full" %>
+    <div class="flex justify-start>"
+    <%= f.label :sauna, class: "w-full" %><h3 class="text-xs my-auto ml-2 font-bold">※一致する候補から選択</h3>
+    </div>
     <input type="text" data-autocomplete-target="input" class="input input-bordered input-neutral w-full"/>
     <%= f.hidden_field :sauna_id, data: { autocomplete_target: "hidden" } %>
     <ul class="list-group mt-4 text-xs" data-autocomplete-target="results"></ul>
