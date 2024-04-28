@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
   root 'tops#index'
+  post 'oauth/callback', to: 'oauths#callback'
+  get 'oauth/callback', to: 'oauths#callback'
+  get 'oauth/:provider', to: 'oauths#oauth', as: :auth_at_provider
   get 'terms_of_use', to: 'tops#terms_of_use'
   get 'privacy_policy', to: 'tops#privacy_policy'
 
