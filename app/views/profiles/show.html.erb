@@ -19,8 +19,16 @@
           <h1 class="font-bold text-xl md:text-3xl"><%= @user.nickname %></h1>
         </div>
         <div class="flex justify-start mt-2 md:mt-4">
-          <h1 class="mr-4"><%= @user.prefecture.name %></h1>
-          <h1><%= @user.age_group %></h1>
+          <% if @user.prefecture %>
+            <h1 class="mr-4"><%= @user.prefecture.name %></h1>
+          <% else %>
+            <h1 class="mr-4">未設定</h1>
+          <% end %>
+          <% if @user.age_group %>
+            <h1><%= @user.age_group %></h1>
+          <% else %>
+            <h1>未設定</h1>
+          <% end %>
         </div>
       </div>
     </div>
