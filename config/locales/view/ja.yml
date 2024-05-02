@@ -75,11 +75,11 @@ ja:
     edit:
       title: サ飯編集
     likes:
-      title: 食いたいいね一覧
+      title: いいね一覧
       no_result: 食いたいいねはありません
   likes:
     create:
-      success: 食いたいいねしました
+      success: いいねしました
     destroy:
       success: 解除しました
   saunas:
