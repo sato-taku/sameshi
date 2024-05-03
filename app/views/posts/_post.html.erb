@@ -10,11 +10,9 @@
         <%= post.user.nickname %>
       </div>
     </div>
-    <div class="flex flex-col items-center mx-4">
-      <div class="w-full aspect-w-1 aspect-h-1">
-        <%= image_tag post.post_image_url, class: "rounded-xl object-cover object-center w-full h-full" %>
-      </div>
-    </div>  
+    <div class="mx-4 aspect-w-1 aspect-h-1">
+      <%= image_tag post.post_image_url, class: "w-full rounded-xl object-cover object-center" %>
+    </div>
   <% end %>
   <div class="flex justify-between">
     <div class="my-auto">
