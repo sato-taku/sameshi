@@ -1,5 +1,17 @@
 <% content_for(:title, t('.title')) %>
 <div class="my-28 w-5/6 mx-auto max-w-screen-xl">
+
+  <div id="mapSearchForm" class="flex mb-5">
+  <div class="relative w-full">
+    <div class="flex border rounded border-gray-200">
+      <input type="text" id="keyword" class="block p-2 w-full z-20" placeholder="場所を検索">
+      <button id="search" class="flex items-center px-4 border-l bg-gray-200" >
+        検索
+      </button>
+    </div>
+  </div>
+  </div>
+
   <div id="map" style="height: 510px;"></div>
 </div>
 
