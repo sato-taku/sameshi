@@ -1,5 +1,6 @@
 <% content_for(:title, t('.title')) %>
 <div class="my-28 w-5/6 mx-auto max-w-screen-xl">
+  <div><input id="pac-input" class="controls" type="text" placeholder="場所を検索"></div>
   <div id="map" style="height: 510px;"></div>
 </div>
 
@@ -23,6 +24,43 @@
     // 指定した要素・オプションで地図を表示
     const displayMap = (mapOptions) => {
       const map = new google.maps.Map(mapElement, mapOptions);
+
+      const input = document.getElementById('pac-input');
+      const searchBox = new google.maps.places.SearchBox(input);
+      map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+      // 検索結果をマップにビューバインド
+      map.addListener('bounds_changed', function() {
+        searchBox.setBounds(map.getBounds());
+      });
+
+      // 検索結果に対してリスナーを設定
+      searchBox.addListener('places_changed', function() {
+        const places = searchBox.getPlaces();
+
+        if (places.length === 0) {
+          return;
+        }
+
+        const bounds = new google.maps.LatLngBounds();
+
+        places.forEach(function(place) {
+          if (!place.geometry || !place.geometry.location) {
+            console.log("Returned place contains no geometry");
+            return;
+          }
+
+          // 中心地を設定し、マップをその地点に移動
+          if (place.geometry.viewport) {
+            bounds.union(place.geometry.viewport);
+          } else {
+            bounds.extend(place.geometry.location);
+          }
+        });
+
+        map.fitBounds(bounds);
+        map.setZoom(12);
+      });
 
       // マーカーを追加（Postの情報からマーカーを追加する）
       <% @saunas.each do |sauna| %>
@@ -98,4 +136,4 @@
     }
   });
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_MAPS_API_KEY"] %>&callback=initMap"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_MAPS_API_KEY"] %>&libraries=places&callback=initMap"></script>
