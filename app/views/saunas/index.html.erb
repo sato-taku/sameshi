@@ -1,7 +1,7 @@
 <% content_for(:title, t('.title')) %>
-<div class="my-28 w-5/6 mx-auto max-w-screen-xl">
-  <div><input id="pac-input" class="controls" type="text" placeholder="場所を検索"></div>
-  <div id="map" style="height: 510px;"></div>
+<div class="my-24 w-5/6 mx-auto max-w-screen-xl">
+  <div><input id="pac-input" class="controls input input-bordered w-full max-w-xs mb-2" type="text" placeholder="場所を検索"></div>
+  <div id="map" style="height: 440px;"></div>
 </div>
 
 <!-- モーダルを表示する要素 -->
@@ -27,7 +27,6 @@
 
       const input = document.getElementById('pac-input');
       const searchBox = new google.maps.places.SearchBox(input);
-      map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
       // 検索結果をマップにビューバインド
       map.addListener('bounds_changed', function() {
