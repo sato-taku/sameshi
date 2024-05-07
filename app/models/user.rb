@@ -40,4 +40,13 @@ class User < ApplicationRecord
   def like?(post)
     like_posts.include?(post)
   end
+
+  def recommend_posts
+    Post.joins(:likes)
+        .where(prefecture_id: self.prefecture_id)
+        .select('posts.*, COUNT(likes.id) AS likes_count')
+        .group('posts.id')
+        .order('likes_count DESC')
+        .limit(3)
+  end
 end
