@@ -29,6 +29,13 @@ ja:
       not_updated: "%{item}を更新できませんでした"
       deleted: "%{item}を削除しました"
       delete_confirm: "%{item}を削除しますか？"
+  views:
+    pagination:
+      first: "<<"
+      last: ">>"
+      previous: "<"
+      next: ">"
+      truncate: "•••"
   password_resets:
     new:
       title: パスワードリセット申請
