@@ -55,6 +55,6 @@ class User < ApplicationRecord
     similar_user_post_ids = Like.where(user_id: similar_users.ids)
                                 .where.not(post_id: liked_post_ids)
                                 .select(:post_id).distinct
-    Post.where(id: similar_user_post_ids).limit(3)
+    Post.where(id: similar_user_post_ids).where.not(user_id: self.id).limit(3)
   end
 end

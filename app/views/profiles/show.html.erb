@@ -37,23 +37,35 @@
     </div>
   </div>
 
-  <div>
-    <h2>おすすめの投稿</h2>
-    <%= render partial: 'posts/post', collection: @user.recommend_posts, as: :post %>
-  </div>
-
   <div role="tablist" class="tabs tabs-lifted mx-auto w-full max-w-sm md:max-w-4xl">
-    <input type="radio" name="my_tabs_2" role="tab" class="tab whitespace-nowrap" aria-label="投稿：<%= @total_my_posts %>" checked />
+
+    <input type="radio" name="my_tabs_2" role="tab" class="tab whitespace-nowrap" aria-label="おすすめ" checked />
+    <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box aspect-none p-4">
+      <!-- 投稿タブ内のみページネーション -->
+      <% if @user.recommend_posts.present? %>
+        <div class="my-6 grid grid-cols-1 items-center justify-items-center md:grid-cols-3 gap-3">
+          <%= render partial: 'posts/post', collection: @user.recommend_posts, as: :post %>
+        </div>
+      <% else %>
+        <div class="my-6 text-center">
+          <p>おすすめがまだありません</p>
+        </div>
+      <% end %>
+    </div>
+
+    <input type="radio" name="my_tabs_2" role="tab" class="tab whitespace-nowrap" aria-label="投稿：<%= @total_my_posts %>" />
     <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box aspect-none p-4">
       <!-- 投稿タブ内のみページネーション -->
       <%= turbo_frame_tag 'my_posts' do %>
-        <div class="my-6 grid grid-cols-1 items-center justify-items-center md:grid-cols-3 gap-3">
-          <% if @my_posts.present? %>
+        <% if @my_posts.present? %>
+          <div class="my-6 grid grid-cols-1 items-center justify-items-center md:grid-cols-3 gap-3">
             <%= render @my_posts %>
-          <% else %>
+          </div>
+        <% else %>
+          <div class="my-6 text-center">
             <p>投稿がありません</p>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
         <div>
           <%= paginate @my_posts, :param_name=> 'posts_page' %>
         </div>
@@ -64,13 +76,15 @@
     <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box aspect-none p-4">
       <!-- いいねタブ内のみページネーション -->
       <%= turbo_frame_tag 'my_likes' do %>
-        <div class="my-6 grid grid-cols-1 items-center justify-items-center md:grid-cols-3 gap-3">
-          <% if @my_likes.present? %>
+        <% if @my_likes.present? %>
+          <div class="my-6 grid grid-cols-1 items-center justify-items-center md:grid-cols-3 gap-3">
             <%= render @my_likes %>
-          <% else %>
-            <p>投稿がありません</p>
-          <% end %>
-        </div>
+          </div>
+        <% else %>
+          <div class="my-6 text-center">
+            <p>いいねした投稿がありません</p>
+          </div>
+        <% end %>
         <div>
           <%= paginate @my_likes, :param_name=> 'likes_page' %>
         </div>
