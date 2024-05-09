@@ -5,6 +5,7 @@ class ProfilesController < ApplicationController
     @total_my_likes = @user.like_posts.count
     @my_posts = @user.posts.includes(:user).order(id: :desc).page(params[:posts_page])
     @my_likes = @user.like_posts.includes(:user).order(id: :desc).page(params[:likes_page])
+    @recommend_posts = @user.recommend_posts
   end
   
   def edit; end

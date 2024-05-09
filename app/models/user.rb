@@ -40,4 +40,21 @@ class User < ApplicationRecord
   def like?(post)
     like_posts.include?(post)
   end
+
+  def find_similar_users
+    liked_post_ids = self.likes.pluck(:post_id)
+    similar_user_ids = Like.where(post_id: liked_post_ids)
+                           .where.not(user_id: self.id)
+                           .select(:user_id).distinct
+    User.where(id: similar_user_ids)
+  end
+
+  def recommend_posts
+    liked_post_ids = self.likes.pluck(:post_id)
+    similar_users = find_similar_users
+    similar_user_post_ids = Like.where(user_id: similar_users.ids)
+                                .where.not(post_id: liked_post_ids)
+                                .select(:post_id).distinct
+    Post.where(id: similar_user_post_ids).limit(3)
+  end
 end
