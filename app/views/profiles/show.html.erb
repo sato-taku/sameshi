@@ -66,7 +66,7 @@
             <p>投稿がありません</p>
           </div>
         <% end %>
-        <div>
+        <div class="mb-4 text-center">
           <%= paginate @my_posts, :param_name=> 'posts_page' %>
         </div>
       <% end %>
@@ -85,7 +85,7 @@
             <p>いいねした投稿がありません</p>
           </div>
         <% end %>
-        <div>
+        <div class="mb-4 text-center">
           <%= paginate @my_likes, :param_name=> 'likes_page' %>
         </div>
       <% end %>
