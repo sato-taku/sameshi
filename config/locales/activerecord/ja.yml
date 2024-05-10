@@ -1,11 +1,21 @@
 ja:
   activerecord:
     models:
+      prefecture: 都道府県
       user: ユーザー
-      post: 「サ飯」
+      sauna: サウナ
+      post: 投稿
       comment: コメント
+      like: いいね
+      authentication: 認証
     attributes:
+      prefecture:
+        id: ID
+        name: 都道府県
+        created_at: 作成日
+        updated_at: 更新日
       user:
+        id: ID
         nickname: ニックネーム
         email: メールアドレス
         prefecture_id: 都道府県
@@ -14,12 +24,42 @@ ja:
         avatar: アバター
         password: パスワード
         password_confirmation: パスワード（確認用）
+        crypted_password: パスワード（暗号化）
+        role: 役割
+        created_at: 新規登録日
+        updated_at: 最終更新日
         agreement: 確認事項
       post:
+        id: ID
         prefecture_id: 都道府県
+        prefecture: 都道府県
         meal_genre: ジャンル
         content: 内容
         post_image: 画像
         sauna: サウナ施設
+        created_at: 作成日
+        updated_at: 更新日
       comment:
+        id: ID
         body: コメント
+        created_at: 作成日
+        updated_at: 更新日
+      like:
+        id: ID
+        created_at: 作成日
+        updated_at: 更新日
+      sauna:
+        id: ID
+        name: サウナ施設
+        latitude: 緯度（LAT）
+        longitude: 経度（LNG）
+        address: 所在地
+        created_at: 登録日
+        updated_at: 更新日
+        tel_number: 電話番号
+        opening_hours: 営業時間
+      authentication:
+        id: ID
+        provider: プロバイダ
+        created_at: 登録日
+        updated_at: 更新日
