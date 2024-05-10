@@ -85,3 +85,6 @@ gem "ransack"
 gem "letter_opener_web"
 gem "config"
 gem "meta-tags"
+gem 'rails_admin', '~> 3.0'
+gem "sassc-rails"
+gem "cancancan"

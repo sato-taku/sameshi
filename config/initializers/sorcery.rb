@@ -565,3 +565,7 @@ Rails.application.config.sorcery.configure do |config|
   # Define which model authenticates with sorcery.
   config.user_class = "User"
 end
+
+Rails.application.config.after_initialize do
+  ActionController::Base.send(:include, Sorcery::Controller)
+end
