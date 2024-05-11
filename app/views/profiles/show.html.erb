@@ -47,7 +47,9 @@
           <%= render partial: 'posts/post', collection: @user.recommend_posts, as: :post %>
         </div>
       <% else %>
-          おすすめがまだありません
+        <div class="my-6 grid grid-cols-1 md:grid-cols-3 gap-3">
+            おすすめがまだありません
+        </div>
       <% end %>
     </div>
 
@@ -64,7 +66,9 @@
           </div>
         <% end %>
       <% else %>
-        投稿がありません
+        <div class="my-6 grid grid-cols-1 md:grid-cols-3 gap-3">
+          投稿がありません
+        </div>
       <% end %>
     </div>
 
@@ -81,8 +85,11 @@
           </div>
         <% end %>
       <% else %>
-        いいねした投稿がありません
+        <div class="my-6 grid grid-cols-1 md:grid-cols-3 gap-3">
+          いいねした投稿がありません
+        </div>
       <% end %>
     </div>
   </div>
+
 </div>
