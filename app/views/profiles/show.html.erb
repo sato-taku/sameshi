@@ -54,48 +54,36 @@
     <input type="radio" name="my_tabs_2" role="tab" class="tab whitespace-nowrap" aria-label="投稿：<%= @total_my_posts %>" />
     <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box aspect-none p-4">
       <!-- 投稿タブ内のみページネーション -->
-      <%= turbo_frame_tag 'my_posts' do %>
-        <% if @my_posts.present? %>
+      <% if @my_posts.present? %>
+        <%= turbo_frame_tag 'my_posts' do %>
           <div class="my-6 grid grid-cols-1 items-center justify-items-center md:grid-cols-3 gap-3">
             <%= render @my_posts %>
           </div>
           <div class="mb-4 text-center">
             <%= paginate @my_posts, :param_name=> 'posts_page' %>
           </div>
-        <% else %>
-          投稿がありません
         <% end %>
+      <% else %>
+        投稿がありません
       <% end %>
     </div>
 
     <input type="radio" name="my_tabs_2" role="tab" class="tab whitespace-nowrap" aria-label="いいね：<%= @total_my_likes %>" />
     <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box aspect-none p-4">
       <!-- いいねタブ内のみページネーション -->
-      <%= turbo_frame_tag 'my_likes' do %>
-        <% if @my_likes.present? %>
+      <% if @my_likes.present? %>
+        <%= turbo_frame_tag 'my_likes' do %>
           <div class="my-6 grid grid-cols-1 items-center justify-items-center md:grid-cols-3 gap-3">
             <%= render @my_likes %>
           </div>
           <div class="mb-4 text-center">
             <%= paginate @my_likes, :param_name=> 'likes_page' %>
           </div>
-        <% else %>
-            いいねした投稿がありません
         <% end %>
+      <% else %>
+        いいねした投稿がありません
       <% end %>
     </div>
 
   </div>
-
-  <div role="tablist" class="tabs tabs-lifted">
-    <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="Tab 1" />
-    <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">Tab content 1</div>
-
-    <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="Tab 2" checked />
-    <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">Tab content 2</div>
-
-    <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="Tab 3" />
-    <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">Tab content 3</div>
-  </div>
-
 </div>
