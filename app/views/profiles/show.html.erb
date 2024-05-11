@@ -38,7 +38,6 @@
   </div>
 
   <div role="tablist" class="tabs tabs-lifted mx-auto max-w-sm md:max-w-4xl">
-
     <input type="radio" name="my_tabs_2" role="tab" class="tab whitespace-nowrap" aria-label="おすすめ" checked />
     <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
       <% if @user.recommend_posts.present? %>
@@ -46,7 +45,7 @@
           <%= render partial: 'posts/post', collection: @user.recommend_posts, as: :post %>
         </div>
       <% else %>
-          おすすめがまだありません
+          <span class="w-full text-center">おすすめがまだありません</span>
       <% end %>
     </div>
 
@@ -62,7 +61,7 @@
           </div>
         <% end %>
       <% else %>
-        投稿がありません
+        <span class="w-full text-center">投稿がありません</span>
       <% end %>
     </div>
 
@@ -78,9 +77,9 @@
           </div>
         <% end %>
       <% else %>
-        いいねした投稿がありません
+        <span class="w-full text-center">いいねした投稿がありません</span>
       <% end %>
     </div>
-
   </div>
+
 </div>
