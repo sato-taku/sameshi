@@ -43,11 +43,11 @@
     <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box aspect-none p-4">
       <!-- 投稿タブ内のみページネーション -->
       <% if @user.recommend_posts.present? %>
-        <div class="w-full my-6 grid grid-cols-1 items-center justify-items-center md:grid-cols-3 gap-3">
+        <div class="my-6 grid grid-cols-1 items-center justify-items-center md:grid-cols-3 gap-3">
           <%= render partial: 'posts/post', collection: @user.recommend_posts, as: :post %>
         </div>
       <% else %>
-        <div class="w-full my-6 text-center">
+        <div class="my-6 grid grid-cols-1 text-center">
           <p>おすすめがまだありません</p>
         </div>
       <% end %>
@@ -58,15 +58,15 @@
       <!-- 投稿タブ内のみページネーション -->
       <%= turbo_frame_tag 'my_posts' do %>
         <% if @my_posts.present? %>
-          <div class="w-full my-6 grid grid-cols-1 items-center justify-items-center md:grid-cols-3 gap-3">
+          <div class="my-6 grid grid-cols-1 items-center justify-items-center md:grid-cols-3 gap-3">
             <%= render @my_posts %>
           </div>
         <% else %>
-          <div class="my-6 text-center">
+          <div class="my-6 grid grid-cols-1 text-center">
             <p>投稿がありません</p>
           </div>
         <% end %>
-        <div class="w-full mb-4 text-center">
+        <div class="mb-4 text-center">
           <%= paginate @my_posts, :param_name=> 'posts_page' %>
         </div>
       <% end %>
@@ -77,11 +77,11 @@
       <!-- いいねタブ内のみページネーション -->
       <%= turbo_frame_tag 'my_likes' do %>
         <% if @my_likes.present? %>
-          <div class="w-full my-6 grid grid-cols-1 items-center justify-items-center md:grid-cols-3 gap-3">
+          <div class="my-6 grid grid-cols-1 items-center justify-items-center md:grid-cols-3 gap-3">
             <%= render @my_likes %>
           </div>
         <% else %>
-          <div class="w-full my-6 text-center">
+          <div class="my-6 grid grid-cols-1 text-center">
             <p>いいねした投稿がありません</p>
           </div>
         <% end %>
