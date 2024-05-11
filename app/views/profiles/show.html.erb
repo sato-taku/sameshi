@@ -1,5 +1,4 @@
 <%= content_for(:title, t('.title')) %>
-<div class="w-5/6 mx-auto my-28 max-w-screen-xl">
   <div class="card w-full shadow-xl mx-auto mb-8 max-w-sm md:max-w-4xl">
     <div class="flex justify-end">
       <div class="mx-4">
@@ -37,15 +36,49 @@
     </div>
   </div>
 
-  <div role="tablist" class="tabs tabs-lifted">
-    <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="Tab 1" />
-    <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">Tab content 1</div>
+  <div role="tablist" class="tabs tabs-lifted mx-auto max-w-sm md:max-w-4xl">
+    <input type="radio" name="my_tabs_2" role="tab" class="tab whitespace-nowrap" aria-label="おすすめ" checked />
+    <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
+      <% if @user.recommend_posts.present? %>
+        <div class="my-6 grid grid-cols-1 items-center justify-items-center md:grid-cols-3 gap-3">
+          <%= render partial: 'posts/post', collection: @user.recommend_posts, as: :post %>
+        </div>
+      <% else %>
+          <span class="w-full text-center">おすすめがまだありません</span>
+      <% end %>
+    </div>
 
-    <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="Tab 2" checked />
-    <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">Tab content 2</div>
+    <input type="radio" name="my_tabs_2" role="tab" class="tab whitespace-nowrap" aria-label="投稿：<%= @total_my_posts %>" />
+    <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
+      <% if @my_posts.present? %>
+        <%= turbo_frame_tag 'my_posts' do %>
+          <div class="my-6 grid grid-cols-1 items-center justify-items-center md:grid-cols-3 gap-3">
+            <%= render @my_posts %>
+          </div>
+          <div class="mb-4 text-center">
+            <%= paginate @my_posts, :param_name=> 'posts_page' %>
+          </div>
+        <% end %>
+      <% else %>
+        <span class="w-full text-center">投稿がありません</span>
+      <% end %>
+    </div>
 
-    <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="Tab 3" />
-    <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">Tab content 3</div>
+    <input type="radio" name="my_tabs_2" role="tab" class="tab whitespace-nowrap" aria-label="いいね：<%= @total_my_likes %>" />
+    <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
+      <% if @my_likes.present? %>
+        <%= turbo_frame_tag 'my_likes' do %>
+          <div class="my-6 grid grid-cols-1 items-center justify-items-center md:grid-cols-3 gap-3">
+            <%= render @my_likes %>
+          </div>
+          <div class="mb-4 text-center">
+            <%= paginate @my_likes, :param_name=> 'likes_page' %>
+          </div>
+        <% end %>
+      <% else %>
+        <span class="w-full text-center">いいねした投稿がありません</span>
+      <% end %>
+    </div>
   </div>
 
-</div>
+  </div>
