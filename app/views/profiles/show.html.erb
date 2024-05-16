@@ -37,10 +37,10 @@
     </div>
   </div>
 
-  <div role="tablist" class="tabs tabs-lifted mx-auto w-full max-w-sm md:max-w-4xl ">
+  <div role="tablist" class="tabs tabs-lifted mx-auto w-full sm:max-w-sm md:max-w-4xl ">
 
-    <input type="radio" name="my_tabs_2" role="tab" class="tab whitespace-nowrap appearance-none" aria-label="おすすめ" checked />
-    <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-4">
+    <input type="radio" name="my_tabs_2" role="tab" class="tab whitespace-nowrap" aria-label="おすすめ" checked />
+    <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-4 w-full">
       <% if @user.recommend_posts.present? %>
         <div class="my-6 grid grid-cols-1 md:grid-cols-3 gap-3">
           <%= render partial: 'posts/post', collection: @user.recommend_posts, as: :post %>
@@ -50,8 +50,8 @@
       <% end %>
     </div>
 
-    <input type="radio" name="my_tabs_2" role="tab" class="tab whitespace-nowrap appearance-none" aria-label="投稿：<%= @total_my_posts %>" />
-    <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-4">
+    <input type="radio" name="my_tabs_2" role="tab" class="tab whitespace-nowrap" aria-label="投稿：<%= @total_my_posts %>" />
+    <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-4 w-full">
       <!-- 投稿タブ内のみページネーション -->
       <% if @my_posts.present? %>
         <%= turbo_frame_tag 'my_posts' do %>
@@ -67,8 +67,8 @@
       <% end %>
     </div>
 
-    <input type="radio" name="my_tabs_2" role="tab" class="tab whitespace-nowrap appearance-none" aria-label="いいね：<%= @total_my_likes %>" />
-    <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-4">
+    <input type="radio" name="my_tabs_2" role="tab" class="tab whitespace-nowrap" aria-label="いいね：<%= @total_my_likes %>" />
+    <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-4 w-full">
       <!-- いいねタブ内のみページネーション -->
       <% if @my_likes.present? %>
         <%= turbo_frame_tag 'my_likes' do %>
@@ -84,27 +84,6 @@
       <% end %>
     </div>
 
-  </div>
-
-  <div class="grid">
-    <div class="tabs tabs-lifted z-10 -mb-[var(--tab-border)] justify-self-start">
-      <button class="tab tab-active [--tab-bg:var(--fallback-b1,oklch(var(--b1)))]">プレビュー</button>
-      <button class="tab [--tab-border-color:transparent]">HTML</button>
-      <button class="tab [--tab-border-color:transparent]">JSX</button>
-      <div class="tab [--tab-border-color:transparent]"></div>
-    </div>
-    <div class="bg-base-300 rounded-b-box rounded-se-box relative overflow-x-auto">
-      <div class="preview border-base-300 bg-base-100 rounded-b-box rounded-se-box flex min-h-[6rem] min-w-[18rem] max-w-4xl flex-wrap items-center justify-center gap-2 overflow-x-hidden bg-cover bg-top p-4 [border-width:var(--tab-border)] undefined" style="">
-        <div role="tablist" class="tabs tabs-lifted w-full my-10 lg:mx-10">
-          <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="Tab 1">
-          <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6 pe-32">Tab content 1</div>
-          <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="Tab 2" checked="">
-          <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6 pe-32">Tab content 2</div>
-          <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="Tab 3">
-          <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6 pe-32">Tab content 3</div>
-        </div>
-      </div>
-    </div>
   </div>
 
 </div>
