@@ -39,7 +39,7 @@
 
   <div role="tablist" class="tabs tabs-lifted mx-auto w-full sm:max-w-sm md:max-w-4xl ">
 
-    <input type="radio" name="my_tabs_2" role="tab" class="tab whitespace-nowrap" aria-label="おすすめ" checked />
+    <input type="radio" name="my_tabs_2" role="tab" class="tab whitespace-nowrap" aria-label="Tab 1" checked />
     <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-4 w-full">
       <% if @user.recommend_posts.present? %>
         <div class="my-6 grid grid-cols-1 md:grid-cols-3 gap-3">
@@ -50,7 +50,7 @@
       <% end %>
     </div>
 
-    <input type="radio" name="my_tabs_2" role="tab" class="tab whitespace-nowrap" aria-label="投稿：<%= @total_my_posts %>" />
+    <input type="radio" name="my_tabs_2" role="tab" class="tab whitespace-nowrap" aria-label="Tab 2" />
     <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-4 w-full">
       <!-- 投稿タブ内のみページネーション -->
       <% if @my_posts.present? %>
@@ -67,7 +67,7 @@
       <% end %>
     </div>
 
-    <input type="radio" name="my_tabs_2" role="tab" class="tab whitespace-nowrap" aria-label="いいね：<%= @total_my_likes %>" />
+    <input type="radio" name="my_tabs_2" role="tab" class="tab whitespace-nowrap" aria-label="Tab 3" />
     <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-4 w-full">
       <!-- いいねタブ内のみページネーション -->
       <% if @my_likes.present? %>
