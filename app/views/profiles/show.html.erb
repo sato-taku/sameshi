@@ -37,10 +37,20 @@
     </div>
   </div>
 
-  <div role="tablist" class="tabs tabs-lifted mx-auto w-full sm:max-w-sm md:max-w-4xl ">
+  <div data-controller="tabs" data-tabs-active-tab-class="-mb-px border-l border-t border-r rounded-t-xl">
+    <ul class="list-reset flex border-b">
+      <li class="-mb-px mr-1" data-tabs-target="tab" data-action="click->tabs#change">
+        <a class="bg-white inline-block py-2 px-4 font-bold no-underline" href="#">おすすめ</a>
+      </li>
+      <li class="mr-1" data-tabs-target="tab" data-action="click->tabs#change">
+        <a class="bg-white inline-block py-2 px-4 font-bold no-underline" href="#">投稿：<%= @total_my_posts %></a>
+      </li>
+      <li class="mr-1" data-tabs-target="tab" data-action="click->tabs#change">
+        <a class="bg-white inline-block py-2 px-4 font-bold no-underline" href="#">いいね：<%= @total_my_likes %></a>
+      </li>
+    </ul>
 
-    <input type="radio" name="my_tabs_2" role="tab" class="tab whitespace-nowrap" aria-label="Tab 1" checked />
-    <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-4 w-full">
+    <div class="hidden py-4 px-4 border-l border-b border-r" data-tabs-target="panel">
       <% if @user.recommend_posts.present? %>
         <div class="my-6 grid grid-cols-1 md:grid-cols-3 gap-3">
           <%= render partial: 'posts/post', collection: @user.recommend_posts, as: :post %>
@@ -50,16 +60,14 @@
       <% end %>
     </div>
 
-    <input type="radio" name="my_tabs_2" role="tab" class="tab whitespace-nowrap" aria-label="Tab 2" />
-    <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-4 w-full">
-      <!-- 投稿タブ内のみページネーション -->
+    <div class="hidden py-4 px-4 border-l border-b border-r" data-tabs-target="panel">
       <% if @my_posts.present? %>
         <%= turbo_frame_tag 'my_posts' do %>
           <div class="my-6 grid grid-cols-1 md:grid-cols-3 gap-3">
             <%= render @my_posts %>
           </div>
           <div class="mb-4 text-center">
-            <%= paginate @my_posts, :param_name=> 'posts_page' %>
+            <%= paginate @my_posts, param_name: 'posts_page' %>
           </div>
         <% end %>
       <% else %>
@@ -67,23 +75,20 @@
       <% end %>
     </div>
 
-    <input type="radio" name="my_tabs_2" role="tab" class="tab whitespace-nowrap" aria-label="Tab 3" />
-    <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-4 w-full">
-      <!-- いいねタブ内のみページネーション -->
+    <div class="hidden py-4 px-4 border-l border-b border-r" data-tabs-target="panel">
       <% if @my_likes.present? %>
         <%= turbo_frame_tag 'my_likes' do %>
           <div class="my-6 grid grid-cols-1 md:grid-cols-3 gap-3">
             <%= render @my_likes %>
           </div>
           <div class="mb-4 text-center">
-            <%= paginate @my_likes, :param_name=> 'likes_page' %>
+            <%= paginate @my_likes, param_name: 'likes_page' %>
           </div>
         <% end %>
       <% else %>
-        投稿がありません
+        いいねがありません
       <% end %>
     </div>
-
   </div>
-
+  
 </div>

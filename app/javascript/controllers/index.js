@@ -9,3 +9,7 @@ application.register("autocomplete", Autocomplete)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import TabsController from "./tabs_controller"
+application.register("tabs", TabsController)
+
