@@ -20,6 +20,7 @@ export default class extends Controller {
 
   // Changes to the clicked tab
   change(event) {
+    event.preventDefault();
     if (event.currentTarget.tagName === "SELECT") {
       this.indexValue = event.currentTarget.selectedIndex
 
