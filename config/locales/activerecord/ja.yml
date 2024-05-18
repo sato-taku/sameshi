@@ -26,8 +26,8 @@ ja:
         password_confirmation: パスワード（確認用）
         crypted_password: パスワード（暗号化）
         role: 役割
-        created_at: 新規登録日
-        updated_at: 最終更新日
+        created_at: 登録日
+        updated_at: 更新日
         agreement: 確認事項
       post:
         id: ID
