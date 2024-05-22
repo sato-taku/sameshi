@@ -16,7 +16,7 @@ class OauthsController < ApplicationController
           signup_and_login(provider)
           redirect_to profile_path, notice:"#{provider.titleize}アカウントでログインしました"
         rescue
-          redirect_to root_path, alert:"#{provider.titleize}アカウントでのログインに失敗しました"
+          redirect_to login_path, alert:"#{provider.titleize}アカウントでのログインに失敗しました"
         end
       end
     end
