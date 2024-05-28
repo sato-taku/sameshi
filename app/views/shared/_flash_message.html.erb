@@ -1,5 +1,5 @@
 <% flash.each do |message_type, message| %>
-  <div class="<%= flash_background_color(message_type) %> mt-4 md:mt-14 fixed mx-auto p-4 text-white w-full text-center">
+  <div class="<%= flash_background_color(message_type) %> fixed top-20 mx-auto p-4 text-white w-full text-center">
     <%= message %>
   </div>
 <% end %>
