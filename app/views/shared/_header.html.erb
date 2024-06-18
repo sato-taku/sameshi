@@ -1,132 +1,131 @@
 <header class="navbar shadow-xl bg-neutral fixed top-0 z-50 w-full">
   <div class="navbar-start"></div>
-    <div class="navbar-center">
-      <%= link_to image_tag("sameshi_header.svg", width: '200' ), "/", data: { turbo: false } %>
-    </div>
-    <div class="navbar-end drawer-end">
-      <input id="my-drawer-4" type="checkbox" class="drawer-toggle" />
-      <div class="drawer-content">
-        <!-- Page content here -->
-        <label for="my-drawer-4" class="drawer-button btn btn-ghost">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" /></svg>  
-        </label>
-      </div> 
-      <div class="drawer-side">
-        <label for="my-drawer-4" aria-label="close sidebar" class="drawer-overlay"></label>
-        <div class="p-4 w-3/4 md:w-1/3 min-h-full bg-base-200 text-base-content">
-          <!-- Sidebar content here -->
+  <div class="navbar-center">
+    <%= link_to image_tag("sameshi_header.svg", width: '200' ), "/", data: { turbo: false } %>
+  </div>
+  <div class="navbar-end drawer-end">
+    <input id="my-drawer-4" type="checkbox" class="drawer-toggle" />
+    <div class="drawer-content">
+      <!-- Page content here -->
+      <label for="my-drawer-4" class="drawer-button btn btn-ghost">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" /></svg>  
+      </label>
+    </div> 
+    <div class="drawer-side">
+      <label for="my-drawer-4" aria-label="close sidebar" class="drawer-overlay"></label>
+      <div class="p-4 w-3/4 md:w-1/3 min-h-full bg-base-200 text-base-content">
+        <!-- Sidebar content here -->
 
-          <% if logged_in? %>
+        <% if logged_in? %>
 
-            <%= link_to profile_path, data: { turbo: false } do %>
-              <div class="w-full py-4 my-6 flex justify-evenly rounded-xl shadow-lg hover:bg-base-300">
-                <div class="avatar">
-                  <div class="w-14 rounded-full md:w-24">
-                    <%= image_tag current_user.avatar_url %>
-                  </div>
+          <%= link_to profile_path, data: { turbo: false } do %>
+            <div class="w-full py-4 my-6 flex justify-evenly rounded-xl shadow-lg hover:bg-base-300">
+              <div class="avatar">
+                <div class="w-14 rounded-full md:w-24">
+                  <%= image_tag current_user.avatar_url %>
                 </div>
-                <div class="font-bold text-lg my-auto md:text-2xl">マイページ</div>
               </div>
-            <% end %>
-
-            <div class="mb-2">
-              <%= link_to logout_path, data: { turbo_method: :delete }, class: "w-full btn btn-ghost btn-sm hover:text-info" do %>
-                <div class="w-full flex justify-between">
-                  <div>ログアウト</div>
-                  <div class="hidden"></div>
-                </div>
-              <% end %>
+              <div class="font-bold text-lg my-auto md:text-2xl">マイページ</div>
             </div>
-
-          <% else %>
-
-            <div class="divider divider-neutral"></div>
-
-            <div class="mb-2">
-              <%= link_to login_path, data: { turbo: false }, class: "w-full btn btn-ghost btn-sm hover:text-info" do %>
-                <div class="w-full flex justify-between">
-                  <div>ログイン</div>
-                  <div class="hidden"></div>
-                </div>
-              <% end %>
-            </div>
-
-            <div class="mb-2">
-              <%= link_to new_user_path, data: { turbo: false }, class: "w-full btn btn-ghost btn-sm hover:text-info" do %>
-                <div class="w-full flex justify-between">
-                  <div>新規登録</div>
-                  <div class="hidden"></div>
-                </div>
-              <% end %>
-            </div>
-
           <% end %>
 
-          <div class="divider divider-neutral">MAIN MENU</div> 
-
-          <div>
-            <div class="mb-2">
-              <%= link_to saunas_path, data: { turbo: false }, class: "w-full btn btn-ghost btn-sm hover:text-info" do %>
-                <div class="w-full flex justify-between">
-                  <div>現在地から探す</div>
-                  <div class="hidden"></div>
-                </div>
-              <% end %>
-            </div>
-            <div class="mb-2">
-              <%= link_to posts_path, data: { turbo: false }, class: "w-full btn btn-ghost btn-sm hover:text-info" do %>
-                <div class="w-full flex justify-between">
-                  <div>投稿一覧から探す</div>
-                  <div class="hidden"></div>
-                </div>
-              <% end %>
-            </div>
-            <div class="mb-2">
-              <%= link_to new_post_path, data: { turbo: false }, class: "w-full btn btn-ghost btn-sm hover:text-info" do %>
-                <div class="w-full flex justify-between">
-                  <div>サ飯を投稿する</div>
-                  <div class="hidden"></div>
-                </div>
-              <% end %>
-            </div>
+          <div class="mb-2">
+            <%= link_to logout_path, data: { turbo_method: :delete }, class: "w-full btn btn-ghost btn-sm hover:text-info" do %>
+              <div class="w-full flex justify-between">
+                <div>ログアウト</div>
+                <div class="hidden"></div>
+              </div>
+            <% end %>
           </div>
 
-          <div class="divider divider-neutral">SUB MENU</div>
+        <% else %>
 
-          <div>
-            <div class="mb-2">
-              <%= link_to terms_of_use_path, data: { turbo: false }, class: "w-full btn btn-ghost btn-sm hover:text-info" do %>
-                <div class="w-full flex justify-between">
-                  <div>利用規約</div>
-                  <div class="hidden"></div>
-                </div>
-              <% end %>
-            </div>
-
-            <div class="mb-2">
-              <%= link_to privacy_policy_path, data: { turbo: false }, class: "w-full btn btn-ghost btn-sm hover:text-info" do %>
-                <div class="w-full flex justify-between">
-                  <div>プライバシーポリシー</div>
-                  <div class="hidden"></div>
-                </div>
-              <% end %>
-            </div>
-
-            <div class="mb-2">
-              <%= link_to "https://x.com/sttk_91", data: { turbo: false }, class: "w-full btn btn-ghost btn-sm hover:text-info", target: :_blank, rel: "noopener noreferrer" do %>
-                <div class="w-full flex justify-between">
-                  <div>お問合せ</div>
-                  <div class="hidden"></div>
-                </div>
-              <% end %>
-            </div>
-          </div>
-            
           <div class="divider divider-neutral"></div>
 
-          <div class="text-center"><p>©️ 2024 - サ飯の時間</p></div>
+          <div class="mb-2">
+            <%= link_to login_path, data: { turbo: false }, class: "w-full btn btn-ghost btn-sm hover:text-info" do %>
+              <div class="w-full flex justify-between">
+                <div>ログイン</div>
+                <div class="hidden"></div>
+              </div>
+            <% end %>
+          </div>
 
+          <div class="mb-2">
+            <%= link_to new_user_path, data: { turbo: false }, class: "w-full btn btn-ghost btn-sm hover:text-info" do %>
+              <div class="w-full flex justify-between">
+                <div>新規登録</div>
+                <div class="hidden"></div>
+              </div>
+            <% end %>
+          </div>
+
+        <% end %>
+
+        <div class="divider divider-neutral">MAIN MENU</div> 
+
+        <div>
+          <div class="mb-2">
+            <%= link_to saunas_path, data: { turbo: false }, class: "w-full btn btn-ghost btn-sm hover:text-info" do %>
+              <div class="w-full flex justify-between">
+                <div>現在地から探す</div>
+                <div class="hidden"></div>
+              </div>
+            <% end %>
+          </div>
+          <div class="mb-2">
+            <%= link_to posts_path, data: { turbo: false }, class: "w-full btn btn-ghost btn-sm hover:text-info" do %>
+              <div class="w-full flex justify-between">
+                <div>投稿一覧から探す</div>
+                <div class="hidden"></div>
+              </div>
+            <% end %>
+          </div>
+          <div class="mb-2">
+            <%= link_to new_post_path, data: { turbo: false }, class: "w-full btn btn-ghost btn-sm hover:text-info" do %>
+              <div class="w-full flex justify-between">
+                <div>サ飯を投稿する</div>
+                <div class="hidden"></div>
+              </div>
+            <% end %>
+          </div>
         </div>
+
+        <div class="divider divider-neutral">SUB MENU</div>
+
+        <div>
+          <div class="mb-2">
+            <%= link_to terms_of_use_path, data: { turbo: false }, class: "w-full btn btn-ghost btn-sm hover:text-info" do %>
+              <div class="w-full flex justify-between">
+                <div>利用規約</div>
+                <div class="hidden"></div>
+              </div>
+            <% end %>
+          </div>
+
+          <div class="mb-2">
+            <%= link_to privacy_policy_path, data: { turbo: false }, class: "w-full btn btn-ghost btn-sm hover:text-info" do %>
+              <div class="w-full flex justify-between">
+                <div>プライバシーポリシー</div>
+                <div class="hidden"></div>
+              </div>
+            <% end %>
+          </div>
+
+          <div class="mb-2">
+            <%= link_to "https://x.com/sttk_91", data: { turbo: false }, class: "w-full btn btn-ghost btn-sm hover:text-info", target: :_blank, rel: "noopener noreferrer" do %>
+              <div class="w-full flex justify-between">
+                <div>お問合せ</div>
+                <div class="hidden"></div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+          
+        <div class="divider divider-neutral"></div>
+
+        <div class="text-center"><p>©️ 2024 - サ飯の時間</p></div>
+
       </div>
     </div>
   </div>
