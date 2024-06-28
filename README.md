@@ -56,4 +56,4 @@
 https://www.figma.com/file/SKkngaqbpS4tBMti9b3FYe/sameshi_%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?type=design&node-id=0%3A1&mode=design&t=yBRCuLULGMvGgdgi-
 
 ### ER図
-https://drive.google.com/file/d/1MtZhMQCu_hULsvttr_x3t4ynOWQNRiwW/view?usp=sharing
+https://drive.google.com/file/d/1kMsxjxMD38XBzkxFCJmQDRBgshYsZlJE/view?usp=sharing
