@@ -27,4 +27,9 @@ Rails.application.routes.draw do
       get 'autocomplete'
     end
   end
+  resources :notifications, only: %i[index update] do
+    collection do
+      delete :mark_all_as_read
+    end
+  end
 end
