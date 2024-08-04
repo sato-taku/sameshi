@@ -1,0 +1,18 @@
+<ul class="dropdown-menu dropdown-menu-lg-end">
+    <li class="dropdown-item">通知</li>
+    <li><hr class="dropdown-divider"></li>
+    <%= turbo_frame_tag 'notifications' do %>
+        <% if @notifications.present? %>
+                  <%= link_to '全てを既読する', mark_all_as_read_notifications_path,
+                  class: 'btn btn-outline-dark btn-sm mx-auto',
+                  method: :delete,
+                  remote: true,
+                  data: {turbo_method: :delete } %>
+                  <% @notifications.each do |notification| %>
+                      <%= render 'notifications/notification', { notification: notification } %>
+                  <% end %>
+        <% else %>
+            <%= render 'notifications/no_notification' %>
+        <% end %>
+    <% end %>
+</ul>
