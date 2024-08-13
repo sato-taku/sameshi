@@ -1,0 +1,10 @@
+<%= turbo_frame_tag 'notifications' do %>
+	<% if @notifications.present? %>
+		<%= link_to '全てを既読する', mark_all_as_read_notifications_path, class: 'btn btn-outline btn-sm mx-auto', method: :delete, data: { turbo_method: :delete } %>
+		<% @notifications.each do |notification| %>
+			<%= render 'notifications/notification', { notification: notification } %>
+		<% end %>
+	<% else %>
+		<p>通知がありません</p>
+	<% end %>
+<% end %>
