@@ -2,6 +2,7 @@
 <html class="scroll-smooth">
   <head>
     <title><%= page_title(yield(:title)) %></title>
+    <link rel="manifest" href="/manifest.json">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -28,4 +29,19 @@
     <%= yield %>
     <%= render 'shared/footer' %>
   </body>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service_worker.js')
+          .then((registraction) => {
+            console.log('Service Worker registered:', registraction);
+          })
+          .catch((error) => {
+            console.error('Service Worker registraction failed:', error);
+          });
+      });
+    }
+  </script>
+  
 </html>
