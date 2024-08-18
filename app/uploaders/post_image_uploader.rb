@@ -16,7 +16,7 @@ class PostImageUploader < CarrierWave::Uploader::Base
   end
 
   def extension_allowlist
-    %w(jpg jpeg png gif heic webp)
+    %w(jpg jpeg png gif heic webp MOV wmv mp4)
   end
 
   # 画像を.webpに変換
