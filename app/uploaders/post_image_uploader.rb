@@ -20,7 +20,7 @@ class PostImageUploader < CarrierWave::Uploader::Base
   end
 
   # 画像を.webpに変換
-  process :convert_to_webp
+  process :convert_to_webp, if: :image?
 
   def convert_to_webp
     manipulate! do |image|
@@ -29,7 +29,15 @@ class PostImageUploader < CarrierWave::Uploader::Base
     end
   end
 
+  def image?
+    file && %w[jpg jpeg png gif heic].include?(file.extension.downcase)
+  end
+
   def filename
-    super.chomp(File.extname(super)) + '.webp' if original_filename.present?
+    if original_filename.present? && image?
+      super.chomp(File.extname(super)) + '.webp'
+    else
+      super
+    end
   end
 end
