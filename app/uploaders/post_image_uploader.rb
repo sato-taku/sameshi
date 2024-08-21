@@ -19,25 +19,27 @@ class PostImageUploader < CarrierWave::Uploader::Base
     %w(jpg jpeg png gif heic webp MOV wmv mp4)
   end
 
-  # 画像を.webpに変換
-  # process :convert_to_webp, if: :image?
+  # 画像を.webpに変換、ファイル名最後に.webpを付け直す
+  process :convert_to_webp, if: :is_image?
 
-  # def convert_to_webp
-  #   manipulate! do |image|
-  #     image.format 'webp'
-  #     image
-  #   end
-  # end
+  def convert_to_webp
+    manipulate! do |image|
+      image.format 'webp'
+      image
+    end
+  end
 
-  # def image?
-  #   file && %w[jpg jpeg png gif heic].include?(file.extension.downcase)
-  # end
+  def filename
+    if original_filename.present? && is_image?(file)
+      super.chomp(File.extname(super)) + '.webp'
+    else
+      super
+    end
+  end  
 
-  # def filename
-  #   if original_filename.present? && image?
-  #     super.chomp(File.extname(super)) + '.webp'
-  #   else
-  #     super
-  #   end
-  # end
+  private
+
+  def is_image? picture
+    picture.content_type.include?('image/')
+  end
 end
