@@ -31,7 +31,7 @@
         </div>
         <figure class="px-4">
         <% if @post.post_image.content_type.include?('video/') %>
-          <%= video_tag @post.post_image_url, size: '300x200', class: "rounded-xl", controls: true, autoplay: false, playsinline: true %>
+          <%= video_tag @post.post_image_url, size: '300x200', class: "rounded-xl", controls: true, autoplay: false, muted: true, playsinline: true %>
         <% else %>
           <%= image_tag @post.post_image_url, size: '300x200', class: "rounded-xl" %>
         <% end %>
