@@ -11,7 +11,11 @@
       </div>
     </div>
     <div class="mx-4">
-      <%= image_tag post.post_image_url, class: "rounded-xl w-72 h-72 object-cover" %>
+      <% if post.post_image.content_type.include?('video/') %>
+        <%= video_tag post.post_image_url, class: "rounded-xl w-72 h-72 object-cover", controls: true, autoplay: false, muted: true, playsinline: true %>
+      <% else %>
+        <%= image_tag post.post_image_url, class: "rounded-xl w-72 h-72 object-cover" %>
+      <% end %>
     </div>
   <% end %>
   <div class="flex justify-between">
