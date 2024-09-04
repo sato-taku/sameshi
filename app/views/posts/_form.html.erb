@@ -2,15 +2,19 @@
   <%= render 'shared/error_messages', object: f.object %>
   <div class="mb-4 max-w-xs mx-auto">
     <div>
-      <%= f.label :post_image, class: "w-full" %>
+      <%= f.label :image, class: "w-full" %>
     </div>
     <div>
-      <%= f.file_field :post_image, multiple: true, class: "file-input file-input-bordered file-input-neutral w-full", id: "input" %>
-      <%= f.hidden_field :post_image_cache %>
+      <%= f.file_field :images, multiple: true, class: "file-input file-input-bordered file-input-neutral w-full", id: "input" %>
+      <%= f.hidden_field :images_cache %>
     </div>
+
     <div class="mt-4">
-      <%= image_tag post.post_image.url, id: "preview", class: "mx-auto" %>
+      <% post.images.each do |image| %>
+        <%= image_tag image.url, id: "preview", class: "mx-auto" %>
+      <% end %>
     </div>
+    
   </div>
   <div class="mb-4 max-w-xs mx-auto">
     <div>
