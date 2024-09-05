@@ -5,6 +5,6 @@
 			<%= render 'notifications/notification', { notification: notification } %>
 		<% end %>
 	<% else %>
-		<p>通知がありません</p>
+		<%= render 'notifications/no_notification' %>
 	<% end %>
 <% end %>
