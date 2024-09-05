@@ -88,3 +88,6 @@ gem "meta-tags"
 gem 'rails_admin', '~> 3.0'
 gem "sassc-rails"
 gem "cancancan"
+gem "streamio-ffmpeg"
+gem "carrierwave-video"
+gem "carrierwave-video-thumbnailer"

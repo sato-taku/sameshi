@@ -8,9 +8,11 @@
       <%= f.file_field :post_image, class: "file-input file-input-bordered file-input-neutral w-full", id: "input" %>
       <%= f.hidden_field :post_image_cache %>
     </div>
+
     <div class="mt-4">
-      <%= image_tag post.post_image.url, id: "preview", class: "mx-auto" %>
+        <%= image_tag post.post_image.url, id: "preview", class: "mx-auto" %>
     </div>
+    
   </div>
   <div class="mb-4 max-w-xs mx-auto">
     <div>

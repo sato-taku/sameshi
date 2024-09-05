@@ -1,5 +1,6 @@
 class PostImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
+	require 'streamio-ffmpeg'
 
   if Rails.env.production?
     storage :fog
@@ -42,4 +43,8 @@ class PostImageUploader < CarrierWave::Uploader::Base
   def is_image? picture
     picture.content_type.include?('image/')
   end
+
+  def is_video? picture
+    picture.content_type.include?('video/')
+	end
 end
