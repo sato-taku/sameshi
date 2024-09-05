@@ -1,4 +1,4 @@
-class ImageUploader < CarrierWave::Uploader::Base
+class PostImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 	require 'streamio-ffmpeg'
 

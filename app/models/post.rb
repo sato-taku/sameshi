@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-  mount_uploaders :images, ImageUploader
+  mount_uploader :post_image, PostImageUploader
   def self.meal_genres
     ['和食', '洋食', '中華', 'アジア', 'ラーメン', 'うどん', 'そば', 'カレー', '焼肉', '鍋', '居酒屋', 'その他'].freeze
   end

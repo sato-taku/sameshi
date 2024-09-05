@@ -35,7 +35,7 @@ ja:
         prefecture: 都道府県
         meal_genre: ジャンル
         content: 内容
-        image: 画像
+        post_image: 画像
         sauna: サウナ施設
         created_at: 作成日
         updated_at: 更新日

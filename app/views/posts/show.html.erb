@@ -30,11 +30,15 @@
           </div>
         </div>
         <figure class="px-4">
-        <% if @post.image.content_type.include?('video/') %>
-          <%= video_tag @post.image_url, size: '300x200', class: "rounded-xl", controls: true, autoplay: false, muted: true, playsinline: true %>
-        <% else %>
-          <%= image_tag @post.image_url, size: '300x200', class: "rounded-xl" %>
-        <% end %>
+          <% if @post.post_image.present? %>
+            <% if @post.post_image.content_type.include?('video/') %>
+              <%= video_tag @post.post_image.url, size: '300x200', class: "rounded-xl", controls: true, autoplay: false, muted: true, playsinline: true %>
+            <% else %>
+              <%= image_tag @post.post_image.url, size: '300x200', class: "rounded-xl" %>
+            <% end %>
+          <% else %>
+            <%= image_tag @post.post_image.url, size: '300x200', class: "rounded-xl" %>
+          <% end %>
         </figure>
         <div class="flex justify-start mx-3">
           <div class="mt-2">

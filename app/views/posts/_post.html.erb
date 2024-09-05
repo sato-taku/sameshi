@@ -11,12 +11,14 @@
       </div>
     </div>
     <div class="mx-4">
-      <% post.images.each do |image| %>
-        <% if image.content_type.include?('video/') %>
-          <%= video_tag post.image_url, class: "rounded-xl w-72 h-72 object-cover", controls: true, autoplay: false, muted: true, playsinline: true %>
+      <% if post.post_image.present? %>
+        <% if post.post_image.content_type.include?('video/') %>
+          <%= video_tag post.post_image.url, class: "rounded-xl w-72 h-72 object-cover", controls: true, autoplay: false, muted: true, playsinline: true %>
         <% else %>
-          <%= image_tag post.image_url, class: "rounded-xl w-72 h-72 object-cover" %>
+          <%= image_tag post.post_image.url, class: "rounded-xl w-72 h-72 object-cover" %>
         <% end %>
+      <% else %>
+        <%= image_tag post.post_image.default_url, class: "rounded-xl w-72 h-72 object-cover" %>
       <% end %>
     </div>
   <% end %>
