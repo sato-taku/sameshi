@@ -2,6 +2,8 @@ class PostImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 	require 'streamio-ffmpeg'
 
+  process :fix_exif_rotation
+
   if Rails.env.production?
     storage :fog
   else
