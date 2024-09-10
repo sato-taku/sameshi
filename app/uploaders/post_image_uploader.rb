@@ -20,13 +20,23 @@ class PostImageUploader < CarrierWave::Uploader::Base
     %w(jpg jpeg png gif heic webp MOV wmv mp4)
   end
 
+  process :fix_exif_rotation, if: :is_image?
+
+  def fix_exif_rotation
+    manipulate! do |img|
+      img.auto_orient
+      img = yield(img) if block_given?
+      img
+    end
+  end
+
   # 画像を.webpに変換、ファイル名最後に.webpを付け直す
   process :convert_to_webp, if: :is_image?
 
   def convert_to_webp
-    manipulate! do |image|
-      image.format 'webp'
-      image
+    manipulate! do |img|
+      img.format 'webp'
+      img
     end
   end
 
