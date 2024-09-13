@@ -38,7 +38,7 @@ https://sameshi-time.com
 |トップページ|ログイン画面|
 |:-:|:-:|
 |[![Image from Gyazo](https://i.gyazo.com/61cac7856c274b61120efbba212cf810.gif)](https://gyazo.com/61cac7856c274b61120efbba212cf810)|<img src="https://i.gyazo.com/fefa844ccd653f4b2fced401989a382c.png" width="1050px">|
-|ヘッダーとボトムナビゲーションを固定<br>どのページにいてもトップページとメインの機能へは<br>**ワンタップでページ遷移**することが可能|アプリ使用のハードルを下げるために<br>所有率の高い**Googleアカウントでのログイン**も採用しました。|
+|ヘッダーとボトムナビゲーションを固定<br>どのページからでもトップページとメインの機能へ<br>**ワンタップでページ遷移**することが可能|アプリ使用のハードルを下げるために<br>所有率の高い**Googleアカウントでのログイン**も採用しました。|
 
 # メイン機能
 ※ はログイン限定機能
@@ -51,12 +51,21 @@ https://sameshi-time.com
 |投稿詳細|※ いいね＆コメント|
 |:-:|:-:|
 |[![Image from Gyazo](https://i.gyazo.com/46c64a57b23910cb2a70d0603c4e1d59.gif)](https://gyazo.com/46c64a57b23910cb2a70d0603c4e1d59)|[![Image from Gyazo](https://i.gyazo.com/a6a7c82ca53d9953ac3aba041363267c.gif)](https://gyazo.com/a6a7c82ca53d9953ac3aba041363267c)|
-|気軽にユーザーとコミュニケーションが図れる設計|コメント、いいね機能はユーザー登録、ログインが必要<br>表示はログイン後の画面|
+|気軽にユーザーとコミュニケーションが図れる設計<br>投稿詳細から**Xシェアが可能**|コメント、いいね機能はユーザー登録、ログインが必要<br>表示はログイン後の画面|
 
 |※ 新規投稿|※ マイページ|
 |:-:|:-:|
 |[![Image from Gyazo](https://i.gyazo.com/35b3ecb51acf8aeab1c32bf415a8e6d1.gif)](https://gyazo.com/35b3ecb51acf8aeab1c32bf415a8e6d1)|[![Image from Gyazo](https://i.gyazo.com/4092507ac5c425bb97d54d05775be3d6.gif)](https://gyazo.com/4092507ac5c425bb97d54d05775be3d6)|
 |サウナ施設入力欄は**オートコンプリート**<br>英文字は大文字小文字を区別しない|おすすめ・投稿・いいねでタブ切替可能<br>タブ内はページリフレッシュせずにコンテンツをロード|
+
+# その他機能
+- ユーザー登録機能
+- ※ ログアウト機能
+- パスワードリセット機能
+- ※ 通知機能
+- ※ 画像プレビュー機能（新規投稿フォーム）
+- エリア検索機能（Google Mapページ ）
+- ※ おすすめ機能（マイページ）
 
 # 技術スタック
 |カテゴリ|技術|
