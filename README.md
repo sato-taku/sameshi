@@ -36,21 +36,19 @@ https://sameshi-time.com
 
 |トップページ|ログイン画面|
 |------------|------------|
-|[![Image from Gyazo](https://i.gyazo.com/4e2f6d4411775d0fb69617b6771ce2b0.png)](https://gyazo.com/4e2f6d4411775d0fb69617b6771ce2b0)|[![Image from Gyazo](https://i.gyazo.com/90aeb3bd99b4c44cd6ebbebdb5a42c29.png)](https://gyazo.com/90aeb3bd99b4c44cd6ebbebdb5a42c29)|
+|<img src="https://i.gyazo.com/4e2f6d4411775d0fb69617b6771ce2b0.png", width="50%">|<img src="https://i.gyazo.com/90aeb3bd99b4c44cd6ebbebdb5a42c29.png", width="50%">|
 |固定されたヘッダーとボトムナビゲーションにより、トップページとメインの機能に関してはどのページにいても**ワンタップでページ遷移**することができるようにしています。|アプリを使っていただくハードルを下げるために所有率の高いGoogleアカウントでのログインも採用しました。|
 
 # メイン機能
 |周辺サウナ検索|投稿一覧|
 |--------------|--------|
 |[![Image from Gyazo](https://i.gyazo.com/2b09c6d91622100ca02bf56d756a09d4.gif)](https://gyazo.com/2b09c6d91622100ca02bf56d756a09d4)|[![Image from Gyazo](https://i.gyazo.com/fcda8bb536f6d4f2802e3f24246ba5bd.gif)](https://gyazo.com/fcda8bb536f6d4f2802e3f24246ba5bd)|
-|DBに保存されている現在地周辺のサウナ施設がマップ上に表示されます。<br>サウナ施設詳細ページにリンクすると、サウナ施設に紐づいた投稿が一覧表示されます。|ユーザー登録、ログイン無しで閲覧が可能です。<br>
-コメント、いいね機能はユーザー登録、ログインが必要です。|
+|DBに保存されている現在地周辺のサウナ施設がマップ上に表示されます。<br>サウナ施設詳細ページにリンクすると、サウナ施設に紐づいた投稿が一覧表示されます。|ユーザー登録、ログイン無しで閲覧が可能です。<br>コメント、いいね機能はユーザー登録、ログインが必要です。|
 
 |※新規投稿|※マイページ|
 |----------|------------|
 |[![Image from Gyazo](https://i.gyazo.com/9d1c256d9cf51d20b2545424a5c8e9e1.gif)](https://gyazo.com/9d1c256d9cf51d20b2545424a5c8e9e1)|[![Image from Gyazo](https://i.gyazo.com/0301d3c767e3dad54cf4c5393e25fac6.gif)](https://gyazo.com/0301d3c767e3dad54cf4c5393e25fac6)|
-|サウナ施設入力欄はオートコンプリート機能が備わっており、DBに保存されているサウナ施設から選択していただく必要があります。|タブコンポーネントは tailwindcss-stimulus-components で整形。<br>
-タブ内は turbo_frame_tag を使用し、ページリフレッシュせずにコンテンツをロードできるようにしました。|
+|サウナ施設入力欄はオートコンプリート機能が備わっており、DBに保存されているサウナ施設から選択していただく必要があります。|タブコンポーネントは tailwindcss-stimulus-components で整形。<br>タブ内は turbo_frame_tag を使用し、ページリフレッシュせずにコンテンツをロードできるようにしました。|
 
 ## MVP
 * ユーザー登録機能
