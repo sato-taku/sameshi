@@ -1,12 +1,20 @@
+# サービス名：サ飯の時間
+![sameshi_ogp](https://github.com/user-attachments/assets/85fa7c0d-595c-4c48-a48d-99b0b7bcb3fe)
+
+### サービスURL
+https://sameshi-time.com
+
 # サービス概要
-**＜サ飯の時間＞**は、サウナ愛好家にとっての新たなコミュニティ空間を提供するアプリです。  
+**サ飯の時間**は、サウナ愛好家にとっての新たなコミュニティ空間を提供するアプリです。  
 サウナ後の至福の食事「サ飯」を記録・共有することで、他のユーザーにとってはモデルコースとして機能し、新たな発見を提供します。
 
 # このサービスへの思い・作りたい理由
 サウナ後の食事、通称「サ飯」は、サウナ体験の重要な一部です。サウナ後に何を食べるか、どのレストランやお店に寄るかは、多くのサウナーが持つ共通の疑問であり興味です。私は、サウナ施設そのものではなく、この「サ飯」にスポットを当てたアプリを通じて、同じ趣味を持つ人々が自分の経験を共有し、新たな発見をする喜びを共有できるプラットフォームを作りたいと考えています。
+
 ## サ飯とは？
 サウナを楽しんだ後に食べるご飯のこと。いわゆるサウナ飯を略して「サ飯」といいます。
 サウナで整った自律神経の本領発揮は「サ飯」で感じるべし。
+
 ## サウナ後のご飯が美味しく感じるわけ
 サウナ後は自律神経の中でも副交感神経が活性化し腸の動きが活発になる。
 脳科学的にも、サウナ後は右側の頭頂葉の一部が活性化、味覚・嗅覚・視覚が敏感な状態になることがわかっています。
@@ -41,19 +49,41 @@
 * いいね機能
 * Xシェア機能
 * 新規投稿フォームのオートコンプリート（サウナ施設をDBから取得）
+
 ## 本リリース
 * GoogleMapページに検索窓設置（マップの表示位置遷移）
 * 協調フィルタリングを使用したおすすめ表示
 * Google登録・ログイン
-# 機能の実装方針予定
-* Ruby3系、Ruby on Rails7系を使用
-* CSS Tailwind daisyUIを使用
-* 地図機能は Google Maps API(JavaScript API, Places API)
-* Docker を用いて開発する。
-* Fly.io にデプロイする。
+
+# 技術スタック
+<table>
+  <thead>
+    <tr>
+      <th>カテゴリ</th> <th>技術</th>
+    </tr>
+  </thead>
+    <tr>
+      <td>フロントエンド</td> <td>Rails 7.1.3( Hotwirw / Turbo ), Javascript, TailwindCSS, DaisyUI</td>
+    </tr>
+    <tr>
+      <td>バックエンド</td> <td>Rails7.1.3, Ruby3.2.2</td>
+    </tr>
+    <tr>
+      <td>データベース</td> <td>PostgreSQL</td>
+    </tr>
+    <tr>
+      <td>環境構築</td> <td>Docker</td>
+    </tr>
+    <tr>
+      <td>インフラ</td> <td>Fly.io</td>
+    </tr>
+    <tr>
+      <td>Web API</td> <td>Google Maps API( Maps Javascript API / Places API )</td>
+    </tr>
+</table>
 
 ### 画面遷移図
 https://www.figma.com/file/SKkngaqbpS4tBMti9b3FYe/sameshi_%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?type=design&node-id=0%3A1&mode=design&t=yBRCuLULGMvGgdgi-
 
 ### ER図
-https://drive.google.com/file/d/1kMsxjxMD38XBzkxFCJmQDRBgshYsZlJE/view?usp=sharing
+![sameshi_ER図.drawio.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/3878469/229a84bf-d3f3-4b93-86a3-b25e298c8be4.png)
