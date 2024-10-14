@@ -51,6 +51,9 @@ group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
   gem "pry-byebug"
+  gem "rspec-rails"
+  gem "factory_bot_rails"
+  gem "faker"
 end
 
 group :development do
@@ -79,7 +82,6 @@ gem "geocoder"
 gem "carrierwave", "~> 2.0"
 gem "fog-aws"
 gem "aws-sdk-s3", require: false
-gem "faker"
 gem "kaminari"
 gem "ransack"
 gem "letter_opener_web"
