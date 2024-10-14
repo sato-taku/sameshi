@@ -37,4 +37,11 @@ RSpec.describe User, type: :model do
     user.valid?
     expect(user.errors[:nickname]).to include('は20文字以内で入力してください')
   end
+
+  it '確認事項をチェックしていること' do
+    user = build(:user)
+    user.agreement = nil
+    user.valid?
+    expect(user.errors[:agreement]).to include('を受諾してください')
+  end
 end
