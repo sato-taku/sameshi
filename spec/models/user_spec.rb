@@ -30,4 +30,11 @@ RSpec.describe User, type: :model do
     expect(user.errors[:password]).to include('は4文字以上で入力してください')
     expect(user.errors[:password_confirmation]).to include('を入力してください')
   end
+
+  it 'ニックネームは20文字以下であること' do
+    user = build(:user)
+    user.nickname = 'n' * 21
+    user.valid?
+    expect(user.errors[:nickname]).to include('は20文字以内で入力してください')
+  end
 end
