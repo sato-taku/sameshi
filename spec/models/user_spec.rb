@@ -8,7 +8,7 @@ RSpec.describe User, type: :model do
 
   it 'メールはユニークであること' do
     user1 = create(:user)
-    user2 = create(:user)
+    user2 = build(:user)
     user2.email = user1.email
     user2.valid?
     expect(user2.errors[:email]).to include('はすでに存在します')
