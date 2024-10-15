@@ -23,4 +23,12 @@ RSpec.describe Post, type: :model do
       expect(post.errors[:content]).to include('を入力してください')
     end
   end
+
+  context '都道府県が存在しない場合' do
+    it '無効であること' do
+      post = build(:post, prefecture: nil)
+      expect(post).to be_invalid
+      expect(post.errors[:prefecture]).to include('を入力してください')
+    end
+  end
 end
