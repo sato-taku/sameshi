@@ -46,4 +46,12 @@ RSpec.describe Post, type: :model do
       expect(post).to be_valid
     end
   end
+
+  context '内容が1000文字以上の場合' do
+    it '無効であること' do
+      post = build(:post, content: 'n' * 1001)
+      expect(post).to be_invalid
+      expect(post.errors[:content]).to include('は1000文字以内で入力してください')
+    end
+  end
 end
