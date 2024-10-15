@@ -15,4 +15,12 @@ RSpec.describe Post, type: :model do
       expect(post.errors[:meal_genre]).to include('を入力してください')
     end
   end
+
+  context '内容が存在しない場合' do
+    it '無効であること' do
+      post = build(:post, content: nil)
+      expect(post).to be_invalid
+      expect(post.errors[:content]).to include('を入力してください')
+    end
+  end
 end
