@@ -31,4 +31,12 @@ RSpec.describe Post, type: :model do
       expect(post.errors[:prefecture]).to include('を入力してください')
     end
   end
+
+  context 'サウナ施設が存在しない場合' do
+    it '無効であること' do
+      post = build(:post, sauna: nil)
+      expect(post).to be_invalid
+      expect(post.errors[:sauna]).to include('を入力してください')
+    end
+  end
 end
