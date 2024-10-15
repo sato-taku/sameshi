@@ -39,4 +39,11 @@ RSpec.describe Post, type: :model do
       expect(post.errors[:sauna]).to include('を入力してください')
     end
   end
+
+  context '内容が1000文字以下の場合' do
+    it '有効であること' do
+      post = create(:post, content: 'n' * 1000)
+      expect(post).to be_valid
+    end
+  end
 end
