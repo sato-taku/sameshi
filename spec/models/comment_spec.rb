@@ -22,4 +22,12 @@ RSpec.describe Comment, type: :model do
       expect(comment).to be_valid
     end
   end
+
+  context '本文が150文字以上の場合' do
+    it '無効であること' do
+      comment = build(:comment, body: 'n' * 151)
+      expect(comment).to be_invalid
+      expect(comment.errors[:body]).to include('は150文字以内で入力してください')
+    end
+  end
 end
