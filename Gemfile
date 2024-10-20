@@ -71,6 +71,7 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+  gem "webdrivers"
 end
 
 gem "dockerfile-rails", ">= 1.6", :group => :development
