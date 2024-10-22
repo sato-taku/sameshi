@@ -1,9 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe "Users", type: :system do
-  before do
-    driven_by(:rack_test)
+RSpec.describe "ユーザー登録", type: :system do
+  it '正しいタイトルが表示されていること' do
+    visit '/users/new'
+    expect(page).to have_title("ユーザー登録 | サ飯の時間"), 'ユーザー登録ページのタイトルに「ユーザー登録 | サ飯の時間」が含まれていません。'
   end
-
-  pending "add some scenarios (or delete) #{__FILE__}"
 end
