@@ -27,4 +27,22 @@ RSpec.describe "ユーザー登録", type: :system do
       expect(page).to have_content('ユーザー登録が完了しました'), 'フラッシュメッセージ「ユーザー登録が完了しました」が表示されていません'
     end
   end
+
+  context '入力情報異常' do
+    it 'ユーザーが新規作成できない' do
+      visit 'users/new'
+      expect {
+        fill_in 'メールアドレス', with: 'sauna@sample.com'
+        click_button '登録'
+      }.to change { User.count }.by(0)
+      expect(page).to have_content('ユーザー登録に失敗しました'), 'フラッシュメッセージ「ユーザー登録に失敗しました」が表示されていません'
+      expect(page).to have_content('都道府県を入力してください'), 'フラッシュメッセージ「都道府県を入力してください」が表示されていません'
+      expect(page).to have_content('パスワードは4文字以上で入力してください'), 'フラッシュメッセージ「パスワードは4文字以上で入力してください」が表示されていません'
+      expect(page).to have_content('パスワード（確認用）を入力してください'), 'フラッシュメッセージ「パスワード（確認用）を入力してください」が表示されていません'
+      expect(page).to have_content('ニックネームを入力してください'), 'フラッシュメッセージ「ニックネームを入力してください」が表示されていません'
+      expect(page).to have_content('都道府県を入力してください'), 'フラッシュメッセージ「都道府県を入力してください」が表示されていません'
+      expect(page).to have_content('年代は一覧にありません'), 'フラッシュメッセージ「年代は一覧にありません」が表示されていません'
+      expect(page).to have_content('確認事項を受諾してください'), 'フラッシュメッセージ「確認事項を受諾してください」が表示されていません'
+    end
+  end
 end
