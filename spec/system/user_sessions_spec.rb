@@ -1,9 +1,15 @@
 require 'rails_helper'
 
-RSpec.describe "UserSessions", type: :system do
-  before do
-    driven_by(:rack_test)
-  end
+RSpec.describe 'ログイン・ログアウト', type: :system do
+  let(:general_user) { create(:user, :general) }
+  let(:admin_user) { create(:user, :admin) }
 
-  pending "add some scenarios (or delete) #{__FILE__}"
+  describe '通常画面' do
+    describe 'ログイン' do
+      it '正しいタイトルが表示されていること' do
+        visit '/login'
+        expect(page).to have_title("ログイン | サ飯の時間"), 'タイトルに「ログイン | サ飯の時間」が含まれていません。'
+      end
+    end
+  end
 end
