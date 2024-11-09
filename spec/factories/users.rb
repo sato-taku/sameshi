@@ -8,4 +8,12 @@ FactoryBot.define do
     agreement { true }
     association :prefecture
   end
+
+  trait :general do
+    role { :general }
+  end
+
+  trait :admin do
+    role { :admin }
+  end
 end
