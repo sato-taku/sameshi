@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe 'ログイン・ログアウト', type: :system do
   let(:general_user) { create(:user, :general) }
   let(:admin_user) { create(:user, :admin) }
+  include LoginMacros
 
   describe '通常画面' do
     describe 'ログイン' do
@@ -33,6 +34,19 @@ RSpec.describe 'ログイン・ログアウト', type: :system do
           expect(current_path).to eq('/login'), 'ログイン失敗時にログイン画面に戻ってきていません'
           expect(page).to have_content('ログインに失敗しました'), 'フラッシュメッセージ「ログインに失敗しました」が表示されていません'
         end
+      end
+    end
+
+    describe 'ログアウト' do
+      before do
+        login(general_user)
+      end
+      it 'ログアウトできること' do
+        visit '/profile'
+        click_button 'ログアウト'
+        Capybara.assert_current_path("/", ignore_query: true)
+        expect(current_path).to eq('/')
+        expect(page).to have_content('ログアウトしました'), 'フラッシュメッセージ「ログアウトしました」が表示されていません'
       end
     end
   end
