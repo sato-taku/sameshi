@@ -27,7 +27,8 @@ services:
       - db
       - selenium_chrome
   selenium_chrome:
-    image: selenium/standalone-chrome
+    image: selenium/standalone-chrome:latest
+    shm_size: 256m
     ports:
       - "4444:4444"
 volumes:

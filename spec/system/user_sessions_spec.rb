@@ -43,7 +43,9 @@ RSpec.describe 'ログイン・ログアウト', type: :system do
       end
       it 'ログアウトできること' do
         visit '/profile'
-        click_button 'ログアウト'
+        within('.card.w-full.shadow-xl.mx-auto.mb-8.max-w-sm.md\\:max-w-4xl') do
+          click_on 'ログアウト'
+        end        
         Capybara.assert_current_path("/", ignore_query: true)
         expect(current_path).to eq('/')
         expect(page).to have_content('ログアウトしました'), 'フラッシュメッセージ「ログアウトしました」が表示されていません'
