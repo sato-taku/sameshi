@@ -52,4 +52,20 @@ RSpec.describe 'ログイン・ログアウト', type: :system do
       end
     end
   end
+  describe '管理画面' do
+    describe 'ログイン' do
+      describe 'ログイン失敗' do
+        context '管理者以外の場合' do
+          it 'トップページにリダイレクトされること' do
+            visit '/admin'
+            fill_in 'メールアドレス', with: general_user.email
+            fill_in 'パスワード', with: '12345678'
+            click_button 'ログイン'
+            Capybara.assert_current_path("/", ignore_query: true)
+            expect(current_path).to eq '/'
+          end
+        end
+      end
+    end
+  end
 end
