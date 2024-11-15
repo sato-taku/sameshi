@@ -67,14 +67,27 @@ RSpec.describe 'ログイン・ログアウト', type: :system do
         end
 
         context '管理者の場合' do
-          it 'ログインできないこと' do
-            visit '/admin'
-            fill_in 'メールアドレス', with: admin_user.email
-            fill_in 'パスワード', with: '1234'
-            click_button 'ログイン'
-            Capybara.assert_current_path("/login", ignore_query: true)
-            expect(current_path).to eq('/login'), '管理者ページに遷移していません'
-            expect(page).to have_content('ログインに失敗しました'), 'フラッシュメッセージ「ログインに失敗しました」が表示されていません'
+          context 'PWに誤りがある場合' do
+            it 'ログインできないこと' do
+              visit '/admin'
+              fill_in 'メールアドレス', with: admin_user.email
+              fill_in 'パスワード', with: '1234'
+              click_button 'ログイン'
+              Capybara.assert_current_path("/login", ignore_query: true)
+              expect(current_path).to eq('/login')
+              expect(page).to have_content('ログインに失敗しました'), 'フラッシュメッセージ「ログインに失敗しました」が表示されていません'
+            end
+          end
+
+          context '認証情報が正しい場合' do
+            it 'ログインできること' do
+              visit '/admin'
+              fill_in 'メールアドレス', with: admin_user.email
+              fill_in 'パスワード', with: '12345678'
+              click_button 'ログイン'
+              Capybara.assert_current_path("/admin/", ignore_query: true)
+              expect(current_path).to eq('/admin/'), '管理者ページに遷移していません'
+            end
           end
         end
       end
