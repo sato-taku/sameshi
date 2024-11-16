@@ -92,5 +92,18 @@ RSpec.describe 'ログイン・ログアウト', type: :system do
         end
       end
     end
+
+    describe 'ログアウト' do
+      before do
+        login(admin_user)
+      end
+      it 'ログアウトできること' do
+        visit '/admin'
+        click_on 'ログアウト'
+        Capybara.assert_current_path("/", ignore_query: true)
+        expect(current_path).to eq('/'), 'トップページに遷移していません'
+        expect(page).to have_content('ログアウトしました'), 'フラッシュメッセージ「ログアウトしました」が表示されていません'
+      end
+    end
   end
 end
