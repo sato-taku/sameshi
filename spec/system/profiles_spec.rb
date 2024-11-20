@@ -26,4 +26,11 @@ RSpec.describe "プロフィール", type: :system do
     expect(page).to have_content('ユーザーを更新しました'), 'フラッシュメッセージ「ユーザーを更新しました」が表示されていません'
     expect(page).to have_content('編集後ニックネーム'), '更新後のニックネームが表示されていません'
   end
+
+  it 'プロフィールの編集に失敗すること' do
+    visit '/profile'
+    find("a[href='#{edit_profile_path}']").click
+    Capybara.assert_current_path("/profile/edit", ignore_query: true)
+    expect(current_path).to eq('/profile/edit'), 'プロフィール編集ページに遷移していません'
+    
 end
