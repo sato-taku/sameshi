@@ -32,5 +32,9 @@ RSpec.describe "プロフィール", type: :system do
     find("a[href='#{edit_profile_path}']").click
     Capybara.assert_current_path("/profile/edit", ignore_query: true)
     expect(current_path).to eq('/profile/edit'), 'プロフィール編集ページに遷移していません'
-    
+    fill_in 'ニックネーム', with: ''
+    click_button '更新'
+    expect(page).to have_content('ユーザーを更新できませんでした'), 'フラッシュメッセージ「ユーザーを更新できませんでした」が表示されていません'
+    expect(page).to have_content('ニックネームを入力してください'), 'エラーメッセージ「ニックネームを入力してください」が表示されていません'
+  end
 end
