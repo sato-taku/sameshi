@@ -21,11 +21,15 @@ RSpec.describe "プロフィール", type: :system do
     expect(current_path).to eq('/profile/edit'), 'プロフィール編集ページに遷移していません'
     fill_in 'ニックネーム', with: '編集後ニックネーム'
     fill_in 'メールアドレス', with: 'edit@sample.com'
+    file_path = Rails.root.join('spec', 'fixtures', 'sample_avatar.png')
+    attach_file('アバター', file_path)
     click_button '更新'
     Capybara.assert_current_path("/profile", ignore_query: true)
     expect(current_path).to eq('/profile'), 'マイページに遷移していません'
     expect(page).to have_content('ユーザーを更新しました'), 'フラッシュメッセージ「ユーザーを更新しました」が表示されていません'
     expect(page).to have_content('編集後ニックネーム'), '更新後のニックネームが表示されていません'
+    # 画像はアップロード後.webpに変換
+    expect(page).to have_selector("img[src$='sample_avatar.webp']"), '更新後のアバターが表示されていません'
   end
 
   it 'プロフィールの編集に失敗すること' do
