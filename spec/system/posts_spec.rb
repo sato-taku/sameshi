@@ -23,6 +23,14 @@ RSpec.describe '投稿', type: :system do
           # expect(page).to have_content(post.created_at), '投稿一覧画面に投稿時間が表示されていません'
         end
       end
+
+      context '6件以下の場合' do
+        let!(:posts) { create_list(:post, 6) }
+        it 'ページングが表示されないこと' do
+          visit '/posts'
+          expect(page).not_to have_selector('.pagination')
+        end
+      end
     end
   end
 end
