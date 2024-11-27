@@ -31,6 +31,14 @@ RSpec.describe '投稿', type: :system do
           expect(page).not_to have_selector('.pagination')
         end
       end
+
+      context '6件以上の場合' do
+        let!(:posts) { create_list(:post, 7) }
+        it 'ページングが表示されること' do
+          visit '/posts'
+          expect(page).to have_selector('.pagination')
+        end
+      end
     end
   end
 end
