@@ -40,5 +40,19 @@ RSpec.describe '投稿', type: :system do
         end
       end
     end
+
+    describe '投稿の詳細' do
+      context 'ログインしていない場合' do
+        before do
+          post
+        end
+        it '投稿の詳細が表示されること' do
+          visit '/posts'
+          find("a[href='#{post_path(post)}']").click
+          Capybara.assert_current_path("/posts/#{post.id}", ignore_query: true)
+          expect(current_path).to eq("/posts/#{post.id}"), '投稿のカードリンクから投稿詳細画面へ遷移できません'
+        end
+      end
+    end
   end
 end
