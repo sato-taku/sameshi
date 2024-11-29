@@ -51,6 +51,13 @@ RSpec.describe '投稿', type: :system do
           find("a[href='#{post_path(post)}']").click
           Capybara.assert_current_path("/posts/#{post.id}", ignore_query: true)
           expect(current_path).to eq("/posts/#{post.id}"), '投稿のカードリンクから投稿詳細画面へ遷移できません'
+          expect(page).to have_content(post.user.nickname)
+          expect(page).to have_content(post.prefecture.name)
+          expect(page).to have_content(post.sauna.name)
+          expect(page).to have_content(post.meal_genre)
+          expect(page).to have_content(post.content)
+          expect(page).to have_content('あなたのお気に入りの「サ飯」も教えてね！')
+          expect(page).to have_link('使ってみる！', href: '/users/new')
         end
       end
     end
