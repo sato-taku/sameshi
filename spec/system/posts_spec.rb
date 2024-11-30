@@ -4,6 +4,7 @@ RSpec.describe '投稿', type: :system do
   let(:user) { create(:user) }
   let(:another_user) { create(:user) }
   let(:post) { create(:post) }
+  include LoginMacros
 
   describe '投稿のCRUD' do
     describe '投稿の一覧' do
@@ -46,7 +47,7 @@ RSpec.describe '投稿', type: :system do
         before do
           post
         end
-        it '投稿の詳細が表示されること' do
+        it '投稿の詳細と新規登録への誘導が表示されること' do
           visit '/posts'
           find("a[href='#{post_path(post)}']").click
           Capybara.assert_current_path("/posts/#{post.id}", ignore_query: true)
@@ -58,6 +59,25 @@ RSpec.describe '投稿', type: :system do
           expect(page).to have_content(post.content)
           expect(page).to have_content('あなたのお気に入りの「サ飯」も教えてね！')
           expect(page).to have_link('使ってみる！', href: '/users/new')
+        end
+      end
+
+      context 'ログインしている場合' do
+        before do 
+          login(user)
+          post
+        end
+        it '投稿の詳細とコメントフォームが表示されること' do
+          visit '/posts'
+          find("a[href='#{post_path(post)}']").click
+          Capybara.assert_current_path("/posts/#{post.id}", ignore_query: true)
+          expect(current_path).to eq("/posts/#{post.id}"), '投稿のカードリンクから投稿詳細画面へ遷移できません'
+          expect(page).to have_content(post.user.nickname)
+          expect(page).to have_content(post.prefecture.name)
+          expect(page).to have_content(post.sauna.name)
+          expect(page).to have_content(post.meal_genre)
+          expect(page).to have_content(post.content)
+          expect(page).to have_selector('div#comment-form'), 'コメントフォームが表示されていません'
         end
       end
     end
