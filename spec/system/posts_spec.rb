@@ -20,8 +20,6 @@ RSpec.describe '投稿', type: :system do
           post
           visit '/posts'
           expect(page).to have_content(post.user.nickname), '投稿一覧画面に投稿者のニックネームが表示されていません'
-          # expect(page).to have_content(post.post_image), '投稿一覧画面に投稿画像が表示されていません'
-          # expect(page).to have_content(post.created_at), '投稿一覧画面に投稿時間が表示されていません'
         end
       end
 
@@ -77,6 +75,7 @@ RSpec.describe '投稿', type: :system do
           expect(page).to have_content(post.sauna.name)
           expect(page).to have_content(post.meal_genre)
           expect(page).to have_content(post.content)
+          expect(page).to have_selector('div#like-button'), 'いいねボタンが表示されていません'
           expect(page).to have_selector('div#comment-form'), 'コメントフォームが表示されていません'
         end
       end
