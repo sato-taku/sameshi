@@ -80,5 +80,16 @@ RSpec.describe '投稿', type: :system do
         end
       end
     end
+
+    describe '投稿の作成' do
+      context 'ログインしていない場合' do
+        it 'ログインページにリダイレクトされること' do
+          visit '/posts/new'
+          Capybara.assert_current_path("/login", ignore_query: true)
+          expect(current_path).to eq('/login'), 'ログインしていない場合、投稿作成画面に遷移した際、ログインページにリダイレクトされていません'
+          expect(page).to have_content('ログインしてください'), 'フラッシュメッセージ「ログインしてください」が表示されていません'
+        end
+      end
+    end
   end
 end
