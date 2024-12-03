@@ -86,8 +86,20 @@ RSpec.describe '投稿', type: :system do
         it 'ログインページにリダイレクトされること' do
           visit '/posts/new'
           Capybara.assert_current_path("/login", ignore_query: true)
-          expect(current_path).to eq('/login'), 'ログインしていない場合、投稿作成画面に遷移した際、ログインページにリダイレクトされていません'
+          expect(current_path).to eq('/login'), 'ログインしていない場合、新規投稿画面に遷移した際、ログインページにリダイレクトされていません'
           expect(page).to have_content('ログインしてください'), 'フラッシュメッセージ「ログインしてください」が表示されていません'
+        end
+      end
+
+      context 'ログインしている場合' do
+        before do
+          login(user)
+        end
+        it '正しいタイトルが表示されていること' do
+          visit '/posts/new'
+          Capybara.assert_current_path("/posts/new", ignore_query: true)
+          expect(current_path).to eq("/posts/new"), '新規投稿ページに遷移していません'
+          expect(page).to have_title("新規投稿 | サ飯の時間"), '新規投稿ページのタイトルに「新規投稿 | サ飯の時間」が含まれていません'
         end
       end
     end
