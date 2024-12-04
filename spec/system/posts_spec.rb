@@ -4,6 +4,7 @@ RSpec.describe '投稿', type: :system do
   let(:user) { create(:user) }
   let(:another_user) { create(:user) }
   let(:post) { create(:post) }
+  let(:sauna) { create(:sauna) }
   include LoginMacros
 
   describe '投稿のCRUD' do
@@ -100,6 +101,26 @@ RSpec.describe '投稿', type: :system do
           Capybara.assert_current_path("/posts/new", ignore_query: true)
           expect(current_path).to eq("/posts/new"), '新規投稿ページに遷移していません'
           expect(page).to have_title("新規投稿 | サ飯の時間"), '新規投稿ページのタイトルに「新規投稿 | サ飯の時間」が含まれていません'
+        end
+
+        it '投稿が作成できること' do
+          sauna
+          visit '/posts/new'
+          file_path = Rails.root.join('spec', 'fixtures', 'sample_post.png')
+          attach_file('input', file_path)
+          fill_in '内容', with: '内容本文'
+          select '新潟県', from: '都道府県'
+          select 'ラーメン', from: 'ジャンル'
+          find('input[data-autocomplete-target="input"]').set('サウナsample')
+          expect(page).to have_selector('ul[data-autocomplete-target="results"]')
+          find('ul[data-autocomplete-target="results"] li', text: 'サウナsample').click
+          click_button '登録'
+          Capybara.assert_current_path("/posts", ignore_query: true)
+          expect(current_path).to eq('/posts'), '投稿一覧ページに遷移していません'
+          expect(page).to have_content('投稿を作成しました'), 'フラッシュメッセージ「投稿を作成しました」が表示されていません'
+          expect(page).to have_content(user.nickname)
+          # 画像はアップロード後.webpに変換
+          expect(page).to have_selector("img[src$='sample_post.webp']"), '投稿の画像が表示されていません'
         end
       end
     end
