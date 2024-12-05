@@ -111,6 +111,7 @@ RSpec.describe '投稿', type: :system do
           fill_in '内容', with: '内容本文'
           select '新潟県', from: '都道府県'
           select 'ラーメン', from: 'ジャンル'
+          # サウナ入力欄オートコンプリート機能の選択ロジック
           find('input[data-autocomplete-target="input"]').set('サウナsample')
           expect(page).to have_selector('ul[data-autocomplete-target="results"]')
           find('ul[data-autocomplete-target="results"] li', text: 'サウナsample').click
@@ -121,6 +122,21 @@ RSpec.describe '投稿', type: :system do
           expect(page).to have_content(user.nickname)
           # 画像はアップロード後.webpに変換
           expect(page).to have_selector("img[src$='sample_post.webp']"), '投稿の画像が表示されていません'
+        end
+
+        it '投稿の作成に失敗すること' do
+          sauna
+          visit '/posts/new'
+          file_path = Rails.root.join('spec', 'fixtures', 'sample_post.png')
+          attach_file('input', file_path)
+          select '新潟県', from: '都道府県'
+          select 'ラーメン', from: 'ジャンル'
+          find('input[data-autocomplete-target="input"]').set('サウナsample')
+          expect(page).to have_selector('ul[data-autocomplete-target="results"]')
+          find('ul[data-autocomplete-target="results"] li', text: 'サウナsample').click
+          click_button '登録'
+          expect(page).to have_content('投稿を作成できませんでした'), 'フラッシュメッセージ「投稿が作成できませんでした」が表示されていません'
+          expect(page).to have_content('内容を入力してください'), 'エラーメッセージ「内容を入力してください」が表示されていません'
         end
       end
     end
