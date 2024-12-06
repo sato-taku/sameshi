@@ -140,5 +140,18 @@ RSpec.describe '投稿', type: :system do
         end
       end
     end
+
+    describe '投稿の更新' do
+      before do
+        post
+      end
+      context 'ログインしていない場合' do
+        it 'ログインページにリダイレクトされること' do
+          visit "/posts/#{post.id}/edit"
+          expect(current_path).to eq('/login'), 'ログインページにリダイレクトされていません'
+          expect(page).to have_content('ログインしてください'), 'フラッシュメッセージ「ログインしてください」が表示されていません'
+        end
+      end
+    end
   end
 end
