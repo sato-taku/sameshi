@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe '投稿', type: :system do
   let(:user) { create(:user) }
   let(:another_user) { create(:user) }
-  let(:post) { create(:post) }
+  let(:post) { create(:post, user: user) }
   let(:sauna) { create(:sauna) }
   include LoginMacros
 
@@ -143,6 +143,7 @@ RSpec.describe '投稿', type: :system do
 
     describe '投稿の更新' do
       before do
+        sauna
         post
       end
       context 'ログインしていない場合' do
@@ -150,6 +151,25 @@ RSpec.describe '投稿', type: :system do
           visit "/posts/#{post.id}/edit"
           expect(current_path).to eq('/login'), 'ログインページにリダイレクトされていません'
           expect(page).to have_content('ログインしてください'), 'フラッシュメッセージ「ログインしてください」が表示されていません'
+        end
+      end
+
+      context 'ログインしている場合' do
+        context '自分の投稿' do
+          before do
+            login(user)
+            visit posts_path
+            find("a[href='#{post_path(post)}']").click
+            find("#button-edit-#{post.id}").click
+          end
+          it '投稿の更新ができること' do
+            fill_in '内容', with: '編集後内容'
+            click_button '更新'
+            Capybara.assert_current_path("/posts/#{post.id}/edit", ignore_query: true)
+            expect(current_path).to eq("/posts/#{post.id}/edit")
+            expect(page).to have_content('投稿を更新しました'), 'フラッシュメッセージ「投稿を更新しました」が表示されていません'
+            expect(page).to have_content('編集後内容'), '編集後の内容が表示されていません'
+          end
         end
       end
     end
