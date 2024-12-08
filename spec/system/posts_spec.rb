@@ -170,6 +170,13 @@ RSpec.describe '投稿', type: :system do
             expect(page).to have_content('投稿を更新しました'), 'フラッシュメッセージ「投稿を更新しました」が表示されていません'
             expect(page).to have_content('編集後内容'), '編集後の内容が表示されていません'
           end
+
+          it '投稿の更新に失敗すること' do
+            fill_in '内容', with: ''
+            click_button '更新'
+            expect(page).to have_content('投稿を更新できませんでした'), 'フラッシュメッセージ「投稿を更新できませんでした」が表示されていません'
+            expect(page).to have_content('内容を入力してください'), 'エラーメッセージ「内容を入力してください」が表示されていません'
+          end
         end
       end
     end
