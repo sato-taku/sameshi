@@ -178,6 +178,15 @@ RSpec.describe '投稿', type: :system do
             expect(page).to have_content('内容を入力してください'), 'エラーメッセージ「内容を入力してください」が表示されていません'
           end
         end
+
+        context '他人の投稿' do
+          it '編集ボタンが表示されないこと' do
+            login(another_user)
+            visit posts_path
+            find("a[href='#{post_path(post)}']").click
+            expect(page).not_to have_selector("button-edit-#{post.id}"), '他人の投稿に対して編集ボタンが表示されています'
+          end
+        end
       end
     end
   end
