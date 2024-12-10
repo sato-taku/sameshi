@@ -189,5 +189,23 @@ RSpec.describe '投稿', type: :system do
         end
       end
     end
+
+    describe '投稿の削除' do
+      before do
+        sauna
+        post
+      end
+      context '自分の投稿' do
+        it '投稿が削除できること' do
+          login(user)
+          visit posts_path
+          find("a[href='#{post_path(post)}']").click
+          page.accept_confirm { find("#button-delete-#{post.id}").click }
+          Capybara.assert_current_path("/posts", ignore_query: true)
+          expect(current_path).to eq('/posts'), '投稿削除後に投稿一覧ページに遷移していません'
+          expect(page).to have_content('投稿を削除しました'), 'フラッシュメッセージ「投稿を削除しました」が表示されていません'
+        end
+      end
+    end
   end
 end
