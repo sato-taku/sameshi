@@ -206,6 +206,15 @@ RSpec.describe '投稿', type: :system do
           expect(page).to have_content('投稿を削除しました'), 'フラッシュメッセージ「投稿を削除しました」が表示されていません'
         end
       end
+
+      context '他人の投稿' do
+        it '削除ボタンが表示されないこと' do
+          login(another_user)
+          visit posts_path
+          find("a[href='#{post_path(post)}']").click
+          expect(page).not_to have_selector("#button-delete-#{post.id}"), '他人の投稿に対して削除ボタンが表示されています'
+        end
+      end
     end
   end
 end
