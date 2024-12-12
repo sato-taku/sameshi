@@ -216,5 +216,22 @@ RSpec.describe '投稿', type: :system do
         end
       end
     end
+
+    describe '投稿のいいね一覧' do
+      before do
+        sauna
+        post
+      end
+      context '一件もいいねしていない場合' do
+        it '一件もない旨のメッセージが表示されること' do
+          login(user)
+          visit profile_path
+          click_on 'いいね'
+          Capybara.assert_current_path("/profile", ignore_query: true)
+          expect(current_path).to eq('/profile'), '/profile に留まっていません'
+          expect(page).to have_content('いいねがありません'), 'いいねが一件もない場合「いいねがありません」というメッセージが表示されません'
+        end
+      end
+    end
   end
 end
