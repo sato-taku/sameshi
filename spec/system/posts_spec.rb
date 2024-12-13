@@ -232,6 +232,19 @@ RSpec.describe '投稿', type: :system do
           expect(page).to have_content('いいねがありません'), 'いいねが一件もない場合「いいねがありません」というメッセージが表示されません'
         end
       end
+
+      context 'いいねしている場合' do
+        it 'いいねした投稿が表示されること' do
+          login(another_user)
+          visit posts_path
+          find("#like-button-for-post-#{post.id}").click
+          visit profile_path
+          click_on 'いいね'
+          Capybara.assert_current_path("/profile", ignore_query: true)
+          expect(current_path).to eq('/profile')
+          expect(page).to have_content(post.user.nickname)
+        end
+      end
     end
   end
 end
