@@ -1,4 +1,4 @@
-<div>
+<div id="like-button">
   <% if current_user.like?(post) %>
     <%= render 'posts/unlike', { post: post } %>
   <% else %>
