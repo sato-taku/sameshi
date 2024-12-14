@@ -26,7 +26,7 @@ RSpec.describe '投稿', type: :system do
 
       context '6件以下の場合' do
         let!(:posts) { create_list(:post, 6) }
-        it 'ページングが表示されないこと' do
+        it 'ペーネーションが表示されないこと' do
           visit '/posts'
           expect(page).not_to have_selector('.pagination')
         end
@@ -34,7 +34,7 @@ RSpec.describe '投稿', type: :system do
 
       context '6件以上の場合' do
         let!(:posts) { create_list(:post, 7) }
-        it 'ページングが表示されること' do
+        it 'ペーネーションが表示されること' do
           visit '/posts'
           expect(page).to have_selector('.pagination')
         end
@@ -243,6 +243,17 @@ RSpec.describe '投稿', type: :system do
           Capybara.assert_current_path("/profile", ignore_query: true)
           expect(current_path).to eq('/profile')
           expect(page).to have_content(post.user.nickname)
+        end
+      end
+
+      context '6件以下の場合' do
+        let!(:posts) { create_list(:post, 6) }
+        it 'ペーネーションが表示されないこと' do
+          posts.each { |post| Like.create(user: another_user, post: post) }
+          login(another_user)
+          visit profile_path
+          click_on 'いいね'
+          expect(page).not_to have_selector('.pagination'), 'いいねした投稿が6件以下の場合にページネーションを表示されています'
         end
       end
     end
