@@ -32,7 +32,7 @@ RSpec.describe '投稿', type: :system do
         end
       end
 
-      context '6件以上の場合' do
+      context '7件以上の場合' do
         let!(:posts) { create_list(:post, 7) }
         it 'ペーネーションが表示されること' do
           visit '/posts'
@@ -254,6 +254,17 @@ RSpec.describe '投稿', type: :system do
           visit profile_path
           click_on 'いいね'
           expect(page).not_to have_selector('.pagination'), 'いいねした投稿が6件以下の場合にページネーションを表示されています'
+        end
+      end
+
+      context '7件以上の場合' do
+        let!(:posts) { create_list(:post, 7) }
+        it 'ページネーションが表示されること' do
+          posts.each { |post| Like.create(user: another_user, post: post) }
+          login(another_user)
+          visit profile_path
+          click_on 'いいね'
+          expect(page).to have_selector('.pagination'), 'いいねした投稿が7件以上の場合にページネーションが表示されていません'
         end
       end
     end
