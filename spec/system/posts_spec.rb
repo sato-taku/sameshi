@@ -46,7 +46,7 @@ RSpec.describe '投稿', type: :system do
         before do
           post
         end
-        it '投稿の詳細と新規登録への誘導が表示されること' do
+        it '新規登録への誘導が表示されること' do
           visit '/posts'
           find("a[href='#{post_path(post)}']").click
           Capybara.assert_current_path("/posts/#{post.id}", ignore_query: true)
@@ -66,7 +66,7 @@ RSpec.describe '投稿', type: :system do
           login(user)
           post
         end
-        it '投稿の詳細とコメントフォームが表示されること' do
+        it 'いいねボタンとコメントフォームが表示されること' do
           visit '/posts'
           find("a[href='#{post_path(post)}']").click
           Capybara.assert_current_path("/posts/#{post.id}", ignore_query: true)
