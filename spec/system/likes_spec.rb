@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe "Likes", type: :system do
-  before do
-    driven_by(:rack_test)
-  end
+RSpec.describe "いいね", type: :system do
+  let(:user) { create(:user) }
+  let!(:post) { create(:post) }
+  let!(:like) { create(:like, user: user) }
 
-  pending "add some scenarios (or delete) #{__FILE__}"
+
 end
