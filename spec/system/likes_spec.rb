@@ -10,10 +10,16 @@ RSpec.describe "いいね", type: :system do
   it 'いいねができること' do
     login(user)
     visit '/posts'
-    find("a[href='#{post_path(post)}']").click
     find("#like-button-for-post-#{post.id}").click
-    expect(current_path).to eq("/posts/#{post.id}")
+    expect(current_path).to eq('/posts')
     expect(page).to have_selector("#unlike-button-for-post-#{post.id}")
   end
 
+  it 'いいねを外せること' do
+    login(user)
+    visit '/posts'
+    find("#unlike-button-for-post-#{like.post.id}").click
+    expect(current_path).to eq('/posts')
+    expect(page).to have_selector("#like-button-for-post-#{post.id}")
+  end
 end
