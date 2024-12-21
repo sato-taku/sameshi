@@ -21,5 +21,18 @@ RSpec.describe "Comments", type: :system do
         expect(page).to have_content(comment_by_me.user.nickname)
       end
     end
+
+    describe 'コメントの作成' do
+      it 'コメントを作成できること' do
+        fill_in 'コメント', with: '新規コメント'
+        find("button[type='submit']").click
+        sleep(0.5)
+        comment = Comment.last
+        within "#comment-#{comment.id}" do
+          expect(page).to have_content(me.nickname)
+          expect(page).to have_content('新規コメント')
+        end
+      end
+    end
   end
 end
