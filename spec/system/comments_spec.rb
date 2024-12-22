@@ -33,6 +33,15 @@ RSpec.describe "Comments", type: :system do
           expect(page).to have_content('新規コメント')
         end
       end
+
+      describe 'コメントの削除' do
+        it 'コメントを削除できること' do
+          within("#comment-#{comment_by_me.id}") do
+            page.accept_confirm { find('.delete-comment-link').click }
+          end
+          expect(page).not_to have_content(comment_by_me.body)
+        end
+      end
     end
   end
 end
