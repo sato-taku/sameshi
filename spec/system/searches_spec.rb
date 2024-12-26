@@ -27,5 +27,15 @@ RSpec.describe "Searches", type: :system do
         end
       end
     end
+
+    context '検索条件に該当する投稿がない場合' do
+      it '1件もない旨のメッセージが表示されること' do
+        fill_in 'フリーワード', with: '５'
+        find("button[type='submit']").click
+        Capybara.assert_current_path("/posts", ignore_query: true)
+        expect(current_path).to eq('/posts')
+        expect(page).to have_content('投稿がありません')
+      end
+    end
   end
 end
