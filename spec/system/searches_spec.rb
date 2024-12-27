@@ -26,6 +26,17 @@ RSpec.describe "Searches", type: :system do
           expect(page).to have_content(post1.user.nickname)
         end
       end
+
+      describe 'サウナ施設での検索機能の検証' do
+        it '該当する投稿のみ表示されること' do
+          fill_in 'サウナ施設', with: 'サウナ'
+          find("button[type='submit']").click
+          Capybara.assert_current_path("/posts", ignore_query: true)
+          expect(current_path).to eq('/posts')
+          expect(page).to have_content(post1.user.nickname)
+          
+        end
+      end
     end
 
     context '検索条件に該当する投稿がない場合' do
