@@ -34,7 +34,9 @@ RSpec.describe "Searches", type: :system do
           Capybara.assert_current_path("/posts", ignore_query: true)
           expect(current_path).to eq('/posts')
           expect(page).to have_content(post1.user.nickname)
-          
+          expect(page).to have_content(post2.user.nickname)
+          # expect(page).to have_content(post3.user.nickname)
+          # expect(page).to have_content(post4.user.nickname)
         end
       end
     end
