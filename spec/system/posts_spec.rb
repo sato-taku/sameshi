@@ -26,15 +26,15 @@ RSpec.describe '投稿', type: :system do
 
       context '6件以下の場合' do
         let!(:posts) { create_list(:post, 6) }
-        it 'ページングが表示されないこと' do
+        it 'ペーネーションが表示されないこと' do
           visit '/posts'
           expect(page).not_to have_selector('.pagination')
         end
       end
 
-      context '6件以上の場合' do
+      context '7件以上の場合' do
         let!(:posts) { create_list(:post, 7) }
-        it 'ページングが表示されること' do
+        it 'ペーネーションが表示されること' do
           visit '/posts'
           expect(page).to have_selector('.pagination')
         end
@@ -46,7 +46,7 @@ RSpec.describe '投稿', type: :system do
         before do
           post
         end
-        it '投稿の詳細と新規登録への誘導が表示されること' do
+        it '新規登録への誘導が表示されること' do
           visit '/posts'
           find("a[href='#{post_path(post)}']").click
           Capybara.assert_current_path("/posts/#{post.id}", ignore_query: true)
@@ -66,7 +66,7 @@ RSpec.describe '投稿', type: :system do
           login(user)
           post
         end
-        it '投稿の詳細とコメントフォームが表示されること' do
+        it 'いいねボタンとコメントフォームが表示されること' do
           visit '/posts'
           find("a[href='#{post_path(post)}']").click
           Capybara.assert_current_path("/posts/#{post.id}", ignore_query: true)
@@ -243,6 +243,28 @@ RSpec.describe '投稿', type: :system do
           Capybara.assert_current_path("/profile", ignore_query: true)
           expect(current_path).to eq('/profile')
           expect(page).to have_content(post.user.nickname)
+        end
+      end
+
+      context '6件以下の場合' do
+        let!(:posts) { create_list(:post, 6) }
+        it 'ペーネーションが表示されないこと' do
+          posts.each { |post| Like.create(user: another_user, post: post) }
+          login(another_user)
+          visit profile_path
+          click_on 'いいね'
+          expect(page).not_to have_selector('.pagination'), 'いいねした投稿が6件以下の場合にページネーションを表示されています'
+        end
+      end
+
+      context '7件以上の場合' do
+        let!(:posts) { create_list(:post, 7) }
+        it 'ページネーションが表示されること' do
+          posts.each { |post| Like.create(user: another_user, post: post) }
+          login(another_user)
+          visit profile_path
+          click_on 'いいね'
+          expect(page).to have_selector('.pagination'), 'いいねした投稿が7件以上の場合にページネーションが表示されていません'
         end
       end
     end
