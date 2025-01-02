@@ -15,6 +15,11 @@ RSpec.describe "共通系", type: :system do
           find('.drawer-button.btn.btn-ghost').click
           expect(page).to have_content('ログイン')
         end
+
+        it '新規登録ボタンが表示されていること' do
+          find('.drawer-button.btn.btn-ghost').click
+          expect(page).to have_content('新規登録')
+        end
       end
     end
   end
