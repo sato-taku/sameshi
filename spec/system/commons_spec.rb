@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe "共通系", type: :system do
+  let(:user) { create(:user) }
+  include LoginMacros
+
   context 'ログイン前' do
     before do
       visit root_path
@@ -20,6 +23,17 @@ RSpec.describe "共通系", type: :system do
           find('.drawer-button.btn.btn-ghost').click
           expect(page).to have_content('新規登録')
         end
+      end
+    end
+  end
+
+  context 'ログイン後' do
+    before do
+      login(user)
+    end
+    describe 'ヘッダー' do
+      it '通知が表示されていること' do
+        expect(page).to have_selector('.dropdown.fixed.top-4.left-2.md\:left-4.z-50')
       end
     end
   end
