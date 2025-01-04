@@ -36,5 +36,11 @@ RSpec.describe "共通系", type: :system do
         expect(page).to have_selector('.dropdown.fixed.top-4.left-2.md\:left-4.z-50')
       end
     end
+
+    describe 'ハンバーガーメニュー' do
+      it 'マイページボタンが表示されていること' do
+        expect(page).to have_content('マイページ')
+      end
+    end
   end
 end
