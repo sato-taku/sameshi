@@ -41,6 +41,10 @@ RSpec.describe "共通系", type: :system do
       it 'マイページボタンが表示されていること' do
         expect(page).to have_content('マイページ')
       end
+
+      it 'ログアウトボタンが表示されていること' do
+        expect(page).to have_content('ログアウト')
+      end
     end
   end
 end
