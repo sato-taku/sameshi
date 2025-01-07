@@ -52,5 +52,11 @@ RSpec.describe "共通系", type: :system do
         expect(page).to have_content('ログアウト')
       end
     end
+
+    describe 'タイトル' do
+      it 'タイトルが正しく表示されていること' do
+        expect(page).to have_title('サ飯の時間')
+      end
+    end
   end
 end
