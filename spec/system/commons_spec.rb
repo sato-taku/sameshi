@@ -32,6 +32,12 @@ RSpec.describe "共通系", type: :system do
         expect(page).to have_content('ログインしてください')
         expect(current_path).to eq('/login')
       end
+
+      it 'マイページに遷移せずログインページに遷移すること' do
+        find('a[data-tip="マイページ"]').click
+        expect(page).to have_content('ログインしてください')
+        expect(current_path).to eq('/login')
+      end
     end
 
     describe 'タイトル' do
