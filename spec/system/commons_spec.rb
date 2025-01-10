@@ -67,6 +67,14 @@ RSpec.describe "共通系", type: :system do
       end
     end
 
+    describe 'フッター' do
+      it '新規投稿ページに遷移すること' do
+        find('a[data-tip="新規投稿"]').click
+        Capybara.assert_current_path("/posts/new", ignore_query: true)
+        expect(current_path).to eq('/posts/new')
+      end
+    end
+
     describe 'タイトル' do
       it 'タイトルが正しく表示されていること' do
         expect(page).to have_title('サ飯の時間')
