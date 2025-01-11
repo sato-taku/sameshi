@@ -73,6 +73,12 @@ RSpec.describe "共通系", type: :system do
         Capybara.assert_current_path("/posts/new", ignore_query: true)
         expect(current_path).to eq('/posts/new')
       end
+
+      it 'マイページに遷移すること' do
+        find('a[data-tip="マイページ"]').click
+        Capybara.assert_current_path("/profile", ignore_query: true)
+        expect(current_path).to eq('/profile')
+      end
     end
 
     describe 'タイトル' do
