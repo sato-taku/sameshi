@@ -55,6 +55,13 @@ RSpec.describe "共通系", type: :system do
       it '通知が表示されていること' do
         expect(page).to have_selector('.dropdown.fixed.top-4.left-2.md\:left-4.z-50')
       end
+
+      it 'ロゴを押下するとトップページに遷移すること' do
+        visit 'posts_path'
+        find('#header-logo').click
+        Capybara.assert_current_path("/", ignore_query: true)
+        expect(current_path).to eq('/')
+      end
     end
 
     describe 'ハンバーガーメニュー' do
