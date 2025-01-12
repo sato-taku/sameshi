@@ -57,7 +57,7 @@ RSpec.describe "共通系", type: :system do
       end
 
       it 'ロゴを押下するとトップページに遷移すること' do
-        visit 'posts_path'
+        visit posts_path
         find('#header-logo').click
         Capybara.assert_current_path("/", ignore_query: true)
         expect(current_path).to eq('/')
