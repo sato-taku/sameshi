@@ -27,6 +27,13 @@ RSpec.describe "共通系", type: :system do
         expect(page).to have_content('ログイン')
       end
 
+      it 'ログインボタンを押下するとログインページに遷移すること' do
+        find('.drawer-button.btn.btn-ghost').click
+        find('#login-button').click
+        Capybara.assert_current_path("/login", ignore_query: true)
+        expect(current_path).to eq('/login')
+      end
+
       it '新規登録ボタンが表示されていること' do
         find('.drawer-button.btn.btn-ghost').click
         expect(page).to have_content('新規登録')
