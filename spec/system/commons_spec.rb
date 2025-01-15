@@ -38,6 +38,13 @@ RSpec.describe "共通系", type: :system do
         find('.drawer-button.btn.btn-ghost').click
         expect(page).to have_content('新規登録')
       end
+
+      it '新規登録ボタンを押下するとユーザー登録ページに遷移すること' do
+        find('.drawer-button.btn.btn-ghost').click
+        find('#signup-button').click
+        Capybara.assert_current_path("/users/new", ignore_query: true)
+        expect(current_path).to eq('/users/new')
+      end
     end
 
     describe 'フッター' do
