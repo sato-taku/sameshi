@@ -18,7 +18,7 @@
 
         <% if logged_in? %>
 
-          <%= link_to profile_path, data: { turbo: false } do %>
+          <%= link_to profile_path, id: 'mypage-button', data: { turbo: false } do %>
             <div class="w-full py-4 my-6 flex justify-evenly rounded-xl shadow-lg hover:bg-base-300">
               <div class="avatar">
                 <div class="w-14 rounded-full md:w-24">

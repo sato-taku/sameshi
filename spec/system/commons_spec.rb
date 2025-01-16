@@ -87,10 +87,19 @@ RSpec.describe "共通系", type: :system do
 
     describe 'ハンバーガーメニュー' do
       it 'マイページボタンが表示されていること' do
+        find('.drawer-button.btn.btn-ghost').click
         expect(page).to have_content('マイページ')
       end
 
+      it 'マイページボタンを押下するとマイページに遷移すること' do
+        find('.drawer-button.btn.btn-ghost').click
+        find('#mypage-button').click
+        Capybara.assert_current_path("/profile", ignore_query:true)
+        expect(current_path).to eq('/profile')
+      end
+
       it 'ログアウトボタンが表示されていること' do
+        find('.drawer-button.btn.btn-ghost').click
         expect(page).to have_content('ログアウト')
       end
     end
