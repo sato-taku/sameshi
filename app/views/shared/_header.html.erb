@@ -30,7 +30,7 @@
           <% end %>
 
           <div class="mb-2">
-            <%= link_to logout_path, data: { turbo_method: :delete }, class: "w-full btn btn-ghost btn-sm hover:text-info" do %>
+            <%= link_to logout_path, data: { turbo_method: :delete }, id: 'logout-button', class: "w-full btn btn-ghost btn-sm hover:text-info" do %>
               <div class="w-full flex justify-between">
                 <div>ログアウト</div>
                 <div class="hidden"></div>

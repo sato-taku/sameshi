@@ -102,6 +102,14 @@ RSpec.describe "共通系", type: :system do
         find('.drawer-button.btn.btn-ghost').click
         expect(page).to have_content('ログアウト')
       end
+
+      it 'ログアウトボタンを押下するとログアウトされること' do
+        find('.drawer-button.btn.btn-ghost').click
+        find('#logout-button').click
+        Capybara.assert_current_path("/", ignore_query: true)
+        expect(current_path).to eq('/')
+        expect(page).to have_content('ログアウトしました')
+      end
     end
 
     describe 'フッター' do
