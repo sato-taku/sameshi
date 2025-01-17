@@ -1,7 +1,7 @@
 <header class="navbar shadow-xl bg-neutral fixed top-0 z-40 w-full">
   <div class="navbar-start"></div>
   <div class="navbar-center">
-    <%= link_to image_tag("sameshi_header.svg", width: '200' ), "/", data: { turbo: false } %>
+    <%= link_to image_tag("sameshi_header.svg", width: '200' ), "/", id: 'header-logo', data: { turbo: false } %>
   </div>
   <div class="navbar-end drawer-end">
     <input id="my-drawer-4" type="checkbox" class="drawer-toggle" />
@@ -18,7 +18,7 @@
 
         <% if logged_in? %>
 
-          <%= link_to profile_path, data: { turbo: false } do %>
+          <%= link_to profile_path, id: 'mypage-button', data: { turbo: false } do %>
             <div class="w-full py-4 my-6 flex justify-evenly rounded-xl shadow-lg hover:bg-base-300">
               <div class="avatar">
                 <div class="w-14 rounded-full md:w-24">
@@ -30,7 +30,7 @@
           <% end %>
 
           <div class="mb-2">
-            <%= link_to logout_path, data: { turbo_method: :delete }, class: "w-full btn btn-ghost btn-sm hover:text-info" do %>
+            <%= link_to logout_path, data: { turbo_method: :delete }, id: 'logout-button', class: "w-full btn btn-ghost btn-sm hover:text-info" do %>
               <div class="w-full flex justify-between">
                 <div>ログアウト</div>
                 <div class="hidden"></div>
@@ -43,7 +43,7 @@
           <div class="divider divider-neutral"></div>
 
           <div class="mb-2">
-            <%= link_to login_path, data: { turbo: false }, class: "w-full btn btn-ghost btn-sm hover:text-info" do %>
+            <%= link_to login_path, data: { turbo: false }, id: 'login-button', class: "w-full btn btn-ghost btn-sm hover:text-info" do %>
               <div class="w-full flex justify-between">
                 <div>ログイン</div>
                 <div class="hidden"></div>
@@ -52,7 +52,7 @@
           </div>
 
           <div class="mb-2">
-            <%= link_to new_user_path, data: { turbo: false }, class: "w-full btn btn-ghost btn-sm hover:text-info" do %>
+            <%= link_to new_user_path, data: { turbo: false }, id: 'signup-button', class: "w-full btn btn-ghost btn-sm hover:text-info" do %>
               <div class="w-full flex justify-between">
                 <div>新規登録</div>
                 <div class="hidden"></div>
